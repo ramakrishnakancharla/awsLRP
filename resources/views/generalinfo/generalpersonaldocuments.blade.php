@@ -132,8 +132,8 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Doc. Name</span></div>
-										  <div class="col-sm-8"><input id="IssueingAuthority" name="IssueingAuthority" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Module</span></div>
+										  <div class="col-sm-8"><input id="Module" name="Module" type="text" class="form-control"></div>
 										</div>
 									  </li>
 				  
