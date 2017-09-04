@@ -24,8 +24,8 @@
                             </div>
                             <div class="media-body">
                               <span class="date">Family</span>
-                              <span class="user">{{$values->IDType}}</span>
-                              <div class="message">Date Of Issue : {{Carbon\Carbon::parse($values->DateOfIssue)->format('d/m/Y')}}</div>
+                              <span class="user">{{$values->DocCategory}}</span>
+                              <div class="message">Doc. Name : {{$values->DocName}}</div>
                             </div>
                           </div>
                         </a>
@@ -44,7 +44,7 @@
                         <i class="fa fa-plus"></i> <input class="btn-primary bordernone" type="reset" value="Add New"  />
                       </a>
                     </div>
-                    <input type="text" class="form-control share-text" readonly placeholder="PERSONAL DOCUMENTS" />
+                    <input type="text" class="form-control share-text" placeholder="PERSONAL DOCUMENTS" />
                   </div>
                 </div>
 				
@@ -92,7 +92,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-										  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker"></div>
+										  <div class="col-sm-8"><input id="ValidFrom" name="ValidFrom" type="text" class="form-control datepicker"></div>
 										</div>
 									  </li>
 									 
@@ -100,7 +100,7 @@
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Doc. Category</span></div>
 										  <div class="col-sm-8">
-											<select name="IDType" id="IDType" class="form-control">
+											<select name="DocCategory" id="DocCategory" class="form-control">
 												<option>Select</option>
 												<option value="PAN">PAN</option>
 												<option value="Passport">Passport</option>
@@ -111,7 +111,14 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Belongs To</span></div>
-										  <div class="col-sm-8"><input id="BelongsTo" name="BelongsTo" type="text" class="form-control"></div>
+										  <div class="col-sm-8"><input id="DocBelongs" name="DocBelongs" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  </li>
+									   <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Follow up?</span></div>
+										  <div class="col-sm-8"><input  id="FollowUp" name="FollowUp" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									</ul>
@@ -121,13 +128,13 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-										  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker"></div>
+										  <div class="col-sm-8"><input id="ValidTo" name="ValidTo" type="text" class="form-control datepicker"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Doc. Name</span></div>
-										  <div class="col-sm-8"><input id="IssueingAuthority" name="IssueingAuthority" type="text" class="form-control"></div>
+										  <div class="col-sm-8"><input id="DocName" name="DocName" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -136,7 +143,7 @@
 										  <div class="col-sm-8"><input id="Module" name="Module" type="text" class="form-control"></div>
 										</div>
 									  </li>
-				  
+									
 									</ul>
 								</div>
 								<input id="hiddenid" name="hiddenid" type="hidden" class="form-control">

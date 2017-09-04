@@ -19,11 +19,11 @@
                         <a class="pointer">
                           <div class="media">
                             <div class="media-left">
-                              <img src="{{base64_decode($values->Image)}}" width="50" alt="" class="media-object" />
+                              <img src="images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
                               <span class="user">{{$values->FirstName}}</span>
-                              <div class="message">Birth : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>
+                              <div class="message">DOB : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>
                             </div>
                           </div>
                         </a>
@@ -39,10 +39,10 @@
                   <div class="input-group">
                     <div class="input-group-btn">
                       <a class="btn btn-primary pointer">
-                        <i class="fa fa-plus"></i> <input class="btn-primary bordernone" type="reset" value="Add New"  />
+                        <i class="fa fa-plus"></i> <input class="btn-primary bordernone" type="reset" value="Add New"/>
                       </a>
                     </div>
-                    <input type="text" class="form-control share-text" readonly placeholder="FAMILY INFORMATION" />
+                    <input type="text" class="form-control share-text"  placeholder="FAMILY INFORMATION" />
                   </div>
                 </div>
 				{{ csrf_field() }}

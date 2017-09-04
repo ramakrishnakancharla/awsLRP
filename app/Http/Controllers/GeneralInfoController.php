@@ -348,19 +348,28 @@ class GeneralInfoController extends Controller
 				$generalpersonaldocuments = generalpersonaldocuments::where('Status',1)->find($request->hiddenid);	
 				$generalpersonaldocuments->MetaID = $request->options;
 				$generalpersonaldocuments->ToWhom = $towhom;
-				$generalpersonaldocuments->FromDate = DateTime::createFromFormat('d/m/Y', $request->FromDate)->format('Y-m-d');
-				$generalpersonaldocuments->FromTime = $request->FromTime;
-				$generalpersonaldocuments->ToDate = DateTime::createFromFormat('d/m/Y', $request->ToDate)->format('Y-m-d');
-				$generalpersonaldocuments->ToTime = $request->ToTime;
-				$generalpersonaldocuments->Country = $request->Country;
-				$generalpersonaldocuments->Region = $request->Region;
-				$generalpersonaldocuments->Purpose = $request->Purpose;
-				$generalpersonaldocuments->OtherPurpose = $request->OtherPurpose;
-				$generalpersonaldocuments->Comments = $request->Comments;
+				$generalpersonaldocuments->ValidFrom = DateTime::createFromFormat('d/m/Y', $request->ValidFrom)->format('Y-m-d');
+				$generalpersonaldocuments->ValidTo = DateTime::createFromFormat('d/m/Y', $request->ValidTo)->format('Y-m-d');
+				$generalpersonaldocuments->DocCategory = $request->DocCategory;
+				$generalpersonaldocuments->DocName = $request->DocName;
+				$generalpersonaldocuments->DocBelongs = $request->DocBelongs;
+				$generalpersonaldocuments->Module = $request->Module;
+				$generalpersonaldocuments->FollowUp = $request->FollowUp;
 				$generalpersonaldocuments->Txnuser = Auth::user()->id;
 				$generalpersonaldocuments->Status = 1;
 			}else{
-				$generaltravelinfo = new generalpersonaldocuments();	
+				$generalpersonaldocuments = new generalpersonaldocuments();
+				$generalpersonaldocuments->MetaID = $request->options;
+				$generalpersonaldocuments->ToWhom = $towhom;
+				$generalpersonaldocuments->ValidFrom = DateTime::createFromFormat('d/m/Y', $request->ValidFrom)->format('Y-m-d');
+				$generalpersonaldocuments->ValidTo = DateTime::createFromFormat('d/m/Y', $request->ValidTo)->format('Y-m-d');
+				$generalpersonaldocuments->DocCategory = $request->DocCategory;
+				$generalpersonaldocuments->DocName = $request->DocName;
+				$generalpersonaldocuments->DocBelongs = $request->DocBelongs;
+				$generalpersonaldocuments->Module = $request->Module;
+				$generalpersonaldocuments->FollowUp = $request->FollowUp;
+				$generalpersonaldocuments->Txnuser = Auth::user()->id;
+				$generalpersonaldocuments->Status = 1;				
 			}
 			$generalpersonaldocuments->save();
 			if($generalpersonaldocuments){

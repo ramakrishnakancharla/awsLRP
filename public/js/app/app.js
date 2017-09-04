@@ -3465,6 +3465,8 @@ require('../../components/messages/main');
 		var dt = val.split("-");
 		return dt[2]+"/"+dt[1]+"/"+dt[0];
 	}
+	$(".actionBtn").hide();
+	
 	$("#FamilyId").hide();
 	$("#FriendsId").hide();
 	$("#options").on("change", function(){
@@ -3657,6 +3659,9 @@ require('../../components/messages/main');
 		$("#ValidToDate").val(dateformt(myObject.ValidTo));
 	});
 	$(".generalTravelInfo").on("click", function(){
+		$(".actionBtn").show();
+		$(".form-control").addClass("bordernone");
+		$('.form-control').attr('disabled', true);
 		var attrDate=$(this).attr("attrId");
 		var myObject = JSON.parse(attrDate);
 		$("#hiddenid").val(myObject.GTI_ID);
@@ -3688,4 +3693,44 @@ require('../../components/messages/main');
 		$("#OtherPurpose").val(myObject.OtherPurpose);
 		$("#Comments").val(myObject.Comments);
 	});
+	$(".generalPersonalDocuments").on("click", function(){
+		var attrDate=$(this).attr("attrId");
+		var myObject = JSON.parse(attrDate);
+		$("#hiddenid").val(myObject.GPD_ID);
+		$("#options").val(myObject.MetaID);
+		if(myObject.MetaID == 1){
+			$("#SelfId").show();
+			$("#FamilyId").hide();
+			$("#FriendsId").hide();
+		}
+		if(myObject.MetaID == 2){
+			$("#FamilyId").show();
+			$("#FamilyId").val(myObject.ToWhom);
+			$("#FriendsId").hide();
+			$("#SelfId").hide();
+		}
+		if(myObject.MetaID == 3){
+			$("#FriendsId").show();
+			$("#FriendsId").val(myObject.ToWhom);
+			$("#FamilyId").hide();
+			$("#SelfId").hide();
+		}
+		$("#ValidFrom").val(dateformt(myObject.ValidFrom));
+		$("#ValidTo").val(dateformt(myObject.ValidTo));
+		$("#DocCategory").val(myObject.DocCategory);
+		$("#DocName").val(myObject.DocName);
+		$("#DocBelongs").val(myObject.DocBelongs);
+		$("#Module").val(myObject.Module);
+		$("#FollowUp").val(myObject.FollowUp);
+	});
+	$(".editAll").on("click", function(){
+		$(".form-control").removeClass("bordernone");
+		$('.form-control').attr('disabled', false);
+	});
+	$(".resetAll").on("click", function(){
+		$(".actionBtn").hide();
+		$(".form-control").removeClass("bordernone");
+		$('.form-control').attr('disabled', false);
+	});
+	
 })(jQuery);

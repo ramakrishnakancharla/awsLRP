@@ -231,9 +231,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Academics</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Memberships</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Objects on Loan</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Reminders & Notifications</span></a></li>
               <li><a href="{{ route('generaltravelinfo') }}"><i class="fa fa-circle-o"></i> <span>Travel Info</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Documents</span></a></li>
+              <li><a href="{{ route('generalpersonaldocuments')}}"><i class="fa fa-circle-o"></i> <span>Documents</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Leisure Activities</span></a></li>
             </ul>
           </li>

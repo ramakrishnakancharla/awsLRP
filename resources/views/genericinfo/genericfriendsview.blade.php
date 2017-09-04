@@ -23,7 +23,7 @@
                             </div>
                             <div class="media-body">
                               <span class="user">{{$values->FirstName}}</span>
-                              <div class="message">Birth : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>
+                              <div class="message">DOB : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>
                             </div>
                           </div>
                         </a>

@@ -44,7 +44,7 @@
                         <i class="fa fa-plus"></i> <input class="btn-primary bordernone" type="reset" value="Add New"  />
                       </a>
                     </div>
-                    <input type="text" class="form-control share-text" readonly placeholder="ADDRESS INFORMATION" />
+                    <input type="text" class="form-control share-text" placeholder="ADDRESS INFORMATION" />
                   </div>
                 </div>
 				

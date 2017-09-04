@@ -38,16 +38,19 @@
               <div class="media-body">
 			  <form class="form-horizontal" role="form" action="{{ route('generaltravelinfo') }}" method="post">
                 <div class="panel panel-default share">
-                  <div class="input-group">
+                  <div class="input-group row">
                     <div class="input-group-btn">
                       <a class="btn btn-primary pointer">
-                        <i class="fa fa-plus"></i> <input class="btn-primary bordernone" type="reset" value="Add New"  />
+                        <i class="fa fa-plus"></i> <input class="btn-primary bordernone resetAll" type="reset" value="Add New"  />
                       </a>
                     </div>
-                    <input type="text" class="form-control share-text" readonly placeholder="TRAVEL INFO" />
+                    <input type="text" class="form-control share-text" placeholder="TRAVEL INFO" />
+					<div class="input-group-btn">
+                      <a class="btn btn-warning pointer actionBtn editAll"><i class="fa fa-edit"></i></a>
+                      <a class="btn btn-danger pointer actionBtn"><i class="fa fa-trash"></i></a>
+                    </div>
                   </div>
                 </div>
-				
 				{{ csrf_field() }}
 					<div class="panel panel-default">
 						  <div class="panel-heading panel-heading-gray">
