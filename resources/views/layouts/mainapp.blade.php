@@ -217,8 +217,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 		  <li class="hasSubmenu">
             <a href="#generic"><i class="icon-globe"></i> <span>Generic Info</span></a>
             <ul id="generic">
-              <li><a href="{{ route ('genericfamilydata')}}"><i class="fa fa-users"></i> <span>Family Members</span></a></li>
-              <li><a href="{{ route ('genericfriendsdata')}}"><i class="fa fa-user-secret"></i> <span>Relatives & Friends</span></a></li>
+              <li><a href="{{ URL::to('genericinfofamily') }}"><i class="fa fa-users"></i> <span>Family Members</span></a></li>
+              <li><a href="#"><i class="fa fa-user-secret"></i> <span>Relatives & Friends</span></a></li>
             </ul>
           </li>
           <li class="hasSubmenu">

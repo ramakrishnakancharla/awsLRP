@@ -20,11 +20,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /*--------- Generic info tab ---------------*/
 // Generic Family page
-Route::get('genericfamilydata','GenericInfoController@genericfamilydata')->name('genericfamilydata');
-Route::post('genericfamilydata','GenericInfoController@genericfamilydata_insert')->name('genericfamilydata_insert');
+//Route::get('genericfamilydata','GenericInfoController@genericfamilydata')->name('genericfamilydata');
+//Route::post('genericfamilydata','GenericInfoController@genericfamilydata_insert')->name('genericfamilydata_insert');
 // Generic Friends page
-Route::get('genericfriendsdata','GenericInfoController@genericfriendsdata')->name('genericfriendsdata');
-Route::post('genericfriendsdata','GenericInfoController@genericfriendsdata_insert')->name('genericfriendsdata_insert');
+//Route::get('genericfriendsdata','GenericInfoController@genericfriendsdata')->name('genericfriendsdata');
+//Route::post('genericfriendsdata','GenericInfoController@genericfriendsdata_insert')->name('genericfriendsdata_insert');
+
+Route::resource('genericinfofamily', 'GenericInfoFamilyController');
 
 /*------------General info tab ----------------*/
 Route::get('personaldata','GeneralInfoController@personaldata')->name('personaldata');

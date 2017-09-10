@@ -3461,6 +3461,20 @@ require('../../components/messages/main');
 
 
 (function ($) {
+	$('.allSearch').keyup(function(){
+		var valThis = $(this).val().toLowerCase();
+		if(valThis == ""){
+			$('.listSearch > li').show();           
+		} else {
+			$('.listSearch > li').each(function(){
+				var text = $(this).text().toLowerCase();
+				(text.indexOf(valThis) >= 0) ? $(this).show() : $(this).hide();
+			});
+		};
+	});
+
+
+
 	function dateformt(val){
 		var dt = val.split("-");
 		return dt[2]+"/"+dt[1]+"/"+dt[0];

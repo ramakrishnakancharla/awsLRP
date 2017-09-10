@@ -46,7 +46,7 @@
                     </div>
                     <input type="text" class="form-control share-text" placeholder="TRAVEL INFO" />
 					<div class="input-group-btn">
-                      <a class="btn btn-warning pointer actionBtn editAll"><i class="fa fa-edit"></i></a>
+                      <a href="#" class="btn btn-warning pointer actionBtn editAll"><i class="fa fa-edit"></i></a>
                       <a class="btn btn-danger pointer actionBtn"><i class="fa fa-trash"></i></a>
                     </div>
                   </div>
