@@ -124,18 +124,12 @@
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
 										  <div class="col-sm-8">
-												<select name="DocType" id="DocType" class="form-control">
+												<select name="City" id="City" class="form-control">
 													<option>Select</option>
 													<option value="PAN">PAN</option>
 													<option value="PassPort">PassPort</option>
 												</select>
 										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Doc. Name / No.</span></div>
-										  <div class="col-sm-8"><input id="DocNo" name="DocNo" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									</ul>
@@ -187,8 +181,8 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Profile Image</span></div>
+										  <div class="col-sm-8"><input id="ProfileImage" name="ProfileImage" type="file" class="form-control"></div>
 										</div>
 									  </li>
 									</ul>

@@ -104,7 +104,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <span class="icon-bar"></span>
           </button>
           <a href="#sidebar-chat" data-toggle="sidebar-menu" data-effect="st-effect-1" class="toggle pull-right visible-xs "><i class="fa fa-comments"></i></a>
-          <a class="navbar-brand navbar-brand-primary hidden-xs" href="index.html">LRP</a>
+          <a class="navbar-brand navbar-brand-primary hidden-xs" href="#">LRP</a>
         </div>
         <div class="collapse navbar-collapse" id="main-nav">
           <ul class="nav navbar-nav hidden-xs">
@@ -172,8 +172,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                 <img src="images/people/50/guy-5.jpg" width="35" alt="Bill" class="img-circle" /> Bill <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="messages.html">Messages</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Messages</a></li>
                 <li><a href="{{ route('logout')}}">Logout</a></li>
               </ul>
             </li>
@@ -218,7 +218,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <a href="#generic"><i class="icon-globe"></i> <span>Generic Info</span></a>
             <ul id="generic">
               <li><a href="{{ URL::to('genericinfofamily') }}"><i class="fa fa-users"></i> <span>Family Members</span></a></li>
-              <li><a href="#"><i class="fa fa-user-secret"></i> <span>Relatives & Friends</span></a></li>
+              <li><a href="{{URL::to('genericinfofriends')}}"><i class="fa fa-user-secret"></i> <span>Relatives & Friends</span></a></li>
             </ul>
           </li>
           <li class="hasSubmenu">
@@ -228,58 +228,76 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
               <li><a href="{{ route('generaladdress') }}"><i class="fa fa-circle-o"></i> <span>Address</span></a></li>
               <li><a href="{{ route('generalcommunications') }}"><i class="fa fa-circle-o"></i> <span>Communications</span></a></li>
               <li><a href="{{ route('generalpersonalIds') }}"><i class="fa fa-circle-o"></i> <span>Personnel IDs</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Academics</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Memberships</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Objects on Loan</span></a></li>
+              <li><a href="{{route('generalmemberships')}}"><i class="fa fa-circle-o"></i> <span>Memberships</span></a></li>
+              <li><a href="{{route('generalobjectsonloan')}}"><i class="fa fa-circle-o"></i> <span>Objects on Loan</span></a></li>
               <li><a href="{{ route('generaltravelinfo') }}"><i class="fa fa-circle-o"></i> <span>Travel Info</span></a></li>
               <li><a href="{{ route('generalpersonaldocuments')}}"><i class="fa fa-circle-o"></i> <span>Documents</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Leisure Activities</span></a></li>
+              <li><a href="{{route('generalleisureactivites')}}"><i class="fa fa-circle-o"></i> <span>Leisure Activities</span></a></li>
+              <li><a href="{{route('generalphotos')}}"><i class="fa fa-circle-o"></i> <span>Photos</span></a></li>
+              <li><a href="{{route('generalaccesslogin')}}"><i class="fa fa-circle-o"></i> <span>Access/Login Details</span></a></li>
             </ul>
           </li>
-         <!-- <li class=""><a href="profile.html"><i class="icon-user-1"></i> <span>Profile</span></a></li>
-          <li class=""><a href="users.html"><i class="fa fa-group"></i> <span>Users</span></a></li>
-          <li class=""><a href="messages.html"><i class="icon-comment-fill-1"></i> <span>Messages</span></a></li>
-          <li><a href="login.html"><i class="icon-lock-fill"></i> <span>Login</span></a></li> -->
+         <!-- <li class=""><a href="#"><i class="icon-user-1"></i> <span>Profile</span></a></li>
+          <li class=""><a href="#"><i class="fa fa-group"></i> <span>Users</span></a></li>
+          <li class=""><a href="#"><i class="icon-comment-fill-1"></i> <span>Messages</span></a></li>
+          <li><a href="#"><i class="icon-lock-fill"></i> <span>Login</span></a></li> -->
           <li class="hasSubmenu">
             <a href="#Finance"><i class="fa fa-money"></i> <span>Finance</span></a>
             <ul id="Finance">
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Loans</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Insurances</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>RD/Chits</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Bank Deatils</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Assets</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>equity/MF</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>F & O</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Insurances</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Fixed Deposites</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Assets</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Financial Documents</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Loans</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Recurring Deposites</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Chit Funds</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Equity</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Mutual Fund</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Futures</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Options</span></a></li>
             </ul>
           </li>
 		  <li class="hasSubmenu">
             <a href="#Health"><i class="fa fa-medkit"></i> <span>Health</span></a>
             <ul id="Health">
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Medical Information</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Allergies</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Family Doctor</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Surgeries</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Short-Term Illness</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Long-Term Illness</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Fitness</span></a></li>
             </ul>
           </li>
 		  <li class="hasSubmenu">
             <a href="#CarrerLearing"><i class="fa fa-graduation-cap"></i> <span>Carrer & Learning</span></a>
             <ul id="CarrerLearing">
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Skills</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Professional Education</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Acedamics</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Professional Education/Skills</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Trainings</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Work Experience</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Achievements</span></a></li>
             </ul>
           </li>
 		  <li class="hasSubmenu">
-            <a href="#DailyActivities"><i class="fa fa-bell"></i> <span>Daily Activities</span></a>
+            <a href="#DailyActivities"><i class="fa fa-bell"></i> <span>Tasks & Notifications</span></a>
             <ul id="DailyActivities">
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Fitness</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Today's Challenge</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Learings</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Diet</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Calendar</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Tasks</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Reminders & Notifications</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Today's Challenges</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Finance</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Learnings</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Diet</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Fitness</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Reminders & Notifications</span></a></li>
+            </ul>
+          </li>
+		  <li class="hasSubmenu">
+            <a href="#MyApps"><i class="fa fa-bell"></i> <span>My Apps</span></a>
+            <ul id="MyApps">
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Google Maps</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Run Keeper</span></a></li>
             </ul>
           </li>
           <!-- Sample 2 Level Collapse -->

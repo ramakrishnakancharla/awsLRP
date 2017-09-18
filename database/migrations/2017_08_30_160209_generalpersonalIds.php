@@ -25,10 +25,12 @@ class GeneralpersonalIds extends Migration
             $table->string('Region')->nullable();
             $table->string('IssueingAuthority')->nullable();
             $table->date('DateOfIssue');
+            $table->string('Image')->nullable();
+            $table->string('Folder')->nullable();
             $table->date('ValidFrom');
             $table->date('ValidTo');
+			$table->integer('Status');
             $table->integer('Txnuser');
-            $table->integer('Status');
             $table->rememberToken();
             $table->timestamps();
         });

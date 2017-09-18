@@ -26,10 +26,8 @@ class Generaltravelinfo extends Migration
             $table->string('Purpose')->nullable();
             $table->string('OtherPurpose')->nullable();
             $table->longText('Comments')->nullable();
-			$table->string('Image')->nullable();
-			$table->string('Folder')->nullable();
+            $table->integer('Txnuser');
             $table->integer('Status');
-			$table->integer('Txnuser');
             $table->rememberToken();
             $table->timestamps();
         });

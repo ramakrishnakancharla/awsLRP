@@ -24,8 +24,10 @@ class Generalpersonaldocuments extends Migration
             $table->string('DocBelongs')->nullable();
             $table->string('Module')->nullable();
             $table->string('FollowUp')->nullable();
+			$table->string('Image')->nullable();
+			$table->string('Folder')->nullable();
+			$table->integer('Status');
             $table->integer('Txnuser');
-            $table->integer('Status');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -133,7 +133,24 @@
 										  </div>
 										</div>
 									  </li>
-									  
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
+										  <div class="col-sm-8">
+												<select name="DocType" id="DocType" class="form-control">
+													<option>Select</option>
+													<option value="PAN">PAN</option>
+													<option value="PassPort">PassPort</option>
+												</select>
+										  </div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Doc. Name / No.</span></div>
+										  <div class="col-sm-8"><input id="DocNo" name="DocNo" type="text" class="form-control"></div>
+										</div>
+									  </li>
 									</ul>
 								</div>
 								<div class="col-lg-6">
@@ -180,7 +197,12 @@
 										  <div class="col-sm-8"><input id="DateOfIssue" name="DateOfIssue" type="text" class="form-control datepicker"></div>
 										</div>
 									  </li>
-				  
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
+										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+										</div>
+									  </li>
 									</ul>
 								</div>
 								<input id="hiddenid" name="hiddenid" type="hidden" class="form-control">

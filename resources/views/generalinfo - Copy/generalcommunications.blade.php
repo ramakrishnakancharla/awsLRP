@@ -16,7 +16,7 @@
                   <div class="panel panel-default">
                     <ul class="list-group">
 					@foreach($data as $key=>$values)
-                      <li class="list-group-item generalAddress" attrId="{{$values}}">
+                      <li class="list-group-item generalCommunication" attrId="{{$values}}">
                         <a href="#">
                           <div class="media">
                             <div class="media-left">
@@ -24,8 +24,7 @@
                             </div>
                             <div class="media-body">
                               <span class="date">Family</span>
-                              <span class="user">{{$values->AddressType}}</span>
-                              <div class="message">{{$values->City}}</div>
+                              <span class="user">{{$values->CommunicationType}}</span>
                             </div>
                           </div>
                         </a>
@@ -36,7 +35,7 @@
                 </div>
               </div>
               <div class="media-body">
-			  <form class="form-horizontal" role="form" action="{{ route('generaladdress') }}" method="post">
+			  <form class="form-horizontal" role="form" action="{{ route('generalcommunications') }}" method="post">
                 <div class="panel panel-default share">
                   <div class="input-group">
                     <div class="input-group-btn">
@@ -44,7 +43,7 @@
                         <i class="fa fa-plus"></i> <input class="btn-primary bordernone" type="reset" value="Add New"  />
                       </a>
                     </div>
-                    <input type="text" class="form-control share-text" placeholder="ADDRESS INFORMATION" />
+                    <input type="text" class="form-control share-text" placeholder="COMMUNICATIONS INFORMATION" />
                   </div>
                 </div>
 				
@@ -98,44 +97,8 @@
 									 
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Address Type</span></div>
-										  <div class="col-sm-8"><input id="AddressType" name="AddressType" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Street</span></div>
-										  <div class="col-sm-8"><input id="Street" name="Street" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Postal Code</span></div>
-										  <div class="col-sm-8"><input id="PostalCode" name="PostalCode" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Geographical Address</span></div>
-										  <div class="col-sm-8"><input id="GeographicalAddress" name="GeographicalAddress" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
-										  <div class="col-sm-8">
-												<select name="DocType" id="DocType" class="form-control">
-													<option>Select</option>
-													<option value="PAN">PAN</option>
-													<option value="PassPort">PassPort</option>
-												</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Doc. Name / No.</span></div>
-										  <div class="col-sm-8"><input id="DocNo" name="DocNo" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Communication Type</span></div>
+										  <div class="col-sm-8"><input id="CommunicationType" name="CommunicationType" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									</ul>
@@ -150,45 +113,8 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">House No.</span></div>
-										  <div class="col-sm-8"><input id="HouseNo" name="HouseNo" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">2nd Address Line</span></div>
-										  <div class="col-sm-8"><input id="AddressLine" name="AddressLine" type="text" class="form-control"></div>
-										</div>
-									  </li>
-		   						      <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Country</span></div>
-										  <div class="col-sm-8">
-											<select name="Country" id="Country" class="form-control">
-												<option>Select</option>
-												<option value="India">India</option>
-												<option value="USA">USA</option>
-												<option value="UK">UK</option>
-											</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">City</span></div>
-										  <div class="col-sm-8">
-												<select name="City" id="City" class="form-control">
-													<option>Select</option>
-													<option value="Bangalore">Bangalore</option>
-													<option value="Hyderabad">Hyderabad</option>
-												</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Details</span></div>
+										  <div class="col-sm-8"><textarea id="Details" name="Details"  class="form-control"></textarea></div>
 										</div>
 									  </li>
 									</ul>

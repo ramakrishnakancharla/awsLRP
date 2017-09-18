@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Generalcommunications extends Migration
+class Generalpersonaldocuments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class Generalcommunications extends Migration
      */
     public function up()
     {
-        Schema::create('generalcommunications', function (Blueprint $table) {
-            $table->increments('GC_ID');
+        Schema::create('generalpersonaldocuments', function (Blueprint $table) {
+            $table->increments('GPD_ID');
             $table->integer('MetaID');
             $table->integer('ToWhom');
             $table->date('ValidFrom');
             $table->date('ValidTo');
-			$table->string('CommunicationType')->nullable();
-			$table->text('Details')->nullable();
-			$table->string('Image')->nullable();
-			$table->string('Folder')->nullable();
-			$table->integer('Status');
+            $table->string('DocCategory');
+            $table->string('DocName')->nullable();
+            $table->string('DocBelongs')->nullable();
+            $table->string('Module')->nullable();
+            $table->string('FollowUp')->nullable();
             $table->integer('Txnuser');
+            $table->integer('Status');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -37,6 +38,6 @@ class Generalcommunications extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('generalcommunications');
+        Schema::dropIfExists('generalpersonaldocuments');
     }
 }

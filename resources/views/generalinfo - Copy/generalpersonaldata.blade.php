@@ -16,7 +16,7 @@
                   <div class="panel panel-default">
                     <ul class="list-group">
 					@foreach($data as $key=>$values)
-                      <li class="list-group-item generalAddress" attrId="{{$values}}">
+                      <li class="list-group-item generalPersonal" attrId="{{$values}}">
                         <a href="#">
                           <div class="media">
                             <div class="media-left">
@@ -24,8 +24,8 @@
                             </div>
                             <div class="media-body">
                               <span class="date">Family</span>
-                              <span class="user">{{$values->AddressType}}</span>
-                              <div class="message">{{$values->City}}</div>
+                              <span class="user">{{$values->FirstName}}</span>
+                              <div class="message">Birth : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>
                             </div>
                           </div>
                         </a>
@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="media-body">
-			  <form class="form-horizontal" role="form" action="{{ route('generaladdress') }}" method="post">
+			  <form class="form-horizontal" role="form" action="{{ route('generalpersonaldata') }}" method="post">
                 <div class="panel panel-default share">
                   <div class="input-group">
                     <div class="input-group-btn">
@@ -44,7 +44,7 @@
                         <i class="fa fa-plus"></i> <input class="btn-primary bordernone" type="reset" value="Add New"  />
                       </a>
                     </div>
-                    <input type="text" class="form-control share-text" placeholder="ADDRESS INFORMATION" />
+                    <input type="text" class="form-control share-text" placeholder="PERSONAL INFORMATION" />
                   </div>
                 </div>
 				
@@ -98,46 +98,49 @@
 									 
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Address Type</span></div>
-										  <div class="col-sm-8"><input id="AddressType" name="AddressType" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Title</span></div>
+										  <div class="col-sm-8"><input id="Title" name="Title" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Street</span></div>
-										  <div class="col-sm-8"><input id="Street" name="Street" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">First Name</span></div>
+										  <div class="col-sm-8"><input id="FirstName" name="FirstName" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Postal Code</span></div>
-										  <div class="col-sm-8"><input id="PostalCode" name="PostalCode" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Middle Name</span></div>
+										  <div class="col-sm-8"><input id="MiddleName" name="MiddleName" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Geographical Address</span></div>
-										  <div class="col-sm-8"><input id="GeographicalAddress" name="GeographicalAddress" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Last Name</span></div>
+										  <div class="col-sm-8"><input id="LastName" name="LastName" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Gender</span></div>
 										  <div class="col-sm-8">
-												<select name="DocType" id="DocType" class="form-control">
-													<option>Select</option>
-													<option value="PAN">PAN</option>
-													<option value="PassPort">PassPort</option>
-												</select>
+											<select name="Gender" id="Gender" class="form-control">
+												<option>Select</option>
+												<option value="Male">Male</option>
+												<option>Female</option>
+												<option>Others</option>
+											</select>
 										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Doc. Name / No.</span></div>
-										  <div class="col-sm-8"><input id="DocNo" name="DocNo" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">DOB</span></div>
+										  <div class="col-sm-8"><input id="DateOfBirth" name="DateOfBirth" type="text" class="form-control datepicker"></div>
 										</div>
 									  </li>
+									  
+									  
 									</ul>
 								</div>
 								<div class="col-lg-6">
@@ -150,47 +153,62 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">House No.</span></div>
-										  <div class="col-sm-8"><input id="HouseNo" name="HouseNo" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Age</span></div>
+										  <div class="col-sm-8"><input id="Age" name="Age" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">2nd Address Line</span></div>
-										  <div class="col-sm-8"><input id="AddressLine" name="AddressLine" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Nationality</span></div>
+										  <div class="col-sm-8"><input id="Nationality" name="Nationality" type="text" class="form-control"></div>
 										</div>
 									  </li>
-		   						      <li class="padding-v-5">
+									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Country</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Religion</span></div>
+										  <div class="col-sm-8"><input id="Religion" name="Religion" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Marital Status</span></div>
 										  <div class="col-sm-8">
-											<select name="Country" id="Country" class="form-control">
+												<select name="MaritalStatus" id="MaritalStatus" class="form-control">
+													<option>Select</option>
+													<option value="Single">Single</option>
+													<option>Married</option>
+													<option>Divorced</option>
+													<option>Separated</option>
+													<option>Widowed</option>
+												</select>
+
+										  </div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Married Since</span></div>
+										  <div class="col-sm-8"><input id="MarriedSince" name="MarriedSince" type="text" class="form-control datepicker"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">NO. Of Childrens</span></div>
+										  <div class="col-sm-8">
+											<select name="NoOfChildrens" id="NoOfChildrens" class="form-control">
 												<option>Select</option>
-												<option value="India">India</option>
-												<option value="USA">USA</option>
-												<option value="UK">UK</option>
+												<option>0</option>
+												<option value="1">1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+												<option>6</option>
 											</select>
 										  </div>
 										</div>
 									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">City</span></div>
-										  <div class="col-sm-8">
-												<select name="City" id="City" class="form-control">
-													<option>Select</option>
-													<option value="Bangalore">Bangalore</option>
-													<option value="Hyderabad">Hyderabad</option>
-												</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
-										</div>
-									  </li>
+									  
 									</ul>
 								</div>
 								<input id="hiddenid" name="hiddenid" type="hidden" class="form-control">

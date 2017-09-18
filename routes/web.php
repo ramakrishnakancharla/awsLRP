@@ -27,6 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::post('genericfriendsdata','GenericInfoController@genericfriendsdata_insert')->name('genericfriendsdata_insert');
 
 Route::resource('genericinfofamily', 'GenericInfoFamilyController');
+Route::resource('genericinfofriends', 'GenericInfoFriendsController');
 
 /*------------General info tab ----------------*/
 Route::get('personaldata','GeneralInfoController@personaldata')->name('personaldata');
@@ -45,12 +46,20 @@ Route::post('generalcommunications','GeneralInfoController@generalcommunications
 Route::get('generalpersonalIds','GeneralInfoController@generalpersonalIds')->name('generalpersonalIds');
 Route::post('generalpersonalIds','GeneralInfoController@generalpersonalIds_insert')->name('generalpersonalIds_insert');
 
+
+
 Route::get('generaltravelinfo','GeneralInfoController@generaltravelinfo')->name('generaltravelinfo');
 Route::post('generaltravelinfo','GeneralInfoController@generaltravelinfo_insert')->name('generaltravelinfo_insert');
 
 Route::get('generalpersonaldocuments','GeneralInfoController@generalpersonaldocuments')->name('generalpersonaldocuments');
 Route::post('generalpersonaldocuments','GeneralInfoController@generalpersonaldocuments_insert')->name('generalpersonaldocuments_insert');
 
+Route::get('generalmemberships','GeneralInfoController@generalmemberships')->name('generalmemberships');
+
+Route::get('generalobjectsonloan','GeneralInfoController@generalobjectsonloan')->name('generalobjectsonloan');
+Route::get('generalleisureactivites','GeneralInfoController@generalleisureactivites')->name('generalleisureactivites');
+Route::get('generalphotos','GeneralInfoController@generalphotos')->name('generalphotos');
+Route::get('generalaccesslogin','GeneralInfoController@generalaccesslogin')->name('generalaccesslogin');
 
 
 

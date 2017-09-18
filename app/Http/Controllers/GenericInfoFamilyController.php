@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\genericfamilydata;
 use App\genericfamily;
-use App\genericfriends;
 use App\metadata;
 use App\gendermaster;
 use App\maritalstatus;

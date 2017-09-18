@@ -16,21 +16,18 @@ class Generaladdress extends Migration
         Schema::create('generaladdress', function (Blueprint $table) {
             $table->increments('GA_ID');
             $table->integer('MetaID');
-            $table->string('ToWhom');
+            $table->string('UserID');
             $table->string('AddressType');
-            $table->string('HouseNo')->nullable();
-            $table->string('Street')->nullable();
+            $table->string('HouseNo');
+            $table->string('Street');
             $table->text('AddressLine');
             $table->string('City');
             $table->string('Country');
             $table->string('PostalCode');
-            $table->text('GeographicalAddress')->nullable();
-			$table->string('Image')->nullable();
-			$table->string('Folder')->nullable();
+            $table->text('GeographicalAddress');
             $table->date('ValidFrom');
             $table->date('ValidTo');
             $table->integer('Status');
-            $table->integer('Txnuser');
             $table->rememberToken();
             $table->timestamps();
         });

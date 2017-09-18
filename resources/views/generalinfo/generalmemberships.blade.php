@@ -16,7 +16,7 @@
                   <div class="panel panel-default">
                     <ul class="list-group">
 					@foreach($data as $key=>$values)
-                      <li class="list-group-item generalAddress" attrId="{{$values}}">
+                      <li class="list-group-item generalPersonalIds" attrId="{{$values}}">
                         <a href="#">
                           <div class="media">
                             <div class="media-left">
@@ -24,8 +24,8 @@
                             </div>
                             <div class="media-body">
                               <span class="date">Family</span>
-                              <span class="user">{{$values->AddressType}}</span>
-                              <div class="message">{{$values->City}}</div>
+                              <span class="user">{{$values->IDType}}</span>
+                              <div class="message">Date Of Issue : {{Carbon\Carbon::parse($values->DateOfIssue)->format('d/m/Y')}}</div>
                             </div>
                           </div>
                         </a>
@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="media-body">
-			  <form class="form-horizontal" role="form" action="{{ route('generaladdress') }}" method="post">
+			  <form class="form-horizontal" role="form" action="{{ route('generalmemberships') }}" method="post">
                 <div class="panel panel-default share">
                   <div class="input-group">
                     <div class="input-group-btn">
@@ -44,7 +44,7 @@
                         <i class="fa fa-plus"></i> <input class="btn-primary bordernone" type="reset" value="Add New"  />
                       </a>
                     </div>
-                    <input type="text" class="form-control share-text" placeholder="ADDRESS INFORMATION" />
+                    <input type="text" class="form-control share-text" placeholder="Membership" />
                   </div>
                 </div>
 				
@@ -95,29 +95,53 @@
 										  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker"></div>
 										</div>
 									  </li>
-									 
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Address Type</span></div>
-										  <div class="col-sm-8"><input id="AddressType" name="AddressType" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Organization Name</span></div>
+										  <div class="col-sm-8"><input id="OrganizationName" name="OrganizationName" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Street</span></div>
-										  <div class="col-sm-8"><input id="Street" name="Street" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Membership Type</span></div>
+										  <div class="col-sm-8">
+												<select name="MembershipType" id="MembershipType" class="form-control">
+													<option>Select</option>
+													<option value="India">India</option>
+													<option value="UK">UK</option>
+													<option value="USA">USA</option>
+												</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Postal Code</span></div>
-										  <div class="col-sm-8"><input id="PostalCode" name="PostalCode" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
+										  <div class="col-sm-8">
+												<select name="DocType" id="DocType" class="form-control">
+													<option>Select</option>
+													<option value="PAN">PAN</option>
+													<option value="PassPort">PassPort</option>
+												</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Geographical Address</span></div>
-										  <div class="col-sm-8"><input id="GeographicalAddress" name="GeographicalAddress" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Membership Fees</span></div>
+										  <div class="col-sm-8"><input id="MembershipFees" name="MembershipFees" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Allowed For Members</span></div>
+										  <div class="col-sm-8">
+												<select name="AllowedForMembers" id="AllowedForMembers" class="form-control">
+													<option>Select</option>
+													<option value="PAN">PAN</option>
+													<option value="PassPort">PassPort</option>
+												</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -138,6 +162,7 @@
 										  <div class="col-sm-8"><input id="DocNo" name="DocNo" type="text" class="form-control"></div>
 										</div>
 									  </li>
+									  
 									</ul>
 								</div>
 								<div class="col-lg-6">
@@ -150,41 +175,60 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">House No.</span></div>
-										  <div class="col-sm-8"><input id="HouseNo" name="HouseNo" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">2nd Address Line</span></div>
-										  <div class="col-sm-8"><input id="AddressLine" name="AddressLine" type="text" class="form-control"></div>
-										</div>
-									  </li>
-		   						      <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Country</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Organization Category</span></div>
 										  <div class="col-sm-8">
-											<select name="Country" id="Country" class="form-control">
-												<option>Select</option>
-												<option value="India">India</option>
-												<option value="USA">USA</option>
-												<option value="UK">UK</option>
-											</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">City</span></div>
-										  <div class="col-sm-8">
-												<select name="City" id="City" class="form-control">
+												<select name="OrganizationCategory" id="OrganizationCategory" class="form-control">
 													<option>Select</option>
-													<option value="Bangalore">Bangalore</option>
-													<option value="Hyderabad">Hyderabad</option>
+													<option value="India">India</option>
+													<option value="UK">UK</option>
+													<option value="USA">USA</option>
 												</select>
 										  </div>
 										</div>
 									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Membership No</span></div>
+										  <div class="col-sm-8"><input id="MembershipNo" name="MembershipNo" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Sponceror</span></div>
+										  <div class="col-sm-8">
+												<select name="Sponceror" id="Sponceror" class="form-control">
+													<option>Select</option>
+													<option value="India">India</option>
+													<option value="UK">UK</option>
+													<option value="USA">USA</option>
+												</select>
+										  </div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Options (Facilities)</span></div>
+										  <div class="col-sm-8"><input id="OptionsFacilities" name="OptionsFacilities" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Facilities</span></div>
+										  <div class="col-sm-8"> 
+												<select class="selectpicker" name="Facilities" multiple data-style="btn-white" title='Choose one of the following...'>
+												  <option>Gym</option>
+												  <option>Sports</option>
+												  <option>Games</option>
+												  <option>Travel</option>
+												  <option>Golf</option>
+												  <option>Club House</option>
+												  <option>Horse Riding</option>
+												  <option>Swimming Pool</option>
+												</select>
+										  </div>
+										</div>
+									  </li>
+									  
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>

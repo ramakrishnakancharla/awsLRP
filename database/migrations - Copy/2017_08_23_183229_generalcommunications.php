@@ -21,10 +21,8 @@ class Generalcommunications extends Migration
             $table->date('ValidTo');
 			$table->string('CommunicationType')->nullable();
 			$table->text('Details')->nullable();
-			$table->string('Image')->nullable();
-			$table->string('Folder')->nullable();
-			$table->integer('Status');
             $table->integer('Txnuser');
+            $table->integer('Status');
             $table->rememberToken();
             $table->timestamps();
         });

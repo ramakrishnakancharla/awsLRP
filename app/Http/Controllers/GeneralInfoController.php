@@ -377,4 +377,49 @@ class GeneralInfoController extends Controller
 			}
         }
     }
+	public function generalmemberships(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.generalmemberships',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function generalobjectsonloan(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.generalobjectsonloan',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function generalleisureactivites(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.generalleisureactivites',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function generalphotos(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.generalphotos',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function generalaccesslogin(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.generalaccesslogin',compact('metadata','genericfamily','genericfriends','data'));
+    }
 }

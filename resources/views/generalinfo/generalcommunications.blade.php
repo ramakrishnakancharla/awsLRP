@@ -56,9 +56,9 @@
 									  <div class="col-sm-4"><span class="text-muted">Choose Option</span></div>
 									  <div class="col-sm-8">
 										    <select name="options" id="options" class="form-control">
-											@foreach($metadata as $meta)
-												<option value="{{$meta->id}}">{{$meta->value}}</option>
-											@endforeach
+												@foreach($metadata as $meta)
+													<option value="{{$meta->id}}">{{$meta->value}}</option>
+												@endforeach
 											</select>
 									  </div>
 									</div>
@@ -98,7 +98,13 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Communication Type</span></div>
-										  <div class="col-sm-8"><input id="CommunicationType" name="CommunicationType" type="text" class="form-control"></div>
+										  <div class="col-sm-8">
+												<select name="CommunicationType" id="CommunicationType" class="form-control">
+													<option>Select</option>
+													<option value="PAN">PAN</option>
+													<option value="PassPort">PassPort</option>
+												</select>
+											</div>
 										</div>
 									  </li>
 									</ul>

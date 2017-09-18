@@ -21,7 +21,7 @@
                         <a href="{{ URL::to('genericinfofamily/' . $values->AFM_ID) }}" class="pointer">
                           <div class="media">
                             <div class="media-left">
-                              <img src="images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
+                              <img src="../../images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
                               <span class="user">{{$values->FirstName}}</span>
