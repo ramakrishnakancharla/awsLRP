@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="media-body">
-			  <form class="form-horizontal" role="form" action="{{ route('generaltravelinfo') }}" method="post">
+			  <form class="form-horizontal" role="form" action="{{ route('financebankdetails') }}" method="post">
                 <div class="panel panel-default share">
                   <div class="input-group row">
                     <div class="input-group-btn">
@@ -44,7 +44,7 @@
                         <i class="fa fa-plus"></i> <input class="btn-primary bordernone resetAll" type="reset" value="Add New"  />
                       </a>
                     </div>
-                    <input type="text" class="form-control share-text" placeholder="TRAVEL INFO" />
+                    <input type="text" class="form-control share-text" placeholder="financemutualfund" />
 					<div class="input-group-btn">
                       <a href="#" class="btn btn-warning pointer actionBtn editAll"><i class="fa fa-edit"></i></a>
                       <a class="btn btn-danger pointer actionBtn"><i class="fa fa-trash"></i></a>

@@ -422,4 +422,112 @@ class GeneralInfoController extends Controller
 		$data = $generaltravelinfo->where('Status',1)->paginate(999);
 		return view('generalinfo.generalaccesslogin',compact('metadata','genericfamily','genericfriends','data'));
     }
+	public function financebankdetails(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financebankdetails',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function financensurances(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financensurances',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function financefixeddeposites(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financefixeddeposites',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function financeassets(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financeassets',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function financefinancialdocuments(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financefinancialdocuments',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function financeloans(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financeloans',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function financerecurringdeposites(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financerecurringdeposites',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function financechitfunds(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financechitfunds',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function financeequity(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financeequity',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function financemutualfund(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financemutualfund',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function financefutures(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financefutures',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function financeoptions(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.financeoptions',compact('metadata','genericfamily','genericfriends','data'));
+    }
 }

@@ -98,33 +98,16 @@
 									 
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">ID Type</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Activity</span></div>
+										  <div class="col-sm-8"><input name="Activity" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Prociency</span></div>
 										  <div class="col-sm-8">
-											<select name="IDType" id="IDType" class="form-control">
-												<option>Select</option>
-												<option value="PAN">PAN</option>
-												<option value="Passport">Passport</option>
-											</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">ID NO.</span></div>
-										  <div class="col-sm-8"><input id="IDNO" name="IDNO" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Place Of Issue</span></div>
-										  <div class="col-sm-8"><input id="PlaceOfIssue" name="PlaceOfIssue" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Country Of Issue</span></div>
-										  <div class="col-sm-8">
-												<select name="CountryOfIssue" id="CountryOfIssue" class="form-control">
+												<select name="Prociency" class="form-control">
 													<option>Select</option>
 													<option value="India">India</option>
 													<option value="UK">UK</option>
@@ -135,20 +118,14 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
-										  <div class="col-sm-8">
-												<select name="DocType" id="DocType" class="form-control">
-													<option>Select</option>
-													<option value="PAN">PAN</option>
-													<option value="PassPort">PassPort</option>
-												</select>
-										  </div>
+										  <div class="col-sm-4"><span class="text-muted">Skills</span></div>
+										  <div class="col-sm-8"><input name="Skills" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Doc. Name / No.</span></div>
-										  <div class="col-sm-8"><input id="DocNo" name="DocNo" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Hobby</span></div>
+										  <div class="col-sm-8"><input  name="Hobby" type="checkbox"></div>
 										</div>
 									  </li>
 									</ul>
@@ -163,9 +140,9 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Country</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Activity Type</span></div>
 										  <div class="col-sm-8">
-												<select name="Country" id="Country" class="form-control">
+												<select name="ActivityType"  class="form-control">
 													<option>Select</option>
 													<option value="India">India</option>
 													<option value="UK">UK</option>
@@ -176,9 +153,9 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Region</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Skills Acquired</span></div>
 										  <div class="col-sm-8">
-												<select name="Region" id="Region" class="form-control">
+												<select name="SkillsAcquired"  class="form-control">
 													<option>Select</option>
 													<option value="Hindu">Hindu</option>
 												</select>
@@ -187,22 +164,11 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Issueing Authority</span></div>
-										  <div class="col-sm-8"><input id="IssueingAuthority" name="IssueingAuthority" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Guide/Mentor/Couch</span></div>
+										  <div class="col-sm-8"><input  name="GuideMentorCouch" type="text" class="form-control"></div>
 										</div>
 									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Date Of Issue</span></div>
-										  <div class="col-sm-8"><input id="DateOfIssue" name="DateOfIssue" type="text" class="form-control datepicker"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
-										</div>
-									  </li>
+									 
 									</ul>
 								</div>
 								<input id="hiddenid" name="hiddenid" type="hidden" class="form-control">

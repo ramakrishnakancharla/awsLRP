@@ -96,35 +96,18 @@
 										</div>
 									  </li>
 									 
+									 
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">ID Type</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Object Name</span></div>
+										  <div class="col-sm-8"><input id="ObjectName" name="ObjectName" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Object Category</span></div>
 										  <div class="col-sm-8">
-											<select name="IDType" id="IDType" class="form-control">
-												<option>Select</option>
-												<option value="PAN">PAN</option>
-												<option value="Passport">Passport</option>
-											</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">ID NO.</span></div>
-										  <div class="col-sm-8"><input id="IDNO" name="IDNO" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Place Of Issue</span></div>
-										  <div class="col-sm-8"><input id="PlaceOfIssue" name="PlaceOfIssue" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Country Of Issue</span></div>
-										  <div class="col-sm-8">
-												<select name="CountryOfIssue" id="CountryOfIssue" class="form-control">
+												<select name="ObjectCategory" id="ObjectCategory" class="form-control">
 													<option>Select</option>
 													<option value="India">India</option>
 													<option value="UK">UK</option>
@@ -133,6 +116,39 @@
 										  </div>
 										</div>
 									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Given To</span></div>
+										  <div class="col-sm-8"><input id="GivenTo" name="GivenTo" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Email ID</span></div>
+										  <div class="col-sm-8"><input id="EmailID" name="EmailID" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Place Of Issue</span></div>
+										  <div class="col-sm-8"><input id="PlaceOfIssue" name="PlaceOfIssue" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Value Addition</span></div>
+										  <div class="col-sm-8"><input id="ValueAddition" name="ValueAddition" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Given Date</span></div>
+										  <div class="col-sm-8"><input id="GivenDate" name="GivenDate" type="text" class="form-control datepicker"></div>
+										</div>
+									  </li>
+									  
+									  
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
@@ -163,38 +179,50 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Country</span></div>
-										  <div class="col-sm-8">
-												<select name="Country" id="Country" class="form-control">
-													<option>Select</option>
-													<option value="India">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
-												</select>
-										  </div>
+										  <div class="col-sm-4"><span class="text-muted">Amount</span></div>
+										  <div class="col-sm-8"><input id="Amount" name="Amount" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Region</span></div>
-										  <div class="col-sm-8">
-												<select name="Region" id="Region" class="form-control">
-													<option>Select</option>
-													<option value="Hindu">Hindu</option>
-												</select>
-										  </div>
+										  <div class="col-sm-4"><span class="text-muted">Contact No</span></div>
+										  <div class="col-sm-8"><input id="ContactNo" name="ContactNo" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Issueing Authority</span></div>
-										  <div class="col-sm-8"><input id="IssueingAuthority" name="IssueingAuthority" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Adress</span></div>
+										  <div class="col-sm-8"><input id="Adress" name="Adress" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Purpose</span></div>
+										  <div class="col-sm-8"><input id="Purpose" name="Purpose" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Mode Of Giving</span></div>
+										  <div class="col-sm-8"><input id="ModeOfGiving" name="ModeOfGiving" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Mode Of Returning</span></div>
+										  <div class="col-sm-8"><input id="ModeOfReturning" name="ModeOfReturning" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Date Of Issue</span></div>
 										  <div class="col-sm-8"><input id="DateOfIssue" name="DateOfIssue" type="text" class="form-control datepicker"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Return Date</span></div>
+										  <div class="col-sm-8"><input id="ReturnDate" name="ReturnDate" type="text" class="form-control datepicker"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">

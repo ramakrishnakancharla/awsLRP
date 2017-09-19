@@ -244,18 +244,18 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
           <li class="hasSubmenu">
             <a href="#Finance"><i class="fa fa-money"></i> <span>Finance</span></a>
             <ul id="Finance">
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Bank Deatils</span></a></li>
-			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Insurances</span></a></li>
-			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Fixed Deposites</span></a></li>
-			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Assets</span></a></li>
-			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Financial Documents</span></a></li>
-			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Loans</span></a></li>
-			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Recurring Deposites</span></a></li>
-			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Chit Funds</span></a></li>
-			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Equity</span></a></li>
-			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Mutual Fund</span></a></li>
-			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Futures</span></a></li>
-			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Options</span></a></li>
+              <li><a href="{{route('financebankdetails')}}"><i class="fa fa-circle-o"></i> <span>Bank Deatils</span></a></li>
+			  <li><a href="{{route('financensurances')}}"><i class="fa fa-circle-o"></i> <span>Insurances</span></a></li>
+			  <li><a href="{{route('financefixeddeposites')}}"><i class="fa fa-circle-o"></i> <span>Fixed Deposites</span></a></li>
+			  <li><a href="{{route('financeassets')}}"><i class="fa fa-circle-o"></i> <span>Assets</span></a></li>
+			  <li><a href="{{route('financefinancialdocuments')}}"><i class="fa fa-circle-o"></i> <span>Financial Documents</span></a></li>
+			  <li><a href="{{route('financeloans')}}"><i class="fa fa-circle-o"></i> <span>Loans</span></a></li>
+			  <li><a href="{{route('financerecurringdeposites')}}"><i class="fa fa-circle-o"></i> <span>Recurring Deposites</span></a></li>
+			  <li><a href="{{route('financechitfunds')}}"><i class="fa fa-circle-o"></i> <span>Chit Funds</span></a></li>
+			  <li><a href="{{route('financeequity')}}"><i class="fa fa-circle-o"></i> <span>Equity</span></a></li>
+			  <li><a href="{{route('financemutualfund')}}"><i class="fa fa-circle-o"></i> <span>Mutual Fund</span></a></li>
+			  <li><a href="{{route('financefutures')}}"><i class="fa fa-circle-o"></i> <span>Futures</span></a></li>
+			  <li><a href="{{route('financeoptions')}}"><i class="fa fa-circle-o"></i> <span>Options</span></a></li>
             </ul>
           </li>
 		  <li class="hasSubmenu">

@@ -61,5 +61,18 @@ Route::get('generalleisureactivites','GeneralInfoController@generalleisureactivi
 Route::get('generalphotos','GeneralInfoController@generalphotos')->name('generalphotos');
 Route::get('generalaccesslogin','GeneralInfoController@generalaccesslogin')->name('generalaccesslogin');
 
+Route::get('financebankdetails','GeneralInfoController@financebankdetails')->name('financebankdetails');
+Route::get('financensurances','GeneralInfoController@financensurances')->name('financensurances');
+Route::get('financefixeddeposites','GeneralInfoController@financefixeddeposites')->name('financefixeddeposites');
+Route::get('financeassets','GeneralInfoController@financeassets')->name('financeassets');
+Route::get('financefinancialdocuments','GeneralInfoController@financefinancialdocuments')->name('financefinancialdocuments');
+Route::get('financeloans','GeneralInfoController@financeloans')->name('financeloans');
+Route::get('financerecurringdeposites','GeneralInfoController@financerecurringdeposites')->name('financerecurringdeposites');
+Route::get('financechitfunds','GeneralInfoController@financechitfunds')->name('financechitfunds');
+Route::get('financeequity','GeneralInfoController@financeequity')->name('financeequity');
+Route::get('financemutualfund','GeneralInfoController@financemutualfund')->name('financemutualfund');
+Route::get('financefutures','GeneralInfoController@financefutures')->name('financefutures');
+Route::get('financeoptions','GeneralInfoController@financeoptions')->name('financeoptions');
+
 
 

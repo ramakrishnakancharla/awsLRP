@@ -116,18 +116,6 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
-										  <div class="col-sm-8">
-												<select name="DocType" id="DocType" class="form-control">
-													<option>Select</option>
-													<option value="PAN">PAN</option>
-													<option value="PassPort">PassPort</option>
-												</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Membership Fees</span></div>
 										  <div class="col-sm-8"><input id="MembershipFees" name="MembershipFees" type="text" class="form-control"></div>
 										</div>

@@ -108,17 +108,22 @@
 										  </div>
 										</div>
 									  </li>
-									   <li class="padding-v-5">
+									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Belongs To</span></div>
-										  <div class="col-sm-8"><input id="DocBelongs" name="DocBelongs" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
+										  <div class="col-sm-8">
+												<select name="DocType" id="DocType" class="form-control">
+													<option>Select</option>
+													<option value="PAN">PAN</option>
+													<option value="PassPort">PassPort</option>
+												</select>
+										  </div>
 										</div>
 									  </li>
-									  </li>
-									   <li class="padding-v-5">
+									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Follow up?</span></div>
-										  <div class="col-sm-8"><input  id="FollowUp" name="FollowUp" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Doc. Name / No.</span></div>
+										  <div class="col-sm-8"><input id="DocNo" name="DocNo" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									</ul>
@@ -133,17 +138,28 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Doc. Name</span></div>
-										  <div class="col-sm-8"><input id="DocName" name="DocName" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
+										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Module</span></div>
-										  <div class="col-sm-8"><input id="Module" name="Module" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">File (Choose)</span></div>
+										  <div class="col-sm-8"><input id="FileChoose" name="FileChoose" type="file" class="form-control"></div>
 										</div>
 									  </li>
-									
+									 <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Link To</span></div>
+										  <div class="col-sm-8">
+												<select name="LinkTo" id="LinkTo" class="form-control">
+													<option>Select</option>
+													<option value="PAN">PAN</option>
+													<option value="PassPort">PassPort</option>
+												</select>
+										  </div>
+										</div>
+									  </li>
 									</ul>
 								</div>
 								<input id="hiddenid" name="hiddenid" type="hidden" class="form-control">

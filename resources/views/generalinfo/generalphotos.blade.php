@@ -98,57 +98,21 @@
 									 
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">ID Type</span></div>
-										  <div class="col-sm-8">
-											<select name="IDType" id="IDType" class="form-control">
-												<option>Select</option>
-												<option value="PAN">PAN</option>
-												<option value="Passport">Passport</option>
-											</select>
-										  </div>
+										  <div class="col-sm-4"><span class="text-muted">Photo (Maximum 10 Photos)</span></div>
+										  <div class="col-sm-8"><input id="Photo" name="Photo" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">ID NO.</span></div>
-										  <div class="col-sm-8"><input id="IDNO" name="IDNO" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Dimention</span></div>
+										  <div class="col-sm-8"><input name="Dimention" type="text" class="form-control"></div>
 										</div>
 									  </li>
+									  
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Place Of Issue</span></div>
-										  <div class="col-sm-8"><input id="PlaceOfIssue" name="PlaceOfIssue" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Country Of Issue</span></div>
-										  <div class="col-sm-8">
-												<select name="CountryOfIssue" id="CountryOfIssue" class="form-control">
-													<option>Select</option>
-													<option value="India">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
-												</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
-										  <div class="col-sm-8">
-												<select name="DocType" id="DocType" class="form-control">
-													<option>Select</option>
-													<option value="PAN">PAN</option>
-													<option value="PassPort">PassPort</option>
-												</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Doc. Name / No.</span></div>
-										  <div class="col-sm-8"><input id="DocNo" name="DocNo" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Mat Finish</span></div>
+										  <div class="col-sm-8"><input name="MatFinish" type="checkbox" ></div>
 										</div>
 									  </li>
 									</ul>
@@ -161,46 +125,23 @@
 										  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker"></div>
 										</div>
 									  </li>
+									  
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Country</span></div>
-										  <div class="col-sm-8">
-												<select name="Country" id="Country" class="form-control">
-													<option>Select</option>
-													<option value="India">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
-												</select>
-										  </div>
+										  <div class="col-sm-4"><span class="text-muted">Options</span></div>
+										  <div class="col-sm-8"><input name="Options" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Region</span></div>
-										  <div class="col-sm-8">
-												<select name="Region" id="Region" class="form-control">
-													<option>Select</option>
-													<option value="Hindu">Hindu</option>
-												</select>
-										  </div>
+										  <div class="col-sm-4"><span class="text-muted">Glass Finish</span></div>
+										  <div class="col-sm-8"><input name="GlassFinish" type="checkbox" ></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Issueing Authority</span></div>
-										  <div class="col-sm-8"><input id="IssueingAuthority" name="IssueingAuthority" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Date Of Issue</span></div>
-										  <div class="col-sm-8"><input id="DateOfIssue" name="DateOfIssue" type="text" class="form-control datepicker"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Passport Size</span></div>
+										  <div class="col-sm-8"><input name="PassportSize" type="checkbox" ></div>
 										</div>
 									  </li>
 									</ul>
