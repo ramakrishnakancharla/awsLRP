@@ -530,4 +530,112 @@ class GeneralInfoController extends Controller
 		$data = $generaltravelinfo->where('Status',1)->paginate(999);
 		return view('generalinfo.financeoptions',compact('metadata','genericfamily','genericfriends','data'));
     }
+	public function healthmedicalinfo(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.healthmedicalinfo',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function healthallergies(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.healthallergies',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function healthfamilydoctor(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.healthfamilydoctor',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function healthsurgeries(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.healthsurgeries',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function healthshorttermillness(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.healthshorttermillness',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function healthlongtermillness(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.healthlongtermillness',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function healthfitness(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.healthfitness',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function careeracedamics(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.careeracedamics',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function careerprofessionaleducationskills(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.careerprofessionaleducationskills',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function careertrainings(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.careertrainings',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function careerworkexperience(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.careerworkexperience',compact('metadata','genericfamily','genericfriends','data'));
+    }
+	public function careerachievements(){
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();	
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$generaltravelinfo = new generaltravelinfo();
+		$data = $generaltravelinfo->where('Status',1)->paginate(999);
+		return view('generalinfo.careerachievements',compact('metadata','genericfamily','genericfriends','data'));
+    }
 }

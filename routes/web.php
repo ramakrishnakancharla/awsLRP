@@ -74,5 +74,19 @@ Route::get('financemutualfund','GeneralInfoController@financemutualfund')->name(
 Route::get('financefutures','GeneralInfoController@financefutures')->name('financefutures');
 Route::get('financeoptions','GeneralInfoController@financeoptions')->name('financeoptions');
 
+Route::get('healthmedicalinfo','GeneralInfoController@healthmedicalinfo')->name('healthmedicalinfo');
+Route::get('healthallergies','GeneralInfoController@healthallergies')->name('healthallergies');
+Route::get('healthfamilydoctor','GeneralInfoController@healthfamilydoctor')->name('healthfamilydoctor');
+Route::get('healthsurgeries','GeneralInfoController@healthsurgeries')->name('healthsurgeries');
+Route::get('healthshorttermillness','GeneralInfoController@healthshorttermillness')->name('healthshorttermillness');
+Route::get('healthlongtermillness','GeneralInfoController@healthlongtermillness')->name('healthlongtermillness');
+Route::get('healthfitness','GeneralInfoController@healthfitness')->name('healthfitness');
+
+Route::get('careeracedamics','GeneralInfoController@careeracedamics')->name('careeracedamics');
+Route::get('careerprofessionaleducationskills','GeneralInfoController@careerprofessionaleducationskills')->name('careerprofessionaleducationskills');
+Route::get('careertrainings','GeneralInfoController@careertrainings')->name('careertrainings');
+Route::get('careerworkexperience','GeneralInfoController@careerworkexperience')->name('careerworkexperience');
+Route::get('careerachievements','GeneralInfoController@careerachievements')->name('careerachievements');
+
 
 

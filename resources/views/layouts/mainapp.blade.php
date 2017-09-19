@@ -261,23 +261,23 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 		  <li class="hasSubmenu">
             <a href="#Health"><i class="fa fa-medkit"></i> <span>Health</span></a>
             <ul id="Health">
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Medical Information</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Allergies</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Family Doctor</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Surgeries</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Short-Term Illness</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Long-Term Illness</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Fitness</span></a></li>
+              <li><a href="{{route('healthmedicalinfo')}}"><i class="fa fa-circle-o"></i> <span>Medical Information</span></a></li>
+              <li><a href="{{route('healthallergies')}}"><i class="fa fa-circle-o"></i> <span>Allergies</span></a></li>
+              <li><a href="{{route('healthfamilydoctor')}}"><i class="fa fa-circle-o"></i> <span>Family Doctor</span></a></li>
+              <li><a href="{{route('healthsurgeries')}}"><i class="fa fa-circle-o"></i> <span>Surgeries</span></a></li>
+              <li><a href="{{route('healthshorttermillness')}}"><i class="fa fa-circle-o"></i> <span>Short-Term Illness</span></a></li>
+              <li><a href="{{route('healthlongtermillness')}}"><i class="fa fa-circle-o"></i> <span>Long-Term Illness</span></a></li>
+              <li><a href="{{route('healthfitness')}}"><i class="fa fa-circle-o"></i> <span>Fitness</span></a></li>
             </ul>
           </li>
 		  <li class="hasSubmenu">
             <a href="#CarrerLearing"><i class="fa fa-graduation-cap"></i> <span>Carrer & Learning</span></a>
             <ul id="CarrerLearing">
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Acedamics</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Professional Education/Skills</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Trainings</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Work Experience</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Achievements</span></a></li>
+              <li><a href="{{route('careeracedamics')}}"><i class="fa fa-circle-o"></i> <span>Acedamics</span></a></li>
+              <li><a href="{{route('careerprofessionaleducationskills')}}"><i class="fa fa-circle-o"></i> <span>Professional Education/Skills</span></a></li>
+              <li><a href="{{route('careertrainings')}}"><i class="fa fa-circle-o"></i> <span>Trainings</span></a></li>
+              <li><a href="{{route('careerworkexperience')}}"><i class="fa fa-circle-o"></i> <span>Work Experience</span></a></li>
+              <li><a href="{{route('careerachievements')}}"><i class="fa fa-circle-o"></i> <span>Achievements</span></a></li>
             </ul>
           </li>
 		  <li class="hasSubmenu">
