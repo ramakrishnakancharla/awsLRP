@@ -94,14 +94,8 @@
 									<ul class="list-unstyled profile-about margin-none">
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">From Date</span></div>
-										  <div class="col-sm-8"><input id="FromDate" name="FromDate" type="text" class="form-control datepicker"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">From Time</span></div>
-										  <div class="col-sm-8"><input id="FromTime" name="FromTime" type="time" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
+										  <div class="col-sm-8"><input id="ValidFrom" name="ValidFrom" type="text" class="form-control datepicker"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -119,72 +113,56 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Purpose</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Payee Name</span></div>
+										  <div class="col-sm-8"><input id="PayeeName" name="PayeeName"  class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Bank Account No.</span></div>
+										  <div class="col-sm-8"><input id="BankAccountNo" name="BankAccountNo"  class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Cheque Book</span></div>
 										  <div class="col-sm-8">
-												<select name="Purpose" id="Purpose" class="form-control">
+												<select name="ChequeBook" Id="ChequeBook" class="form-control">
 													<option>Select</option>
-													<option value="India">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													<option value="Yes">Yes</option>
+													<option value="No">No</option>
 												</select>
 										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Comments</span></div>
-										  <div class="col-sm-8"><input id="Comments" name="Comments"  class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Mode Of Accommodation</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Credit Card(s)</span></div>
 										  <div class="col-sm-8">
-												<select name="ModeOfAccommodation" class="form-control">
+												<select name="CreditCards" Id="CreditCards" class="form-control">
 													<option>Select</option>
-													<option value="India">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													<option value="Yes">Yes</option>
+													<option value="No">No</option>
 												</select>
 										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Additional Destination</span></div>
-										  <div class="col-sm-8"><input name="AdditionalDestination"  class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Estimated Cost </span></div>
-										  <div class="col-sm-8"><input name="EstimatedCost"  class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Travel Insurance Policy No</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Nominee Relationship</span></div>
 										  <div class="col-sm-8">
-												<select name="TravelInsurancePolicyNo" class="form-control">
+												<select name="NomineeRelationship" Id="NomineeRelationship" class="form-control">
 													<option>Select</option>
-													<option value="India">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													<option value="Yes">Yes</option>
+													<option value="No">No</option>
 												</select>
 										  </div>
 										</div>
 									  </li>
-									  
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
-										  <div class="col-sm-8">
-												<select name="DocType" id="DocType" class="form-control">
-													<option>Select</option>
-													<option value="PAN">PAN</option>
-													<option value="PassPort">PassPort</option>
-												</select>
-										  </div>
+										  <div class="col-sm-4"><span class="text-muted">Nominee Address </span></div>
+										  <div class="col-sm-8"><input name="NomineeAddress" id="NomineeAddress" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -199,78 +177,72 @@
 									<ul class="list-unstyled profile-about margin-none">
 									   <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">To Date</span></div>
-										  <div class="col-sm-8"><input id="ToDate" name="ToDate" type="text" class="form-control datepicker"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">To Time</span></div>
-										  <div class="col-sm-8"><input id="ToTime" name="ToTime" type="time" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
+										  <div class="col-sm-8"><input id="ValidTo" name="ValidTo" type="text" class="form-control datepicker"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Region</span></div>
 										  <div class="col-sm-8">
-												<select name="Region" id="Region" class="form-control">
-													<option>Select</option>
-													<option value="Hindu">Hindu</option>
-												</select>
+												<input id="Region" name="Region" type="text" class="form-control">
 										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Other Purpose</span></div>
-										  <div class="col-sm-8"><input id="OtherPurpose" name="OtherPurpose" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Address</span></div>
+										  <div class="col-sm-8"><input id="Address" name="Address" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Mode Of Trasnport</span></div>
+										  <div class="col-sm-4"><span class="text-muted">IBAN</span></div>
 										  <div class="col-sm-8">
-												<select name="ModeOfTrasnport" id="ModeOfTrasnport" class="form-control">
-													<option>Select</option>
-													<option value="Hindu">Hindu</option>
-												</select>
+												<input id="IBAN" name="IBAN" type="text" class="form-control">
 										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Destination</span></div>
-										  <div class="col-sm-8"><input name="Destination" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Travel Insurance Available</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Debit Card(s)</span></div>
 										  <div class="col-sm-8">
-												<select name="TravelInsuranceAvailable"  class="form-control">
-													<option>Select</option>
-													<option value="Yes">Yes</option>
-													<option value="No">No</option>
-												</select>
+											<select name="Debitcards" id="Debitcards" class="form-control">
+												<option>Select</option>
+												<option value="Yes">Yes</option>
+												<option value="No">No</option>
+											</select>
 										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Actual Cost</span></div>
-										  <div class="col-sm-8"><input name="ActualCost" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Nominee Name</span></div>
+										  <div class="col-sm-8"><input name="NomineeName" id="NomineeName"type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Additonal Cost (Adjustments)</span></div>
-										  <div class="col-sm-8"><input name="AdditonalCost"  class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Nominee Contact Number</span></div>
+										  <div class="col-sm-8"><input name="NomineeContactNumber" id="NomineeContactNumber" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
+										  <div class="col-sm-8">
+												<select name="DocType" id="DocType" class="form-control">
+													<option>Select</option>
+													<option value="PAN">PAN</option>
+													<option value="PassPort">PassPort</option>
+												</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+										  <div class="col-sm-8"><input name="DocImage" type="file" class="form-control"></div>
 										</div>
 									  </li>
 									</ul>

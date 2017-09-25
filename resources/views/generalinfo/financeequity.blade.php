@@ -94,21 +94,9 @@
 									<ul class="list-unstyled profile-about margin-none">
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">From Date</span></div>
-										  <div class="col-sm-8"><input id="FromDate" name="FromDate" type="text" class="form-control datepicker"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">From Time</span></div>
-										  <div class="col-sm-8"><input id="FromTime" name="FromTime" type="time" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Country</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Exchange</span></div>
 										  <div class="col-sm-8">
-												<select name="Country" id="Country" class="form-control">
+												<select name="Exchange" class="form-control">
 													<option>Select</option>
 													<option value="India">India</option>
 													<option value="UK">UK</option>
@@ -119,9 +107,45 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Purpose</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Stock Name</span></div>
+										  <div class="col-sm-8"><input name="Stock Name"  class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Quantity</span></div>
+										  <div class="col-sm-8"><input name="Quantity"  class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Brokerage & Other Charges </span></div>
+										  <div class="col-sm-8"><input name="BrokerageOtherCharges"  class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Value At Cost</span></div>
+										  <div class="col-sm-8"><input name="ValueAtCost" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Value At Market Price</span></div>
+										  <div class="col-sm-8"><input name="ValueAtMarketPrice" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Unrealized Profit/Loss %</span></div>
+										  <div class="col-sm-8"><input name="UnrealizedProfitLossPer" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Broker Type</span></div>
 										  <div class="col-sm-8">
-												<select name="Purpose" id="Purpose" class="form-control">
+												<select name="BrokerType" class="form-control">
 													<option>Select</option>
 													<option value="India">India</option>
 													<option value="UK">UK</option>
@@ -132,61 +156,17 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Comments</span></div>
-										  <div class="col-sm-8"><input id="Comments" name="Comments"  class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Broger Agent Contact No</span></div>
+										  <div class="col-sm-8"><input name="BrogerAgentContactNo" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Mode Of Accommodation</span></div>
-										  <div class="col-sm-8">
-												<select name="ModeOfAccommodation" class="form-control">
-													<option>Select</option>
-													<option value="India">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
-												</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Additional Destination</span></div>
-										  <div class="col-sm-8"><input name="AdditionalDestination"  class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Estimated Cost </span></div>
-										  <div class="col-sm-8"><input name="EstimatedCost"  class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Travel Insurance Policy No</span></div>
-										  <div class="col-sm-8">
-												<select name="TravelInsurancePolicyNo" class="form-control">
-													<option>Select</option>
-													<option value="India">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
-												</select>
-										  </div>
+										  <div class="col-sm-4"><span class="text-muted">Broger Agent Address</span></div>
+										  <div class="col-sm-8"><input name="BrogerAgentAddress" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
-										  <div class="col-sm-8">
-												<select name="DocType" id="DocType" class="form-control">
-													<option>Select</option>
-													<option value="PAN">PAN</option>
-													<option value="PassPort">PassPort</option>
-												</select>
-										  </div>
-										</div>
-									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Doc. Name / No.</span></div>
@@ -199,72 +179,68 @@
 									<ul class="list-unstyled profile-about margin-none">
 									   <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">To Date</span></div>
-										  <div class="col-sm-8"><input id="ToDate" name="ToDate" type="text" class="form-control datepicker"></div>
+										  <div class="col-sm-4"><span class="text-muted">Transaction Date</span></div>
+										  <div class="col-sm-8"><input name="TransactionDate" type="text" class="form-control datepicker"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">To Time</span></div>
-										  <div class="col-sm-8"><input id="ToTime" name="ToTime" type="time" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Stock Symbol</span></div>
+										  <div class="col-sm-8"><input name="StockSymbol" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Region</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Transaction Price</span></div>
+										  <div class="col-sm-8"><input name="TransactionPrice" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Total Cost Per Unit</span></div>
+										  <div class="col-sm-8"><input name="TotalCostPerUnit" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Current Market Price</span></div>
+										  <div class="col-sm-8"><input name="CurrentMarketPrice"  class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Unrealized Profit/Loss</span></div>
+										  <div class="col-sm-8"><input name="UnrealizedProfitLoss" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">URL</span></div>
+										  <div class="col-sm-8"><input name="URL" type="url" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Broger Agent Name</span></div>
+										  <div class="col-sm-8"><input name="BrogerAgentName" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Broger Agent Mail ID</span></div>
+										  <div class="col-sm-8"><input name="BrogerAgentMailID" type="text" class="form-control"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
 										  <div class="col-sm-8">
-												<select name="Region" id="Region" class="form-control">
+												<select name="DocType" id="DocType" class="form-control">
 													<option>Select</option>
-													<option value="Hindu">Hindu</option>
+													<option value="PAN">PAN</option>
+													<option value="PassPort">PassPort</option>
 												</select>
 										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Other Purpose</span></div>
-										  <div class="col-sm-8"><input id="OtherPurpose" name="OtherPurpose" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Mode Of Trasnport</span></div>
-										  <div class="col-sm-8">
-												<select name="ModeOfTrasnport" id="ModeOfTrasnport" class="form-control">
-													<option>Select</option>
-													<option value="Hindu">Hindu</option>
-												</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Destination</span></div>
-										  <div class="col-sm-8"><input name="Destination" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Travel Insurance Available</span></div>
-										  <div class="col-sm-8">
-												<select name="TravelInsuranceAvailable"  class="form-control">
-													<option>Select</option>
-													<option value="Yes">Yes</option>
-													<option value="No">No</option>
-												</select>
-										  </div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Actual Cost</span></div>
-										  <div class="col-sm-8"><input name="ActualCost" type="text" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Additonal Cost (Adjustments)</span></div>
-										  <div class="col-sm-8"><input name="AdditonalCost"  class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
