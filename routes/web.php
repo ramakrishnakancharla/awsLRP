@@ -21,6 +21,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('genericinfofamily', 'GenericInfoFamilyController');
 Route::resource('genericinfofriends', 'GenericInfoFriendsController');
 Route::resource('general-personal-data', 'general\PersonalDataController');
+Route::resource('general-address', 'general\AddressController');
+Route::resource('general-communications', 'general\CommunicationsController');
+Route::resource('general-personalIds', 'general\PersonalIDsController');
+Route::resource('general-memberships', 'general\MembershipsController');
+Route::resource('general-objectsonloan', 'general\ObjectsonloanController');
+Route::resource('general-travelinfo', 'general\TravelinfoController');
 
 /*------------General info tab ----------------*/
 Route::get('personaldata','GeneralInfoController@personaldata')->name('personaldata');
