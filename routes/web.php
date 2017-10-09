@@ -27,6 +27,10 @@ Route::resource('general-personalIds', 'general\PersonalIDsController');
 Route::resource('general-memberships', 'general\MembershipsController');
 Route::resource('general-objectsonloan', 'general\ObjectsonloanController');
 Route::resource('general-travelinfo', 'general\TravelinfoController');
+Route::resource('general-personaldocuments', 'general\PersonaldocumentsController');
+Route::resource('general-leisureactivites', 'general\LeisureactivitesController');
+Route::resource('general-photos', 'general\PhotosController');
+Route::resource('general-accesslogin', 'general\AccessloginController');
 
 /*------------General info tab ----------------*/
 Route::get('personaldata','GeneralInfoController@personaldata')->name('personaldata');

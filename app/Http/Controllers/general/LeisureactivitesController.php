@@ -1,0 +1,168 @@
+<?php
+
+namespace App\Http\Controllers\general;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+use App\genericfamily;
+use App\genericfriends;
+use App\generalpersonaldata;
+use App\generaladdress;
+use App\generalcommunications;
+use App\generalpersonalids;
+use App\generalmembership;
+use App\generalobjectsonloan;
+use App\generaltravelinfo;
+use App\generaldocuments;
+use App\generalleisureactivites;
+use App\metadata;
+use App\gendermaster;
+use App\maritalstatus;
+use App\childmaster;
+use Auth;
+use DateTime;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Validator;
+use Session;
+
+class LeisureactivitesController extends Controller
+{
+    public function index(){
+		$gendermaster = gendermaster::where('status',1)->get();
+		$maritalstatus = maritalstatus::where('status',1)->get();
+		$childmaster = childmaster::where('status',1)->get();
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();
+		$relation = metadata::where('status',1)->where('name','Relationship')->get();
+		$list = generalleisureactivites::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		return view('generalinfo/leisureactivites.index',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','genericfriends'));
+    }
+	public function store()
+	{
+		// validate
+		// read more on validation at http://laravel.com/docs/validation
+		$rules = array(
+			//'Priority'       => 'required'
+		);
+		$validator = Validator::make(Input::all(), $rules);
+
+		// process the login
+		if ($validator->fails()) {
+			return Redirect::to('general-leisureactivites')
+				->withErrors($validator)
+				->withInput(Input::except('password'));
+		} else {
+			// store
+			$generalleisureactivitespdate = new generalleisureactivites;
+			
+			if(Input::get('options') == 1)
+				$towhom = Auth::user()->id;
+			elseif(Input::get('options') == 2)
+				$towhom = Input::get('FamilyId');
+			elseif(Input::get('options') == 3)
+				$towhom = Input::get('FriendsId');
+				
+			$generalleisureactivitespdate->MetaID = Input::get('options');
+			$generalleisureactivitespdate->ToWhom = $towhom;
+			$generalleisureactivitespdate->Activity = Input::get('Activity');
+			$generalleisureactivitespdate->Prociency = Input::get('Prociency');
+			$generalleisureactivitespdate->Skills = Input::get('Skills');
+			$generalleisureactivitespdate->Hobby = Input::get('Hobby');
+			$generalleisureactivitespdate->ActivityType = Input::get('ActivityType');
+			$generalleisureactivitespdate->SkillsAcquired = Input::get('SkillsAcquired');
+			$generalleisureactivitespdate->GuideMentorCouch = Input::get('GuideMentorCouch');
+			$generalleisureactivitespdate->ValidFrom = DateTime::createFromFormat('d/m/Y', Input::get('ValidFrom'))->format('Y-m-d');
+			$generalleisureactivitespdate->ValidTo = DateTime::createFromFormat('d/m/Y', Input::get('ValidTo'))->format('Y-m-d');
+			$generalleisureactivitespdate->Txnuser = Auth::user()->id;
+			$generalleisureactivitespdate->Status = 1;
+			$generalleisureactivitespdate->save();
+
+			// redirect
+			Session::flash('message', 'Successfully created leisureactivites!');
+			return Redirect::to('general-leisureactivites');
+		}
+	}
+	public function show($id)
+	{
+		$list = generalleisureactivites::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$show = generalleisureactivites::where('Status',1)->find($id);
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		return view('generalinfo/leisureactivites.show',compact('list','genericfamily','show','genericfriends'));
+	}
+	public function edit($id)
+	{
+		$gendermaster = gendermaster::where('status',1)->get();
+		$maritalstatus = maritalstatus::where('status',1)->get();
+		$childmaster = childmaster::where('status',1)->get();
+		$metadata = metadata::where('status',1)->where('name','Whom')->get();
+		$relation = metadata::where('status',1)->where('name','Relationship')->get();
+		$list = generalleisureactivites::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->get();
+		$edit = generalleisureactivites::where('Status',1)->find($id);
+		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		return view('generalinfo/leisureactivites.edit',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+	}
+	public function update($id)
+	{
+		// validate
+		// read more on validation at http://laravel.com/docs/validation
+		$rules = array(
+			//'Priority'       => 'required'
+		);
+		$validator = Validator::make(Input::all(), $rules);
+
+		// process the login
+		if ($validator->fails()) {
+			return Redirect::to('general-leisureactivites/' . $id . '/edit')
+				->withErrors($validator)
+				->withInput(Input::except('password'));
+		} else {
+			// store
+			$generalleisureactivitespdate = generalleisureactivites::where('Status',1)->find($id);
+			
+			if(Input::get('options') == 1)
+				$towhom = Auth::user()->id;
+			elseif(Input::get('options') == 2)
+				$towhom = Input::get('FamilyId');
+			elseif(Input::get('options') == 3)
+				$towhom = Input::get('FriendsId');
+			
+			$generalleisureactivitespdate->MetaID = Input::get('options');
+			$generalleisureactivitespdate->ToWhom = $towhom;
+			$generalleisureactivitespdate->Activity = Input::get('Activity');
+			$generalleisureactivitespdate->Prociency = Input::get('Prociency');
+			$generalleisureactivitespdate->Skills = Input::get('Skills');
+			$generalleisureactivitespdate->Hobby = Input::get('Hobby');
+			$generalleisureactivitespdate->ActivityType = Input::get('ActivityType');
+			$generalleisureactivitespdate->SkillsAcquired = Input::get('SkillsAcquired');
+			$generalleisureactivitespdate->GuideMentorCouch = Input::get('GuideMentorCouch');
+			$generalleisureactivitespdate->ValidFrom = DateTime::createFromFormat('d/m/Y', Input::get('ValidFrom'))->format('Y-m-d');
+			$generalleisureactivitespdate->ValidTo = DateTime::createFromFormat('d/m/Y', Input::get('ValidTo'))->format('Y-m-d');
+			$generalleisureactivitespdate->Txnuser = Auth::user()->id;
+			$generalleisureactivitespdate->Status = 1;
+			$generalleisureactivitespdate->save();
+
+			// redirect
+			Session::flash('message', 'Successfully updated leisureactivites!');
+			return Redirect::to('general-leisureactivites/'. $id );
+		}
+	}
+	public function destroy($id)
+    {
+        // delete
+        $genericfamilydelete = generalleisureactivites::find($id);
+        $genericfamilydelete->delete();
+
+        // redirect
+        Session::flash('message', 'Successfully deleted the leisureactivites!');
+        return Redirect::to('general-leisureactivites');
+    }
+	
+}

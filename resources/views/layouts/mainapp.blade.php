@@ -224,17 +224,17 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
           <li class="hasSubmenu">
             <a href="#timeline"><i class="icon-ship-wheel"></i> <span>General Info</span></a>
             <ul id="timeline">
-              <li><a href="{{ route('generalpersonaldata') }}"><i class="fa fa-circle-o"></i> <span>Personal Data</span></a></li>
-              <li><a href="{{ route('generaladdress') }}"><i class="fa fa-circle-o"></i> <span>Address</span></a></li>
-              <li><a href="{{ route('generalcommunications') }}"><i class="fa fa-circle-o"></i> <span>Communications</span></a></li>
-              <li><a href="{{ route('generalpersonalIds') }}"><i class="fa fa-circle-o"></i> <span>Personnel IDs</span></a></li>
-              <li><a href="{{route('generalmemberships')}}"><i class="fa fa-circle-o"></i> <span>Memberships</span></a></li>
-              <li><a href="{{route('generalobjectsonloan')}}"><i class="fa fa-circle-o"></i> <span>Objects on Loan</span></a></li>
-              <li><a href="{{ route('generaltravelinfo') }}"><i class="fa fa-circle-o"></i> <span>Travel Info</span></a></li>
-              <li><a href="{{ route('generalpersonaldocuments')}}"><i class="fa fa-circle-o"></i> <span>Documents</span></a></li>
-              <li><a href="{{route('generalleisureactivites')}}"><i class="fa fa-circle-o"></i> <span>Leisure Activities</span></a></li>
-              <li><a href="{{route('generalphotos')}}"><i class="fa fa-circle-o"></i> <span>Photos</span></a></li>
-              <li><a href="{{route('generalaccesslogin')}}"><i class="fa fa-circle-o"></i> <span>Access/Login Details</span></a></li>
+              <li><a href="{{ route('general-personal-data') }}"><i class="fa fa-circle-o"></i> <span>Personal Data</span></a></li>
+              <li><a href="{{ route('general-address') }}"><i class="fa fa-circle-o"></i> <span>Address</span></a></li>
+              <li><a href="{{ route('general-communications') }}"><i class="fa fa-circle-o"></i> <span>Communications</span></a></li>
+              <li><a href="{{ route('general-personalIds') }}"><i class="fa fa-circle-o"></i> <span>Personnel IDs</span></a></li>
+              <li><a href="{{route('general-memberships')}}"><i class="fa fa-circle-o"></i> <span>Memberships</span></a></li>
+              <li><a href="{{route('general-objectsonloan')}}"><i class="fa fa-circle-o"></i> <span>Objects on Loan</span></a></li>
+              <li><a href="{{ route('general-travelinfo') }}"><i class="fa fa-circle-o"></i> <span>Travel Info</span></a></li>
+              <li><a href="{{ route('general-personaldocuments')}}"><i class="fa fa-circle-o"></i> <span>Documents</span></a></li>
+              <li><a href="{{route('general-leisureactivites')}}"><i class="fa fa-circle-o"></i> <span>Leisure Activities</span></a></li>
+              <li><a href="{{route('general-photos')}}"><i class="fa fa-circle-o"></i> <span>Photos</span></a></li>
+              <li><a href="{{route('general-accesslogin')}}"><i class="fa fa-circle-o"></i> <span>Access/Login Details</span></a></li>
             </ul>
           </li>
          <!-- <li class=""><a href="#"><i class="icon-user-1"></i> <span>Profile</span></a></li>
