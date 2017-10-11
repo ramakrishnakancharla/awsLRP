@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Childmaster extends Migration
+class CreateCommunicationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class Childmaster extends Migration
      */
     public function up()
     {
-        Schema::create('childmaster', function (Blueprint $table) {
-            $table->increments('CM_ID');
-            $table->string('Name');
+        Schema::create('common_communication_master', function (Blueprint $table) {
+            $table->increments('COM_ID');
+            $table->string('Name')->nullable();
+			$table->integer('Status');
             $table->integer('Txnuser');
-            $table->integer('Status');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class Childmaster extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('childmaster');
+        Schema::dropIfExists('common_communication_master');
     }
 }

@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class generaltravelinfo extends Model
 {
-    public $table = "generaltravelinfo";
+    public $table = "general_travelinfo";
 	protected $primaryKey = 'GTI_ID';
 }

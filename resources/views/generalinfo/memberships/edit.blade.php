@@ -191,12 +191,6 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Options (Facilities)</span></div>
-										  <div class="col-sm-8"><input id="OptionsFacilities" name="OptionsFacilities" type="text" class="form-control" value="{{$edit->OptionsFacilities}}"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Facilities</span></div>
 										  <div class="col-sm-8"> 
 												<select class="selectpicker" name="Facilities" multiple data-style="btn-white" title='Choose one of the following...'>

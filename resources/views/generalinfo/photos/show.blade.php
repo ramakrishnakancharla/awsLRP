@@ -74,14 +74,7 @@
 									<ul class="list-unstyled profile-about margin-none">
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-										  <div class="col-sm-8">{{$show->ValidFrom}}</div>
-										</div>
-									  </li>
-									 
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Photo (Maximum 10 Photos)</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Photo</span></div>
 										  <div class="col-sm-8">{{$show->Photo}}</div>
 										</div>
 									  </li>
@@ -102,13 +95,7 @@
 								</div>
 								<div class="col-lg-6">
 									<ul class="list-unstyled profile-about margin-none">
-									   <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-										  <div class="col-sm-8">{{$show->ValidTo}}</div>
-										</div>
-									  </li>
-									  
+								  
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Options</span></div>

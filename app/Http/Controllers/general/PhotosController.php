@@ -76,8 +76,6 @@ class PhotosController extends Controller
 			$generalphotospdate->GlassFinish = Input::get('GlassFinish');
 			$generalphotospdate->PassportSize = Input::get('PassportSize');
 			$generalphotospdate->Folder = "";
-			$generalphotospdate->ValidFrom = DateTime::createFromFormat('d/m/Y', Input::get('ValidFrom'))->format('Y-m-d');
-			$generalphotospdate->ValidTo = DateTime::createFromFormat('d/m/Y', Input::get('ValidTo'))->format('Y-m-d');
 			$generalphotospdate->Txnuser = Auth::user()->id;
 			$generalphotospdate->Status = 1;
 			$generalphotospdate->save();
@@ -144,8 +142,6 @@ class PhotosController extends Controller
 			$generalphotospdate->GlassFinish = Input::get('GlassFinish');
 			$generalphotospdate->PassportSize = Input::get('PassportSize');
 			$generalphotospdate->Folder = "";
-			$generalphotospdate->ValidFrom = DateTime::createFromFormat('d/m/Y', Input::get('ValidFrom'))->format('Y-m-d');
-			$generalphotospdate->ValidTo = DateTime::createFromFormat('d/m/Y', Input::get('ValidTo'))->format('Y-m-d');
 			$generalphotospdate->Txnuser = Auth::user()->id;
 			$generalphotospdate->Status = 1;
 			$generalphotospdate->save();

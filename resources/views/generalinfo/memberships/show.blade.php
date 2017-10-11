@@ -145,12 +145,6 @@
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Options (Facilities)</span></div>
-										  <div class="col-sm-8">{{$show->OptionsFacilities}}</div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Facilities</span></div>
 										  <div class="col-sm-8"> {{$show->Facilities}}</div>
 										</div>

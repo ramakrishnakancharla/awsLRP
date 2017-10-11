@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class generaladdress extends Model
 {
-    public $table = "generaladdress";
+    public $table = "general_address";
 	protected $primaryKey = 'GA_ID';
 }

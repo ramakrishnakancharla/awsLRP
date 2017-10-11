@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Gendermaster extends Migration
+class CityMasterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class Gendermaster extends Migration
      */
     public function up()
     {
-        Schema::create('gendermaster', function (Blueprint $table) {
-            $table->increments('GM_ID');
-            $table->string('Name');
+        Schema::create('city_master', function (Blueprint $table) {
+            $table->increments('GAL_ID');
+			$table->integer('Country_ID')->nullable();
+			$table->integer('State_ID')->nullable();
+            $table->string('Code')->nullable();
+            $table->string('Name')->nullable();
+			$table->integer('Status');
             $table->integer('Txnuser');
-            $table->integer('Status');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -30,6 +33,6 @@ class Gendermaster extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gendermaster');
+        Schema::dropIfExists('city_master');
     }
 }

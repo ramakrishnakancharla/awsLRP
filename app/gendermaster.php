@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class gendermaster extends Model
 {
-    public $table = "gendermaster";
+    public $table = "common_gendermaster";
 	protected $primaryKey = 'GM_ID';
 }

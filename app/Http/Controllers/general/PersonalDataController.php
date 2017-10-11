@@ -12,6 +12,7 @@ use App\metadata;
 use App\gendermaster;
 use App\maritalstatus;
 use App\childmaster;
+use App\titlemaster;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -25,13 +26,14 @@ class PersonalDataController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$titlemaster = titlemaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalpersonaldata::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/personalData.index',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','genericfriends'));
+		return view('generalinfo/personalData.index',compact('gendermaster','maritalstatus','childmaster','titlemaster','metadata','relation','list','genericfamily','genericfriends'));
     }
 	public function store()
 	{
@@ -97,6 +99,7 @@ class PersonalDataController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$titlemaster = titlemaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalpersonaldata::where('Status',1)->get();
@@ -104,7 +107,7 @@ class PersonalDataController extends Controller
 		$generalpersonaldataedit = generalpersonaldata::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/personalData.edit',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','generalpersonaldataedit','genericfriends'));
+		return view('generalinfo/personalData.edit',compact('gendermaster','maritalstatus','childmaster','titlemaster','metadata','relation','list','genericfamily','generalpersonaldataedit','genericfriends'));
 	}
 	public function update($id)
 	{

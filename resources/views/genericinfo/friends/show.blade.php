@@ -40,7 +40,7 @@
                     <div class="input-group-btn">
                       <a href="{{ URL::to('genericinfofriends') }}" class="btn btn-primary pointer">Add New</a>
                     </div>
-                    <input type="text" class="form-control share-text allSearch"  placeholder="FRIENDS INFORMATION" />
+                    <input type="text" class="form-control share-text allSearch"  placeholder="FRIENDS & RELATIVE INFORMATION" />
 					<div class="input-group-btn">
                       <a href="{{ URL::to('genericinfofriends/' . $genericfriendsview->AFR_ID . '/edit') }}" class="btn btn-warning pointer">Edit</a>
 					  {{ Form::open(array('url' => 'genericinfofriends/' . $genericfriendsview->AFR_ID, 'class' => 'pull-right')) }}

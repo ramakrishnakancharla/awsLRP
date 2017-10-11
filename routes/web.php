@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+/*------------General info tab ----------------*/
 Route::resource('genericinfofamily', 'GenericInfoFamilyController');
 Route::resource('genericinfofriends', 'GenericInfoFriendsController');
 Route::resource('general-personal-data', 'general\PersonalDataController');
@@ -32,37 +33,6 @@ Route::resource('general-leisureactivites', 'general\LeisureactivitesController'
 Route::resource('general-photos', 'general\PhotosController');
 Route::resource('general-accesslogin', 'general\AccessloginController');
 
-/*------------General info tab ----------------*/
-Route::get('personaldata','GeneralInfoController@personaldata')->name('personaldata');
-Route::post('personaldata','GeneralInfoController@personaldata_insert')->name('personaldata_insert');
-Route::get('personaldatadelete','GeneralInfoController@delete')->name('personaldatadelete');
-//
-Route::get('generalpersonaldata','GeneralInfoController@generalpersonaldata')->name('generalpersonaldata');
-Route::post('generalpersonaldata','GeneralInfoController@generalpersonaldata_insert')->name('generalpersonaldata_insert');
-
-Route::get('generaladdress','GeneralInfoController@generaladdress')->name('generaladdress');
-Route::post('generaladdress','GeneralInfoController@generaladdress_insert')->name('generaladdress_insert');
-
-Route::get('generalcommunications','GeneralInfoController@generalcommunications')->name('generalcommunications');
-Route::post('generalcommunications','GeneralInfoController@generalcommunications_insert')->name('generalcommunications_insert');
-
-Route::get('generalpersonalIds','GeneralInfoController@generalpersonalIds')->name('generalpersonalIds');
-Route::post('generalpersonalIds','GeneralInfoController@generalpersonalIds_insert')->name('generalpersonalIds_insert');
-
-
-
-Route::get('generaltravelinfo','GeneralInfoController@generaltravelinfo')->name('generaltravelinfo');
-Route::post('generaltravelinfo','GeneralInfoController@generaltravelinfo_insert')->name('generaltravelinfo_insert');
-
-Route::get('generalpersonaldocuments','GeneralInfoController@generalpersonaldocuments')->name('generalpersonaldocuments');
-Route::post('generalpersonaldocuments','GeneralInfoController@generalpersonaldocuments_insert')->name('generalpersonaldocuments_insert');
-
-Route::get('generalmemberships','GeneralInfoController@generalmemberships')->name('generalmemberships');
-
-Route::get('generalobjectsonloan','GeneralInfoController@generalobjectsonloan')->name('generalobjectsonloan');
-Route::get('generalleisureactivites','GeneralInfoController@generalleisureactivites')->name('generalleisureactivites');
-Route::get('generalphotos','GeneralInfoController@generalphotos')->name('generalphotos');
-Route::get('generalaccesslogin','GeneralInfoController@generalaccesslogin')->name('generalaccesslogin');
 
 Route::get('financebankdetails','GeneralInfoController@financebankdetails')->name('financebankdetails');
 Route::get('financensurances','GeneralInfoController@financensurances')->name('financensurances');

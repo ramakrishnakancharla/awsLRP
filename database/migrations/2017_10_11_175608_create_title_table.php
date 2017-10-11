@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Maritalstatus extends Migration
+class CreateTitleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class Maritalstatus extends Migration
      */
     public function up()
     {
-        Schema::create('maritalstatus', function (Blueprint $table) {
-            $table->increments('MS_ID');
-            $table->string('Name');
+       Schema::create('common_title_master', function (Blueprint $table) {
+            $table->increments('TM_ID');
+            $table->string('Name')->nullable();
+			$table->integer('Status');
             $table->integer('Txnuser');
-            $table->integer('Status');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class Maritalstatus extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('maritalstatus');
+        Schema::dropIfExists('common_title_master');
     }
 }

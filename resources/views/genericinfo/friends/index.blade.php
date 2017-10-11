@@ -44,7 +44,7 @@
                     <div class="input-group-btn">
                       <a href="{{ URL::to('genericinfofriends') }}" class="btn btn-primary pointer">Add New</a>
                     </div>
-                    <input type="text" class="form-control share-text allSearch"  placeholder="FRIENDS INFORMATION" />
+                    <input type="text" class="form-control share-text allSearch"  placeholder="FRIENDS & RELATIVE INFORMATION" />
                   </div>
                 </div>
 				{{ csrf_field() }}
@@ -124,9 +124,8 @@
 										  <div class="col-sm-8">
 											<select name="Relationship" id="Relationship" class="form-control">
 												<option>Select</option>
-												@foreach($relation as $realtionfamily)
-													<option value="{{$realtionfamily->id}}">{{$realtionfamily->value}} </option>
-												@endforeach
+												<option value="Friend">Friend</option>
+												<option value="Relative">Relative</option>
 											</select>
 										  </div>
 										</div>

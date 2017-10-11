@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class childmaster extends Model
 {
-    public $table = "childmaster";
+    public $table = "common_childmaster";
 	protected $primaryKey = 'CM_ID';
 }

@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class generalpersonaldocuments extends Model
 {
-    public $table = "generalpersonaldocuments";
+    public $table = "general_personaldocuments";
 	protected $primaryKey = 'GPD_ID';
 }

@@ -217,24 +217,24 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 		  <li class="hasSubmenu">
             <a href="#generic"><i class="icon-globe"></i> <span>Generic Info</span></a>
             <ul id="generic">
-              <li><a href="{{ URL::to('genericinfofamily') }}"><i class="fa fa-users"></i> <span>Family Members</span></a></li>
+              <li><a href="{{URL::to('genericinfofamily') }}"><i class="fa fa-users"></i> <span>Family Members</span></a></li>
               <li><a href="{{URL::to('genericinfofriends')}}"><i class="fa fa-user-secret"></i> <span>Relatives & Friends</span></a></li>
             </ul>
           </li>
           <li class="hasSubmenu">
             <a href="#timeline"><i class="icon-ship-wheel"></i> <span>General Info</span></a>
             <ul id="timeline">
-              <li><a href="{{ route('general-personal-data') }}"><i class="fa fa-circle-o"></i> <span>Personal Data</span></a></li>
-              <li><a href="{{ route('general-address') }}"><i class="fa fa-circle-o"></i> <span>Address</span></a></li>
-              <li><a href="{{ route('general-communications') }}"><i class="fa fa-circle-o"></i> <span>Communications</span></a></li>
-              <li><a href="{{ route('general-personalIds') }}"><i class="fa fa-circle-o"></i> <span>Personnel IDs</span></a></li>
-              <li><a href="{{route('general-memberships')}}"><i class="fa fa-circle-o"></i> <span>Memberships</span></a></li>
-              <li><a href="{{route('general-objectsonloan')}}"><i class="fa fa-circle-o"></i> <span>Objects on Loan</span></a></li>
-              <li><a href="{{ route('general-travelinfo') }}"><i class="fa fa-circle-o"></i> <span>Travel Info</span></a></li>
-              <li><a href="{{ route('general-personaldocuments')}}"><i class="fa fa-circle-o"></i> <span>Documents</span></a></li>
-              <li><a href="{{route('general-leisureactivites')}}"><i class="fa fa-circle-o"></i> <span>Leisure Activities</span></a></li>
-              <li><a href="{{route('general-photos')}}"><i class="fa fa-circle-o"></i> <span>Photos</span></a></li>
-              <li><a href="{{route('general-accesslogin')}}"><i class="fa fa-circle-o"></i> <span>Access/Login Details</span></a></li>
+              <li><a href="{{URL::to('general-personal-data') }}"><i class="fa fa-circle-o"></i> <span>Personal Data</span></a></li>
+              <li><a href="{{URL::to('general-address') }}"><i class="fa fa-circle-o"></i> <span>Address</span></a></li>
+              <li><a href="{{URL::to('general-communications') }}"><i class="fa fa-circle-o"></i> <span>Communications</span></a></li>
+              <li><a href="{{URL::to('general-personalIds') }}"><i class="fa fa-circle-o"></i> <span>Personnel IDs</span></a></li>
+              <li><a href="{{URL::to('general-memberships')}}"><i class="fa fa-circle-o"></i> <span>Memberships</span></a></li>
+              <li><a href="{{URL::to('general-objectsonloan')}}"><i class="fa fa-circle-o"></i> <span>Objects on Loan</span></a></li>
+              <li><a href="{{URL::to('general-travelinfo') }}"><i class="fa fa-circle-o"></i> <span>Travel Info</span></a></li>
+              <li><a href="{{URL::to('general-personaldocuments')}}"><i class="fa fa-circle-o"></i> <span>Documents</span></a></li>
+              <li><a href="{{URL::to('general-leisureactivites')}}"><i class="fa fa-circle-o"></i> <span>Leisure Activities</span></a></li>
+              <li><a href="{{URL::to('general-photos')}}"><i class="fa fa-circle-o"></i> <span>Photos</span></a></li>
+              <li><a href="{{URL::to('general-accesslogin')}}"><i class="fa fa-circle-o"></i> <span>Access/Login Details</span></a></li>
             </ul>
           </li>
          <!-- <li class=""><a href="#"><i class="icon-user-1"></i> <span>Profile</span></a></li>

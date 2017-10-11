@@ -95,7 +95,14 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Title</span></div>
-									  <div class="col-sm-8"><input id="Title" name="Title" type="text" class="form-control" value="{{$generalpersonaldataedit->Title}}"></div>
+									  <div class="col-sm-8">
+										<select name="Title"  class="form-control">
+												<option value="">Select</option>
+												@foreach($titlemaster as $title)
+													<option {{$generalpersonaldataedit->Title == $title->TM_ID ? 'selected="selected"' : ''}} value="{{$title->TM_ID}}">{{$title->Name}} </option>
+												@endforeach
+											</select>
+										</div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
@@ -132,7 +139,8 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">DOB</span></div>
-									  <div class="col-sm-8"><input id="DateOfBirth" name="DateOfBirth" type="text" class="form-control datepicker" value="{{$generalpersonaldataedit->DOB}}"></div>
+									  <div class="col-sm-4"><input id="DateOfBirth" name="DateOfBirth" type="text" class="form-control datepicker" value="{{$generalpersonaldataedit->DOB}}"></div>
+									  <div class="col-sm-4"><input id="Age" name="Age" type="text" class="form-control" value="{{$generalpersonaldataedit->Age}}"></div>
 									</div>
 								  </li>
 								</ul>
@@ -143,12 +151,6 @@
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
 									  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{$generalpersonaldataedit->ValidTo}}"></div>
-									</div>
-								  </li>
-								  <li class="padding-v-5">
-									<div class="row">
-									  <div class="col-sm-4"><span class="text-muted">Age</span></div>
-									  <div class="col-sm-8"><input id="Age" name="Age" type="text" class="form-control" value="{{$generalpersonaldataedit->Age}}"></div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
