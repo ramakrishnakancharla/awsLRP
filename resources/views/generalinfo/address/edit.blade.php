@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="media-body">
-				{{ Form::model($edit, array('action' => array('general\AddressController@update', $edit->GA_ID), 'method' => 'PUT')) }}
+				{{ Form::model($edit, array('action' => array('general\AddressController@update', $edit->GA_ID), 'method' => 'PUT', 'files' => true)) }}
 				<div class="panel panel-default share">
                   <div class="input-group">
                     <div class="input-group-btn">
@@ -89,14 +89,21 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-									  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{$edit->ValidFrom}}"></div>
+									  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidFrom)->format('d/m/Y')}}"></div>
 									</div>
 								  </li>
 								 
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Address Type</span></div>
-									  <div class="col-sm-8"><input id="AddressType" name="AddressType" type="text" class="form-control"  value="{{$edit->AddressType}}"></div>
+									  <div class="col-sm-8">
+										<select name="AddressType"  class="form-control">
+											<option>Select</option>
+											@foreach($addressmaster as $address)
+												<option {{$edit->AddressType == $address->AM_ID ? 'selected="selected"' : ''}} value="{{$address->AM_ID}}">{{$address->Name}}</option>
+											@endforeach
+										</select>
+									  </div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
@@ -114,7 +121,8 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Geographical Address</span></div>
-									  <div class="col-sm-8"><input id="GeographicalAddress" name="GeographicalAddress" type="text" class="form-control"  value="{{$edit->GeographicalAddress}}"></div>
+									  <div class="col-sm-6"><input name="GeographicalAddress" type="text" value="{{$edit->GeographicalAddress}}" readonly class="form-control"></div>
+									  <div class="col-sm-2"><p class="btn btn-primary getLocation">Get</p></div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
@@ -142,7 +150,7 @@
 								   <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-									  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{$edit->ValidTo}}"></div>
+									  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidTo)->format('d/m/Y')}}"></div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
@@ -163,9 +171,9 @@
 									  <div class="col-sm-8">
 										<select name="Country" id="Country" class="form-control">
 											<option>Select</option>
-											<option value="1">India</option>
-											<option value="2">USA</option>
-											<option value="3">UK</option>
+											@foreach($countrymaster as $country)
+												<option {{$edit->Country == $country->CM_ID ? 'selected="selected"' : ''}} value="{{$country->CM_ID}}">{{$country->Name}}</option>
+											@endforeach
 										</select>
 									  </div>
 									</div>
@@ -176,8 +184,9 @@
 									  <div class="col-sm-8">
 											<select name="City" id="City" class="form-control">
 												<option>Select</option>
-												<option value="1">Bangalore</option>
-												<option value="2">Hyderabad</option>
+												@foreach($citymaster as $city)
+													<option {{$edit->City == $city->CIM_ID ? 'selected="selected"' : ''}} value="{{$city->CIM_ID}}">{{$city->Name}}</option>
+											   @endforeach
 											</select>
 									  </div>
 									</div>
@@ -185,7 +194,8 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-									  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+									  <div class="col-sm-6"><input name="DocImage" type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" class="form-control"><input name="PhotoEdit" type="hidden" value="{{$edit->DocImage}}"></div>
+									  <div class="col-sm-2"><img src="{{ URL::to($edit->Folder.$edit->DocImage) }}" class="image50x50 img-responsive"></div>
 									</div>
 								  </li>
 								</ul>

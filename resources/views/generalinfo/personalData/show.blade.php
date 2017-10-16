@@ -75,6 +75,12 @@
 									<ul class="list-unstyled profile-about margin-none">
 									  <li class="padding-v-5">
 										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
+										  <div class="col-sm-8">: {{Carbon\Carbon::parse($genericpersonaldataview->ValidFrom)->format('d/m/Y')}}</div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Title</span></div>
 										  <div class="col-sm-8">: {{$genericpersonaldataview->Title}}</div>
 										</div>
@@ -106,7 +112,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">DOB</span></div>
-										  <div class="col-sm-8">: {{$genericpersonaldataview->DOB}}</div>
+										  <div class="col-sm-8">: {{Carbon\Carbon::parse($genericpersonaldataview->DOB)->format('d/m/Y')}}</div>
 										</div>
 									  </li>
 									  </li>
@@ -114,6 +120,12 @@
 								</div>
 								<div class="col-lg-6">
 									<ul class="list-unstyled profile-about margin-none">
+									<li class="padding-v-5">
+										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
+										  <div class="col-sm-8">: {{Carbon\Carbon::parse($genericpersonaldataview->ValidTo)->format('d/m/Y')}}</div>
+										</div>
+									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Age</span></div>
@@ -141,7 +153,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Married Since</span></div>
-										  <div class="col-sm-8">: {{$genericpersonaldataview->MarriedSince}}</div>
+										  <div class="col-sm-8">: {{Carbon\Carbon::parse($genericpersonaldataview->MarriedSince)->format('d/m/Y')}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">

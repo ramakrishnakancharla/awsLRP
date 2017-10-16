@@ -37,7 +37,7 @@
                 </div>
               </div>
               <div class="media-body">
-                <form class="form-horizontal" role="form" action="{{ URL::to('general-objectsonloan') }}" method="post">
+                <form class="form-horizontal" role="form" action="{{ URL::to('general-objectsonloan') }}" enctype="multipart/form-data" method="post">
 					<div class="panel panel-default share">
 					  <div class="input-group">
 						<div class="input-group-btn">
@@ -107,9 +107,9 @@
 										  <div class="col-sm-8">
 												<select name="ObjectCategory" id="ObjectCategory" class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($objectsloanmaster as $objectCat)
+														<option value="{{$objectCat->OLM_ID}}">{{$objectCat->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -226,7 +226,8 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" class="form-control"></div>
+										  
 										</div>
 									  </li>
 									</ul>

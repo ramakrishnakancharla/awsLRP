@@ -11,10 +11,13 @@ use App\generalpersonaldata;
 use App\generaladdress;
 use App\generalcommunications;
 use App\generalpersonalids;
-use App\metadata;
-use App\gendermaster;
-use App\maritalstatus;
-use App\childmaster;
+use App\common_master\metadata;
+use App\common_master\gendermaster;
+use App\common_master\maritalstatus;
+use App\common_master\childmaster;
+use App\common_master\personalidsmaster;
+use App\common_master\countrymaster;
+use App\common_master\religionmaster;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -28,13 +31,16 @@ class PersonalIDsController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$personalidsmaster = personalidsmaster::where('status',1)->get();
+		$countrymaster = countrymaster::where('status',1)->get();
+		$religionmaster = religionmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalpersonalids::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/personalIds.index',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','genericfriends'));
+		return view('generalinfo/personalIds.index',compact('gendermaster','maritalstatus','childmaster','personalidsmaster','countrymaster','religionmaster','metadata','relation','list','genericfamily','genericfriends'));
     }
 	public function store()
 	{
@@ -61,7 +67,16 @@ class PersonalIDsController extends Controller
 			elseif(Input::get('options') == 3)
 				$towhom = Input::get('FriendsId');
 				
-			$DocImage="";
+			$target_dir = "general_upload/personalids/";
+			if($_FILES["DocImage"]["name"] !=''){
+				$file_name = rand().$_FILES["DocImage"]["name"];
+				$temp_name = $_FILES["DocImage"]["tmp_name"];
+				$target_file = $target_dir . basename($file_name);
+				move_uploaded_file($temp_name, $target_file);
+			}else{
+				$file_name = "";
+			}
+			
 			$generalpersonalidsupdate->MetaID = Input::get('options');
 			$generalpersonalidsupdate->ToWhom = $towhom;
 			$generalpersonalidsupdate->IDType = Input::get('IDType');
@@ -74,8 +89,8 @@ class PersonalIDsController extends Controller
 			$generalpersonalidsupdate->DateOfIssue = DateTime::createFromFormat('d/m/Y', Input::get('DateOfIssue'))->format('Y-m-d');
 			$generalpersonalidsupdate->DocType = Input::get('DocType');
 			$generalpersonalidsupdate->DocNo = Input::get('DocNo');
-			$generalpersonalidsupdate->DocImage = $DocImage;
-			$generalpersonalidsupdate->Folder = "";
+			$generalpersonalidsupdate->DocImage = $file_name;
+			$generalpersonalidsupdate->Folder = $target_dir;
 			$generalpersonalidsupdate->ValidFrom = DateTime::createFromFormat('d/m/Y', Input::get('ValidFromDate'))->format('Y-m-d');
 			$generalpersonalidsupdate->ValidTo = DateTime::createFromFormat('d/m/Y', Input::get('ValidToDate'))->format('Y-m-d');
 			$generalpersonalidsupdate->Txnuser = Auth::user()->id;
@@ -101,6 +116,9 @@ class PersonalIDsController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$personalidsmaster = personalidsmaster::where('status',1)->get();
+		$countrymaster = countrymaster::where('status',1)->get();
+		$religionmaster = religionmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalpersonalids::where('Status',1)->get();
@@ -108,7 +126,7 @@ class PersonalIDsController extends Controller
 		$edit = generalpersonalids::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/personalIds.edit',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+		return view('generalinfo/personalIds.edit',compact('gendermaster','maritalstatus','childmaster','personalidsmaster','countrymaster','religionmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
 	}
 	public function update($id)
 	{
@@ -135,7 +153,16 @@ class PersonalIDsController extends Controller
 			elseif(Input::get('options') == 3)
 				$towhom = Input::get('FriendsId');
 			
-			$DocImage="";
+			$target_dir = "general_upload/personalids/";
+			if($_FILES["DocImage"]["name"] !=''){
+				$file_name = rand().$_FILES["DocImage"]["name"];
+				$temp_name = $_FILES["DocImage"]["tmp_name"];
+				$target_file = $target_dir . basename($file_name);
+				move_uploaded_file($temp_name, $target_file);
+			}else{
+				$file_name = Input::get('PhotoEdit');
+			}
+			
 			$generalpersonalidsupdate->MetaID = Input::get('options');
 			$generalpersonalidsupdate->ToWhom = $towhom;
 			$generalpersonalidsupdate->IDType = Input::get('IDType');
@@ -148,8 +175,8 @@ class PersonalIDsController extends Controller
 			$generalpersonalidsupdate->DateOfIssue = DateTime::createFromFormat('d/m/Y', Input::get('DateOfIssue'))->format('Y-m-d');
 			$generalpersonalidsupdate->DocType = Input::get('DocType');
 			$generalpersonalidsupdate->DocNo = Input::get('DocNo');
-			$generalpersonalidsupdate->DocImage = $DocImage;
-			$generalpersonalidsupdate->Folder = "";
+			$generalpersonalidsupdate->DocImage = $file_name;
+			$generalpersonalidsupdate->Folder = $target_dir;
 			$generalpersonalidsupdate->ValidFrom = DateTime::createFromFormat('d/m/Y', Input::get('ValidFromDate'))->format('Y-m-d');
 			$generalpersonalidsupdate->ValidTo = DateTime::createFromFormat('d/m/Y', Input::get('ValidToDate'))->format('Y-m-d');
 			$generalpersonalidsupdate->Txnuser = Auth::user()->id;

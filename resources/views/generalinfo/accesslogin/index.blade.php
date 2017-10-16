@@ -159,9 +159,9 @@
 										  <div class="col-sm-8">
 												<select name="Category" class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($logincategory as $category)
+														<option value="{{$category->ALCM_ID}}">{{$category->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>

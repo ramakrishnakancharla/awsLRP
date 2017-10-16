@@ -35,7 +35,7 @@
                 </div>
               </div>
               <div class="media-body">
-				{{ Form::model($edit, array('action' => array('general\ObjectsonloanController@update', $edit->GOL_ID), 'method' => 'PUT')) }}
+				{{ Form::model($edit, array('action' => array('general\ObjectsonloanController@update', $edit->GOL_ID), 'method' => 'PUT', 'files' => true)) }}
 				<div class="panel panel-default share">
                   <div class="input-group">
                     <div class="input-group-btn">
@@ -88,7 +88,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-										  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{$edit->ValidFrom}}"></div>
+										  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidFrom)->format('d/m/Y'}}"></div>
 										</div>
 									  </li>
 									 
@@ -104,10 +104,9 @@
 										  <div class="col-sm-4"><span class="text-muted">Object Category</span></div>
 										  <div class="col-sm-8">
 												<select name="ObjectCategory" id="ObjectCategory" class="form-control">
-													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($objectsloanmaster as $objectCat)
+														<option {{$edit->ObjectCategory == $objectCat->OLM_ID ? 'selected="selected"' : ''}} value="{{$objectCat->OLM_ID}}">{{$objectCat->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -140,7 +139,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Given Date</span></div>
-										  <div class="col-sm-8"><input id="GivenDate" name="GivenDate" type="text" class="form-control datepicker" value="{{$edit->GivenDate}}"></div>
+										  <div class="col-sm-8"><input id="GivenDate" name="GivenDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->GivenDate)->format('d/m/Y'}}"></div>
 										</div>
 									  </li>
 									  
@@ -170,7 +169,7 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-										  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{$edit->ValidTo}}"></div>
+										  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidTo)->format('d/m/Y'}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -212,19 +211,20 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Date Of Issue</span></div>
-										  <div class="col-sm-8"><input id="DateOfIssue" name="DateOfIssue" type="text" class="form-control datepicker" value="{{$edit->DateOfIssue}}"></div>
+										  <div class="col-sm-8"><input id="DateOfIssue" name="DateOfIssue" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->DateOfIssue)->format('d/m/Y'}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Return Date</span></div>
-										  <div class="col-sm-8"><input id="ReturnDate" name="ReturnDate" type="text" class="form-control datepicker" value="{{$edit->ReturnDate}}"></div>
+										  <div class="col-sm-8"><input id="ReturnDate" name="ReturnDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ReturnDate)->format('d/m/Y'}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+										  <div class="col-sm-6"><input id="DocImage" name="DocImage" type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" class="form-control"></div>
+										  <div class="col-sm-2"><img src="{{ URL::to($edit->Folder.$edit->DocImage) }}" class="image50x50 img-responsive"></div>
 										</div>
 									  </li>
 									</ul>

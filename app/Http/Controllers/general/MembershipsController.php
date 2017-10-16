@@ -12,10 +12,15 @@ use App\generaladdress;
 use App\generalcommunications;
 use App\generalpersonalids;
 use App\generalmembership;
-use App\metadata;
-use App\gendermaster;
-use App\maritalstatus;
-use App\childmaster;
+use App\common_master\metadata;
+use App\common_master\gendermaster;
+use App\common_master\maritalstatus;
+use App\common_master\childmaster;
+use App\common_master\facilitiemaster;
+use App\common_master\membershipallowedmaster;
+use App\common_master\membershiporgcategorymaster;
+use App\common_master\membershiptypemaster;
+use App\common_master\membershipsponcerormaster;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -29,13 +34,18 @@ class MembershipsController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$facilitiemaster = facilitiemaster::where('status',1)->get();
+		$allowed = membershipallowedmaster::where('status',1)->get();
+		$category = membershiporgcategorymaster::where('status',1)->get();
+		$membershiptype = membershiptypemaster::where('status',1)->get();
+		$sponceror = membershipsponcerormaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalmembership::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/memberships.index',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','genericfriends'));
+		return view('generalinfo/memberships.index',compact('gendermaster','maritalstatus','childmaster','facilitiemaster','allowed','category','membershiptype','sponceror','metadata','relation','list','genericfamily','genericfriends'));
     }
 	public function store()
 	{
@@ -62,7 +72,16 @@ class MembershipsController extends Controller
 			elseif(Input::get('options') == 3)
 				$towhom = Input::get('FriendsId');
 				
-			$DocImage="";
+			$target_dir = "general_upload/membership/";
+			if($_FILES["DocImage"]["name"] !=''){
+				$file_name = rand().$_FILES["DocImage"]["name"];
+				$temp_name = $_FILES["DocImage"]["tmp_name"];
+				$target_file = $target_dir . basename($file_name);
+				move_uploaded_file($temp_name, $target_file);
+			}else{
+				$file_name = "";
+			}
+			
 			$generalmembershipupdate->MetaID = Input::get('options');
 			$generalmembershipupdate->ToWhom = $towhom;
 			$generalmembershipupdate->OrganizationName = Input::get('OrganizationName');
@@ -71,8 +90,8 @@ class MembershipsController extends Controller
 			$generalmembershipupdate->AllowedForMembers = Input::get('AllowedForMembers');
 			$generalmembershipupdate->DocType = Input::get('DocType');
 			$generalmembershipupdate->DocNo = Input::get('DocNo');
-			$generalmembershipupdate->DocImage = $DocImage;
-			$generalmembershipupdate->Folder = "";
+			$generalmembershipupdate->DocImage = $file_name;
+			$generalmembershipupdate->Folder = $target_dir;
 			$generalmembershipupdate->OrganizationCategory = Input::get('OrganizationCategory');
 			$generalmembershipupdate->MembershipNo = Input::get('MembershipNo');
 			$generalmembershipupdate->Sponceror = Input::get('Sponceror');
@@ -103,6 +122,11 @@ class MembershipsController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$facilitiemaster = facilitiemaster::where('status',1)->get();
+		$allowed = membershipallowedmaster::where('status',1)->get();
+		$category = membershiporgcategorymaster::where('status',1)->get();
+		$membershiptype = membershiptypemaster::where('status',1)->get();
+		$sponceror = membershipsponcerormaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalmembership::where('Status',1)->get();
@@ -110,7 +134,7 @@ class MembershipsController extends Controller
 		$edit = generalmembership::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/memberships.edit',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+		return view('generalinfo/memberships.edit',compact('gendermaster','maritalstatus','childmaster','facilitiemaster','allowed','category','membershiptype','sponceror','metadata','relation','list','genericfamily','edit','genericfriends'));
 	}
 	public function update($id)
 	{
@@ -137,7 +161,16 @@ class MembershipsController extends Controller
 			elseif(Input::get('options') == 3)
 				$towhom = Input::get('FriendsId');
 			
-			$DocImage="";
+			$target_dir = "general_upload/membership/";
+			if($_FILES["DocImage"]["name"] !=''){
+				$file_name = rand().$_FILES["DocImage"]["name"];
+				$temp_name = $_FILES["DocImage"]["tmp_name"];
+				$target_file = $target_dir . basename($file_name);
+				move_uploaded_file($temp_name, $target_file);
+			}else{
+				$file_name = Input::get('PhotoEdit');
+			}
+			
 			$generalmembershipupdate->MetaID = Input::get('options');
 			$generalmembershipupdate->ToWhom = $towhom;
 			$generalmembershipupdate->OrganizationName = Input::get('OrganizationName');

@@ -142,8 +142,8 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">DOB</span></div>
-										  <div class="col-sm-4"><input id="DateOfBirth" name="DateOfBirth" type="text" class="form-control datepicker"></div>
-										  <div class="col-sm-4"><input id="Age" name="Age" type="text" class="form-control" placeholder="Age" disabled></div>
+										  <div class="col-sm-4"><input name="DateOfBirth" type="text" class="form-control datepicker ageCalculate"></div>
+										  <div class="col-sm-4"><input id="Age" name="Age" type="text" class="form-control AgeVal" placeholder="Age" readonly></div>
 										</div>
 									  </li>
 									  
@@ -161,13 +161,27 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Nationality</span></div>
-										  <div class="col-sm-8"><input id="Nationality" name="Nationality" type="text" class="form-control"></div>
+										  <div class="col-sm-8">
+											  <select name="Nationality"  class="form-control">
+													<option value="">Select</option>
+													@foreach($countrymaster as $country)
+														<option value="{{$country->CM_ID}}">{{$country->Name}} </option>
+													@endforeach
+												</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Religion</span></div>
-										  <div class="col-sm-8"><input id="Religion" name="Religion" type="text" class="form-control"></div>
+										  <div class="col-sm-8">
+											  <select name="Religion"  class="form-control">
+														<option value="">Select</option>
+														@foreach($religionmaster as $religion)
+															<option value="{{$religion->RM_ID}}">{{$religion->Name}} </option>
+														@endforeach
+												</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">

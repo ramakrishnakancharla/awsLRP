@@ -13,10 +13,11 @@ use App\generalcommunications;
 use App\generalpersonalids;
 use App\generalmembership;
 use App\generalobjectsonloan;
-use App\metadata;
-use App\gendermaster;
-use App\maritalstatus;
-use App\childmaster;
+use App\common_master\metadata;
+use App\common_master\gendermaster;
+use App\common_master\maritalstatus;
+use App\common_master\childmaster;
+use App\common_master\objectsloanmaster;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -30,13 +31,14 @@ class ObjectsonloanController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$objectsloanmaster = objectsloanmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalobjectsonloan::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/objectsonloan.index',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','genericfriends'));
+		return view('generalinfo/objectsonloan.index',compact('gendermaster','maritalstatus','childmaster','objectsloanmaster','metadata','relation','list','genericfamily','genericfriends'));
     }
 	public function store()
 	{
@@ -63,7 +65,16 @@ class ObjectsonloanController extends Controller
 			elseif(Input::get('options') == 3)
 				$towhom = Input::get('FriendsId');
 				
-			$DocImage="";
+			$target_dir = "general_upload/loans/";
+			if($_FILES["DocImage"]["name"] !=''){
+				$file_name = rand().$_FILES["DocImage"]["name"];
+				$temp_name = $_FILES["DocImage"]["tmp_name"];
+				$target_file = $target_dir . basename($file_name);
+				move_uploaded_file($temp_name, $target_file);
+			}else{
+				$file_name = "";
+			}
+			
 			$generalobjectsonloanpdate->MetaID = Input::get('options');
 			$generalobjectsonloanpdate->ToWhom = $towhom;
 			$generalobjectsonloanpdate->ObjectName = Input::get('ObjectName');
@@ -75,8 +86,8 @@ class ObjectsonloanController extends Controller
 			$generalobjectsonloanpdate->GivenDate = DateTime::createFromFormat('d/m/Y', Input::get('GivenDate'))->format('Y-m-d');
 			$generalobjectsonloanpdate->DocType = Input::get('DocType');
 			$generalobjectsonloanpdate->DocNo = Input::get('DocNo');
-			$generalobjectsonloanpdate->DocImage = $DocImage;
-			$generalobjectsonloanpdate->Folder = "";
+			$generalobjectsonloanpdate->DocImage = $file_name;
+			$generalobjectsonloanpdate->Folder = $target_dir;
 			$generalobjectsonloanpdate->Amount = Input::get('Amount');
 			$generalobjectsonloanpdate->ContactNo = Input::get('ContactNo');
 			$generalobjectsonloanpdate->Address = Input::get('Address');
@@ -110,6 +121,7 @@ class ObjectsonloanController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$objectsloanmaster = objectsloanmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalobjectsonloan::where('Status',1)->get();
@@ -117,7 +129,7 @@ class ObjectsonloanController extends Controller
 		$edit = generalobjectsonloan::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/objectsonloan.edit',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+		return view('generalinfo/objectsonloan.edit',compact('gendermaster','maritalstatus','childmaster','objectsloanmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
 	}
 	public function update($id)
 	{
@@ -144,7 +156,16 @@ class ObjectsonloanController extends Controller
 			elseif(Input::get('options') == 3)
 				$towhom = Input::get('FriendsId');
 			
-			$DocImage="";
+			$target_dir = "general_upload/loans/";
+			if($_FILES["DocImage"]["name"] !=''){
+				$file_name = rand().$_FILES["DocImage"]["name"];
+				$temp_name = $_FILES["DocImage"]["tmp_name"];
+				$target_file = $target_dir . basename($file_name);
+				move_uploaded_file($temp_name, $target_file);
+			}else{
+				$file_name = Input::get('PhotoEdit');
+			}
+			
 			$generalobjectsonloanpdate->MetaID = Input::get('options');
 			$generalobjectsonloanpdate->ToWhom = $towhom;
 			$generalobjectsonloanpdate->ObjectName = Input::get('ObjectName');
@@ -156,8 +177,8 @@ class ObjectsonloanController extends Controller
 			$generalobjectsonloanpdate->GivenDate = DateTime::createFromFormat('d/m/Y', Input::get('GivenDate'))->format('Y-m-d');
 			$generalobjectsonloanpdate->DocType = Input::get('DocType');
 			$generalobjectsonloanpdate->DocNo = Input::get('DocNo');
-			$generalobjectsonloanpdate->DocImage = $DocImage;
-			$generalobjectsonloanpdate->Folder = "";
+			$generalobjectsonloanpdate->DocImage = $file_name;
+			$generalobjectsonloanpdate->Folder = $target_dir;
 			$generalobjectsonloanpdate->Amount = Input::get('Amount');
 			$generalobjectsonloanpdate->ContactNo = Input::get('ContactNo');
 			$generalobjectsonloanpdate->Address = Input::get('Address');

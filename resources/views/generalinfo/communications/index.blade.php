@@ -98,10 +98,11 @@
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Communication Type</span></div>
 									  <div class="col-sm-8">
-											<select name="CommunicationType" id="CommunicationType" class="form-control">
-												<option>Select</option>
-												<option value="1">PAN</option>
-												<option value="2">PassPort</option>
+										   <select name="CommunicationType"  class="form-control">
+										   <option>Select</option>
+											@foreach($communicationmaster as $communication)
+												<option value="{{$communication->COM_ID}}">{{$communication->Name}}</option>
+											@endforeach
 											</select>
 										</div>
 									</div>

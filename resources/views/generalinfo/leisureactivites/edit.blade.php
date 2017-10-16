@@ -88,7 +88,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-										  <div class="col-sm-8"><input  name="ValidFrom" type="text" class="form-control datepicker" value="{{$edit->ValidFrom}}"></div>
+										  <div class="col-sm-8"><input  name="ValidFrom" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidFrom)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									 
@@ -101,13 +101,13 @@
 									  
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Prociency</span></div>
+										  <div class="col-sm-4"><span class="text-muted">Proficiency</span></div>
 										  <div class="col-sm-8">
 												<select name="Prociency" class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($prociency as $prociency)
+														<option {{$edit->Prociency == $prociency->PM_ID ? 'selected="selected"' : ''}} value="{{$prociency->PM_ID}}">{{$prociency->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -131,7 +131,7 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-										  <div class="col-sm-8"><input  name="ValidTo" type="text" class="form-control datepicker" value="{{$edit->ValidTo}}"></div>
+										  <div class="col-sm-8"><input  name="ValidTo" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidTo)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -140,9 +140,9 @@
 										  <div class="col-sm-8">
 												<select name="ActivityType"  class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($activitytype as $activity)
+														<option {{$edit->ActivityType == $activity->ATM_ID ? 'selected="selected"' : ''}} value="{{$activity->ATM_ID}}">{{$activity->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -153,7 +153,9 @@
 										  <div class="col-sm-8">
 												<select name="SkillsAcquired"  class="form-control">
 													<option>Select</option>
-													<option value="1">Hindu</option>
+													@foreach($skills as $skills)
+														<option {{$edit->SkillsAcquired == $skills->SKM_ID ? 'selected="selected"' : ''}} value="{{$skills->SKM_ID}}">{{$skills->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>

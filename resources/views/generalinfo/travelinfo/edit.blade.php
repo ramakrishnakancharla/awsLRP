@@ -35,7 +35,7 @@
                 </div>
               </div>
               <div class="media-body">
-				{{ Form::model($edit, array('action' => array('general\TravelinfoController@update', $edit->GTI_ID), 'method' => 'PUT')) }}
+				{{ Form::model($edit, array('action' => array('general\TravelinfoController@update', $edit->GTI_ID), 'method' => 'PUT', 'files' => true)) }}
 				<div class="panel panel-default share">
                   <div class="input-group">
                     <div class="input-group-btn">
@@ -88,7 +88,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">From Date</span></div>
-										  <div class="col-sm-8"><input id="FromDate" name="FromDate" type="text" class="form-control datepicker" value="{{$edit->FromDate}}"></div>
+										  <div class="col-sm-8"><input id="FromDate" name="FromDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->FromDate)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -103,9 +103,9 @@
 										  <div class="col-sm-8">
 												<select name="Country" id="Country" class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($countrymaster as $country)
+														<option {{$edit->Country == $country->CM_ID ? 'selected="selected"' : ''}} value="{{$country->CM_ID}}">{{$country->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -113,14 +113,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Purpose</span></div>
-										  <div class="col-sm-8">
-												<select name="Purpose" id="Purpose" class="form-control">
-													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
-												</select>
-										  </div>
+										  <div class="col-sm-8"><input name="Purpose" type="text" value="{{$edit->Purpose}}" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -135,9 +128,9 @@
 										  <div class="col-sm-8">
 												<select name="ModeOfAccommodation" class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($accommodation as $accommodation)
+														<option {{$edit->ModeOfAccommodation == $accommodation->MOAM_ID ? 'selected="selected"' : ''}} value="{{$accommodation->MOAM_ID}}">{{$accommodation->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -157,14 +150,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Travel Insurance Policy No</span></div>
-										  <div class="col-sm-8">
-												<select name="TravelInsurancePolicyNo" class="form-control">
-													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
-												</select>
-										  </div>
+										  <div class="col-sm-8"><input name="TravelInsurancePolicyNo"  class="form-control" value="{{$edit->TravelInsurancePolicyNo}}"></div>
 										</div>
 									  </li>
 									  
@@ -193,7 +179,7 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">To Date</span></div>
-										  <div class="col-sm-8"><input id="ToDate" name="ToDate" type="text" class="form-control datepicker" value="{{$edit->ToDate}}"></div>
+										  <div class="col-sm-8"><input id="ToDate" name="ToDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ToDate)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -208,7 +194,9 @@
 										  <div class="col-sm-8">
 												<select name="Region" id="Region" class="form-control">
 													<option>Select</option>
-													<option value="1">Hindu</option>
+													@foreach($religionmaster as $religion)
+														<option {{$edit->religionmaster == $religion->RM_ID ? 'selected="selected"' : ''}} value="{{$religion->RM_ID}}">{{$religion->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -225,7 +213,9 @@
 										  <div class="col-sm-8">
 												<select name="ModeOfTrasnport" id="ModeOfTrasnport" class="form-control">
 													<option>Select</option>
-													<option value="1">Hindu</option>
+													@foreach($modeoftransport as $transport)
+														<option {{$edit->ModeOfTrasnport == $transport->MOTM_ID ? 'selected="selected"' : ''}} value="{{$transport->MOTM_ID}}">{{$transport->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -242,8 +232,8 @@
 										  <div class="col-sm-8">
 												<select name="TravelInsuranceAvailable"  class="form-control">
 													<option>Select</option>
-													<option value="1">Yes</option>
-													<option value="No">No</option>
+													<option {{$edit->TravelInsuranceAvailable == 'Yes' ? 'selected="selected"' : ''}} value="Yes">Yes</option>
+													<option {{$edit->TravelInsuranceAvailable == 'No' ? 'selected="selected"' : ''}} value="No">No</option>
 												</select>
 										  </div>
 										</div>
@@ -263,7 +253,8 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+										  <div class="col-sm-6"><input id="DocImage" name="DocImage" type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" class="form-control"></div>
+										  <div class="col-sm-2"><img src="{{ URL::to($edit->Folder.$edit->DocImage) }}" class="image50x50 img-responsive"></div>
 										</div>
 									  </li>
 									</ul>

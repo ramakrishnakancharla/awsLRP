@@ -14,10 +14,14 @@ use App\generalpersonalids;
 use App\generalmembership;
 use App\generalobjectsonloan;
 use App\generaltravelinfo;
-use App\metadata;
-use App\gendermaster;
-use App\maritalstatus;
-use App\childmaster;
+use App\common_master\metadata;
+use App\common_master\gendermaster;
+use App\common_master\maritalstatus;
+use App\common_master\childmaster;
+use App\common_master\religionmaster;
+use App\common_master\countrymaster;
+use App\common_master\modeoftransport;
+use App\common_master\accommodation;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -31,13 +35,17 @@ class TravelinfoController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$religionmaster = religionmaster::where('status',1)->get();
+		$countrymaster = countrymaster::where('status',1)->get();
+		$modeoftransport = modeoftransport::where('status',1)->get();
+		$accommodation = accommodation::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generaltravelinfo::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/travelinfo.index',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','genericfriends'));
+		return view('generalinfo/travelinfo.index',compact('gendermaster','maritalstatus','childmaster','religionmaster','countrymaster','modeoftransport','accommodation','metadata','relation','list','genericfamily','genericfriends'));
     }
 	public function store()
 	{
@@ -64,7 +72,16 @@ class TravelinfoController extends Controller
 			elseif(Input::get('options') == 3)
 				$towhom = Input::get('FriendsId');
 				
-			$DocImage="";
+			$target_dir = "general_upload/travel/";
+			if($_FILES["DocImage"]["name"] !=''){
+				$file_name = rand().$_FILES["DocImage"]["name"];
+				$temp_name = $_FILES["DocImage"]["tmp_name"];
+				$target_file = $target_dir . basename($file_name);
+				move_uploaded_file($temp_name, $target_file);
+			}else{
+				$file_name = "";
+			}
+			
 			$generaltravelinfopdate->MetaID = Input::get('options');
 			$generaltravelinfopdate->ToWhom = $towhom;
 			$generaltravelinfopdate->FromTime = Input::get('FromTime');
@@ -76,8 +93,8 @@ class TravelinfoController extends Controller
 			$generaltravelinfopdate->TravelInsurancePolicyNo = Input::get('TravelInsurancePolicyNo');
 			$generaltravelinfopdate->DocType = Input::get('DocType');
 			$generaltravelinfopdate->DocNo = Input::get('DocNo');
-			$generaltravelinfopdate->DocImage = $DocImage;
-			$generaltravelinfopdate->Folder = "";
+			$generaltravelinfopdate->DocImage = $file_name;
+			$generaltravelinfopdate->Folder = $target_dir;
 			$generaltravelinfopdate->ToTime = Input::get('ToTime');
 			$generaltravelinfopdate->Region = Input::get('Region');
 			$generaltravelinfopdate->OtherPurpose = Input::get('OtherPurpose');
@@ -111,6 +128,10 @@ class TravelinfoController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$religionmaster = religionmaster::where('status',1)->get();
+		$countrymaster = countrymaster::where('status',1)->get();
+		$modeoftransport = modeoftransport::where('status',1)->get();
+		$accommodation = accommodation::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generaltravelinfo::where('Status',1)->get();
@@ -118,7 +139,7 @@ class TravelinfoController extends Controller
 		$edit = generaltravelinfo::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/travelinfo.edit',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+		return view('generalinfo/travelinfo.edit',compact('gendermaster','maritalstatus','childmaster','religionmaster','countrymaster','modeoftransport','accommodation','metadata','relation','list','genericfamily','edit','genericfriends'));
 	}
 	public function update($id)
 	{
@@ -145,7 +166,16 @@ class TravelinfoController extends Controller
 			elseif(Input::get('options') == 3)
 				$towhom = Input::get('FriendsId');
 			
-			$DocImage="";
+			$target_dir = "general_upload/travel/";
+			if($_FILES["DocImage"]["name"] !=''){
+				$file_name = rand().$_FILES["DocImage"]["name"];
+				$temp_name = $_FILES["DocImage"]["tmp_name"];
+				$target_file = $target_dir . basename($file_name);
+				move_uploaded_file($temp_name, $target_file);
+			}else{
+				$file_name = "";
+			}
+			
 			$generaltravelinfopdate->MetaID = Input::get('options');
 			$generaltravelinfopdate->ToWhom = $towhom;
 			$generaltravelinfopdate->FromTime = Input::get('FromTime');
@@ -157,8 +187,8 @@ class TravelinfoController extends Controller
 			$generaltravelinfopdate->TravelInsurancePolicyNo = Input::get('TravelInsurancePolicyNo');
 			$generaltravelinfopdate->DocType = Input::get('DocType');
 			$generaltravelinfopdate->DocNo = Input::get('DocNo');
-			$generaltravelinfopdate->DocImage = $DocImage;
-			$generaltravelinfopdate->Folder = "";
+			$generaltravelinfopdate->DocImage = $file_name;
+			$generaltravelinfopdate->Folder = $target_dir;
 			$generaltravelinfopdate->ToTime = Input::get('ToTime');
 			$generaltravelinfopdate->Region = Input::get('Region');
 			$generaltravelinfopdate->OtherPurpose = Input::get('OtherPurpose');

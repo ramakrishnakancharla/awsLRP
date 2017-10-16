@@ -75,7 +75,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-										  <div class="col-sm-8">{{$show->ValidFrom}}</div>
+										  <div class="col-sm-8">{{Carbon\Carbon::parse($show->ValidFrom)->format('d/m/Y')}}</div>
 										</div>
 									  </li>
 									 
@@ -135,7 +135,7 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-										  <div class="col-sm-8">{{$show->ValidTo}}</div>
+										  <div class="col-sm-8">{{Carbon\Carbon::parse($show->ValidTo)->format('d/m/Y')}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">

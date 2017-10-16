@@ -88,7 +88,7 @@
 							  <li class="padding-v-5">
 								<div class="row">
 								  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-								  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{$edit->ValidFrom}}"></div>
+								  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidFrom)->format('d/m/Y')}}"></div>
 								</div>
 							  </li>
 							 
@@ -96,10 +96,10 @@
 								<div class="row">
 								  <div class="col-sm-4"><span class="text-muted">Communication Type</span></div>
 								  <div class="col-sm-8">
-										<select name="CommunicationType" id="CommunicationType" class="form-control">
-											<option>Select</option>
-											<option value="1">PAN</option>
-											<option value="2">PassPort</option>
+										<select name="CommunicationType"  class="form-control">
+											@foreach($communicationmaster as $communication)
+												<option {{$edit->CommunicationType == $communication->COM_ID ? 'selected="selected"' : ''}} value="{{$communication->COM_ID}}">{{$communication->Name}}</option>
+											@endforeach
 										</select>
 									</div>
 								</div>
@@ -111,7 +111,7 @@
 							   <li class="padding-v-5">
 								<div class="row">
 								  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-								  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{$edit->ValidTo}}"></div>
+								  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidTo)->format('d/m/Y')}}"></div>
 								</div>
 							  </li>
 							  <li class="padding-v-5">

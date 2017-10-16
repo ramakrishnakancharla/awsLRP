@@ -10,10 +10,11 @@ use App\genericfriends;
 use App\generalpersonaldata;
 use App\generaladdress;
 use App\generalcommunications;
-use App\metadata;
-use App\gendermaster;
-use App\maritalstatus;
-use App\childmaster;
+use App\common_master\metadata;
+use App\common_master\gendermaster;
+use App\common_master\maritalstatus;
+use App\common_master\childmaster;
+use App\common_master\communicationmaster;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -27,13 +28,14 @@ class CommunicationsController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$communicationmaster = communicationmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalcommunications::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/communications.index',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','genericfriends'));
+		return view('generalinfo/communications.index',compact('gendermaster','maritalstatus','childmaster','communicationmaster','metadata','relation','list','genericfamily','genericfriends'));
     }
 	public function store()
 	{
@@ -93,6 +95,7 @@ class CommunicationsController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$communicationmaster = communicationmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalcommunications::where('Status',1)->get();
@@ -100,7 +103,7 @@ class CommunicationsController extends Controller
 		$edit = generalcommunications::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/communications.edit',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+		return view('generalinfo/communications.edit',compact('gendermaster','maritalstatus','childmaster','communicationmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
 	}
 	public function update($id)
 	{

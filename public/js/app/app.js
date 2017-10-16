@@ -3501,250 +3501,33 @@ require('../../components/messages/main');
 			$("#FriendsId").show();
 		}
 	});
-	
-	$(".genericfamily").on("click", function(){
-		var attrDate=$(this).attr("attrId");
-		var myObject = JSON.parse(attrDate);
-		$("#hiddenid").val(myObject.AFM_ID);
-		$("#Family").val(myObject.Parent);
-		$("#Priority").val(myObject.Priority);
-		$("#Title").val(myObject.Title);
-		$("#FirstName").val(myObject.FirstName);
-		$("#MiddleName").val(myObject.MiddleName);
-		$("#LastName").val(myObject.LastName);
-		$("#Gender").val(myObject.Gender);
-		$("#DateOfBirth").val(dateformt(myObject.DOB));
-		$("#MobileNumber").val(myObject.MobileNo);
-		$("#Age").val(myObject.Age);
-		$("#Relationship").val(myObject.Relationship);
-		$("#Nationality").val(myObject.Nationality);
-		$("#Religion").val(myObject.Religion);
-		$("#MaritalStatus").val(myObject.MaritalStatus);
-		$("#MarriedSince").val(dateformt(myObject.MarriedSince));
-		$("#NoOfChildrens").val(myObject.NoOfChildrens);
+	var calculateAge = function(birthday) {
+		var now = new Date();
+		var past = new Date(birthday);
+		var nowYear = now.getFullYear();
+		var pastYear = past.getFullYear();
+		var age = nowYear - pastYear;
+
+		return age;
+	};
+	$(".ageCalculate").on("change", function(e){
+		e.preventDefault();
+		var dob=$(this).val();
+		var dt = dob.split("/");
+		var age = calculateAge(dt[2]);
+		$(".AgeVal").val(age);
 	});
-	$(".genericfriends").on("click", function(){
-		var attrDate=$(this).attr("attrId");
-		var myObject = JSON.parse(attrDate);
-		$("#hiddenid").val(myObject.AFR_ID);
-		$("#Title").val(myObject.Title);
-		$("#FirstName").val(myObject.FirstName);
-		$("#MiddleName").val(myObject.MiddleName);
-		$("#LastName").val(myObject.LastName);
-		$("#Gender").val(myObject.Gender);
-		$("#DateOfBirth").val(dateformt(myObject.DOB));
-		$("#MobileNumber").val(myObject.MobileNo);
-		$("#Age").val(myObject.Age);
-		$("#Relationship").val(myObject.Relationship);
-		$("#Nationality").val(myObject.Nationality);
-		$("#Religion").val(myObject.Religion);
-		$("#MaritalStatus").val(myObject.MaritalStatus);
-		$("#MarriedSince").val(dateformt(myObject.MarriedSince));
-		$("#NoOfChildrens").val(myObject.NoOfChildrens);
+	$(".getLocation").click(function(){
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		} else { 
+			var loc = "Not supported by this browser.";
+			document.getElementById("GeographicalAddress").value = loc;
+		}
 	});
-	$(".generalPersonal").on("click", function(){
-		var attrDate=$(this).attr("attrId");
-		var myObject = JSON.parse(attrDate);
-		$("#hiddenid").val(myObject.GPD_ID);
-		$("#Title").val(myObject.Title);
-		$("#options").val(myObject.MetaID);
-		if(myObject.MetaID == 1){
-			$("#SelfId").show();
-			$("#FamilyId").hide();
-			$("#FriendsId").hide();
-		}
-		if(myObject.MetaID == 2){
-			$("#FamilyId").show();
-			$("#FamilyId").val(myObject.ToWhom);
-			$("#FriendsId").hide();
-			$("#SelfId").hide();
-		}
-		if(myObject.MetaID == 3){
-			$("#FriendsId").show();
-			$("#FriendsId").val(myObject.ToWhom);
-			$("#FamilyId").hide();
-			$("#SelfId").hide();
-		}
-		$("#FirstName").val(myObject.FirstName);
-		$("#MiddleName").val(myObject.MiddleName);
-		$("#LastName").val(myObject.LastName);
-		$("#Gender").val(myObject.Gender);
-		$("#DateOfBirth").val(dateformt(myObject.DOB));
-		$("#Age").val(myObject.Age);
-		$("#Nationality").val(myObject.Nationality);
-		$("#Religion").val(myObject.Religion);
-		$("#MaritalStatus").val(myObject.MaritalStatus);
-		$("#MarriedSince").val(dateformt(myObject.MarriedSince));
-		$("#NoOfChildrens").val(myObject.NoOfChildrens);
-		$("#ValidFromDate").val(dateformt(myObject.ValidFrom));
-		$("#ValidToDate").val(dateformt(myObject.ValidTo));
-	});
-	$(".generalAddress").on("click", function(){
-		var attrDate=$(this).attr("attrId");
-		var myObject = JSON.parse(attrDate);
-		$("#hiddenid").val(myObject.GA_ID);
-		$("#options").val(myObject.MetaID);
-		if(myObject.MetaID == 1){
-			$("#SelfId").show();
-			$("#FamilyId").hide();
-			$("#FriendsId").hide();
-		}
-		if(myObject.MetaID == 2){
-			$("#FamilyId").show();
-			$("#FamilyId").val(myObject.ToWhom);
-			$("#FriendsId").hide();
-			$("#SelfId").hide();
-		}
-		if(myObject.MetaID == 3){
-			$("#FriendsId").show();
-			$("#FriendsId").val(myObject.ToWhom);
-			$("#FamilyId").hide();
-			$("#SelfId").hide();
-		}
-		$("#AddressType").val(myObject.AddressType);
-		$("#Street").val(myObject.Street);
-		$("#PostalCode").val(myObject.PostalCode);
-		$("#GeographicalAddress").val(myObject.GeographicalAddress);
-		$("#HouseNo").val(myObject.HouseNo);
-		$("#AddressLine").val(myObject.AddressLine);
-		$("#Country").val(myObject.Country);
-		$("#City").val(myObject.City);
-		$("#ValidFromDate").val(dateformt(myObject.ValidFrom));
-		$("#ValidToDate").val(dateformt(myObject.ValidTo));
-	});
-	$(".generalCommunication").on("click", function(){
-		var attrDate=$(this).attr("attrId");
-		var myObject = JSON.parse(attrDate);
-		$("#hiddenid").val(myObject.GC_ID);
-		$("#options").val(myObject.MetaID);
-		if(myObject.MetaID == 1){
-			$("#SelfId").show();
-			$("#FamilyId").hide();
-			$("#FriendsId").hide();
-		}
-		if(myObject.MetaID == 2){
-			$("#FamilyId").show();
-			$("#FamilyId").val(myObject.ToWhom);
-			$("#FriendsId").hide();
-			$("#SelfId").hide();
-		}
-		if(myObject.MetaID == 3){
-			$("#FriendsId").show();
-			$("#FriendsId").val(myObject.ToWhom);
-			$("#FamilyId").hide();
-			$("#SelfId").hide();
-		}
-		$("#CommunicationType").val(myObject.CommunicationType);
-		$("#Details").val(myObject.Details);
-		$("#ValidFromDate").val(dateformt(myObject.ValidFrom));
-		$("#ValidToDate").val(dateformt(myObject.ValidTo));
-	});
-	$(".generalPersonalIds").on("click", function(){
-		var attrDate=$(this).attr("attrId");
-		var myObject = JSON.parse(attrDate);
-		$("#hiddenid").val(myObject.GPI_ID);
-		$("#options").val(myObject.MetaID);
-		if(myObject.MetaID == 1){
-			$("#SelfId").show();
-			$("#FamilyId").hide();
-			$("#FriendsId").hide();
-		}
-		if(myObject.MetaID == 2){
-			$("#FamilyId").show();
-			$("#FamilyId").val(myObject.ToWhom);
-			$("#FriendsId").hide();
-			$("#SelfId").hide();
-		}
-		if(myObject.MetaID == 3){
-			$("#FriendsId").show();
-			$("#FriendsId").val(myObject.ToWhom);
-			$("#FamilyId").hide();
-			$("#SelfId").hide();
-		}
-		$("#IDType").val(myObject.IDType);
-		$("#IDNO").val(myObject.IDNO);
-		$("#PlaceOfIssue").val(myObject.PlaceOfIssue);
-		$("#CountryOfIssue").val(myObject.CountryOfIssue);
-		$("#Country").val(myObject.Country);
-		$("#Region").val(myObject.Region);
-		$("#IssueingAuthority").val(myObject.IssueingAuthority);
-		$("#DateOfIssue").val(dateformt(myObject.DateOfIssue));
-		$("#ValidFromDate").val(dateformt(myObject.ValidFrom));
-		$("#ValidToDate").val(dateformt(myObject.ValidTo));
-	});
-	$(".generalTravelInfo").on("click", function(){
-		$(".actionBtn").show();
-		$(".form-control").addClass("bordernone");
-		$('.form-control').attr('disabled', true);
-		var attrDate=$(this).attr("attrId");
-		var myObject = JSON.parse(attrDate);
-		$("#hiddenid").val(myObject.GTI_ID);
-		$("#options").val(myObject.MetaID);
-		if(myObject.MetaID == 1){
-			$("#SelfId").show();
-			$("#FamilyId").hide();
-			$("#FriendsId").hide();
-		}
-		if(myObject.MetaID == 2){
-			$("#FamilyId").show();
-			$("#FamilyId").val(myObject.ToWhom);
-			$("#FriendsId").hide();
-			$("#SelfId").hide();
-		}
-		if(myObject.MetaID == 3){
-			$("#FriendsId").show();
-			$("#FriendsId").val(myObject.ToWhom);
-			$("#FamilyId").hide();
-			$("#SelfId").hide();
-		}
-		$("#FromDate").val(dateformt(myObject.FromDate));
-		$("#FromTime").val(myObject.FromTime);
-		$("#ToDate").val(dateformt(myObject.ToDate));
-		$("#ToTime").val(myObject.ToTime);
-		$("#Country").val(myObject.Country);
-		$("#Region").val(myObject.Region);
-		$("#Purpose").val(myObject.Purpose);
-		$("#OtherPurpose").val(myObject.OtherPurpose);
-		$("#Comments").val(myObject.Comments);
-	});
-	$(".generalPersonalDocuments").on("click", function(){
-		var attrDate=$(this).attr("attrId");
-		var myObject = JSON.parse(attrDate);
-		$("#hiddenid").val(myObject.GPD_ID);
-		$("#options").val(myObject.MetaID);
-		if(myObject.MetaID == 1){
-			$("#SelfId").show();
-			$("#FamilyId").hide();
-			$("#FriendsId").hide();
-		}
-		if(myObject.MetaID == 2){
-			$("#FamilyId").show();
-			$("#FamilyId").val(myObject.ToWhom);
-			$("#FriendsId").hide();
-			$("#SelfId").hide();
-		}
-		if(myObject.MetaID == 3){
-			$("#FriendsId").show();
-			$("#FriendsId").val(myObject.ToWhom);
-			$("#FamilyId").hide();
-			$("#SelfId").hide();
-		}
-		$("#ValidFrom").val(dateformt(myObject.ValidFrom));
-		$("#ValidTo").val(dateformt(myObject.ValidTo));
-		$("#DocCategory").val(myObject.DocCategory);
-		$("#DocName").val(myObject.DocName);
-		$("#DocBelongs").val(myObject.DocBelongs);
-		$("#Module").val(myObject.Module);
-		$("#FollowUp").val(myObject.FollowUp);
-	});
-	$(".editAll").on("click", function(){
-		$(".form-control").removeClass("bordernone");
-		$('.form-control').attr('disabled', false);
-	});
-	$(".resetAll").on("click", function(){
-		$(".actionBtn").hide();
-		$(".form-control").removeClass("bordernone");
-		$('.form-control').attr('disabled', false);
-	});
+	function showPosition(position) {
+		var loc = position.coords.latitude + "," + position.coords.longitude;
+		document.getElementById("GeographicalAddress").value = loc;
+	}
 	
 })(jQuery);

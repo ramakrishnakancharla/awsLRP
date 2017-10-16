@@ -24,7 +24,7 @@
                               <img src="../../images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
-                              <span class="user">{{$values->Dimention}}</span>
+                              <span class="user">{{$values->PhotoTitle}}</span>
                             </div>
                           </div>
                         </a>
@@ -35,7 +35,7 @@
                 </div>
               </div>
               <div class="media-body">
-				{{ Form::model($edit, array('action' => array('general\PhotosController@update', $edit->GPH_ID), 'method' => 'PUT')) }}
+				{{ Form::model($edit, array('action' => array('general\PhotosController@update', $edit->GPH_ID), 'method' => 'PUT','files' => true)) }}
 				<div class="panel panel-default share">
                   <div class="input-group">
                     <div class="input-group-btn">
@@ -87,21 +87,15 @@
 									<ul class="list-unstyled profile-about margin-none">
 									  <li class="padding-v-5">
 										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Photo Title</span></div>
+										  <div class="col-sm-8"><input  name="PhotoTitle" type="text" class="form-control" value="{{$edit->PhotoTitle}}"></div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Photo</span></div>
-										  <div class="col-sm-8"><input id="Photo" name="Photo" type="file" class="form-control" value="{{$edit->Photo}}"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Dimention</span></div>
-										  <div class="col-sm-8"><input name="Dimention" type="text" class="form-control" value="{{$edit->Dimention}}"></div>
-										</div>
-									  </li>
-									  
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Mat Finish</span></div>
-										  <div class="col-sm-8"><input name="MatFinish" type="checkbox"  value="{{$edit->MatFinish}}"></div>
+										  <div class="col-sm-6"><input id="Photo" name="Photo" type="file" accept="image/*" class="form-control"><input name="PhotoEdit" type="hidden" value="{{$edit->Photo}}">  </div>
+										  <div class="col-sm-2"><img src="{{ URL::to($edit->Folder.$edit->Photo) }}" class="image50x50 img-responsive"></div>
 										</div>
 									  </li>
 									</ul>
@@ -111,19 +105,13 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Options</span></div>
-										  <div class="col-sm-8"><input name="Options" type="text" class="form-control" value="{{$edit->Options}}"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Glass Finish</span></div>
-										  <div class="col-sm-8"><input name="GlassFinish" type="checkbox"  value="{{$edit->GlassFinish}}"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Passport Size</span></div>
-										  <div class="col-sm-8"><input name="PassportSize" type="checkbox"  value="{{$edit->PassportSize}}"></div>
+										  <div class="col-sm-8">
+										    <select name="Options"  class="selectpicker" multiple data-style="btn-white" title='Choose one of the following...'>
+												@foreach($photosfinishmaster as $photosfinish)
+													<option value="{{$photosfinish->PFM_ID}}">{{$photosfinish->Name}} </option>
+												@endforeach
+											</select>
+										  </div>
 										</div>
 									  </li>
 									</ul>

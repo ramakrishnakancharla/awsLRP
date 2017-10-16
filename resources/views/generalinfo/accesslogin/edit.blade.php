@@ -88,7 +88,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-										  <div class="col-sm-8"><input name="ValidFrom" type="text" class="form-control datepicker" value="{{$edit->ValidFrom}}"></div>
+										  <div class="col-sm-8"><input name="ValidFrom" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidFrom)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									 
@@ -148,7 +148,7 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-										  <div class="col-sm-8"><input name="ValidTo" type="text" class="form-control datepicker" value="{{$edit->ValidTo}}"></div>
+										  <div class="col-sm-8"><input name="ValidTo" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidTo)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -157,9 +157,9 @@
 										  <div class="col-sm-8">
 												<select name="Category" class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($logincategory as $category)
+														<option {{$edit->Category == $category->AFM_ID ? 'selected="selected"' : ''}}   value="{{$category->ALCM_ID}}">{{$category->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>

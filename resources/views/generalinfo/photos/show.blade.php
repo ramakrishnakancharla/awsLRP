@@ -22,7 +22,7 @@
                               <img src="../../images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
-                              <span class="user">{{$values->Dimention}}</span>
+                              <span class="user">{{$values->PhotoTitle}}</span>
                             </div>
                           </div>
                         </a>
@@ -74,21 +74,20 @@
 									<ul class="list-unstyled profile-about margin-none">
 									  <li class="padding-v-5">
 										<div class="row">
+										  <div class="col-sm-4"><span class="text-muted">Photo Title</span></div>
+										  <div class="col-sm-8">{{$show->PhotoTitle}}</div>
+										</div>
+									  </li>
+									  <li class="padding-v-5">
+										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Photo</span></div>
-										  <div class="col-sm-8">{{$show->Photo}}</div>
+										  <div class="col-sm-8"><img src="{{ URL::to($show->Folder.$show->Photo) }}" class="img-responsive"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Dimention</span></div>
 										  <div class="col-sm-8">{{$show->Dimention}}</div>
-										</div>
-									  </li>
-									  
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Mat Finish</span></div>
-										  <div class="col-sm-8">{{$show->MatFinish}}</div>
 										</div>
 									  </li>
 									</ul>
@@ -100,18 +99,6 @@
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Options</span></div>
 										  <div class="col-sm-8">{{$show->Options}}</div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Glass Finish</span></div>
-										  <div class="col-sm-8">{{$show->GlassFinish}}</div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Passport Size</span></div>
-										  <div class="col-sm-8">{{$show->PassportSize}}</div>
 										</div>
 									  </li>
 									</ul>

@@ -75,7 +75,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">From Date</span></div>
-										  <div class="col-sm-8">{{$show->FromDate}}</div>
+										  <div class="col-sm-8">{{Carbon\Carbon::parse($show->FromDate)->format('d/m/Y')}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -146,7 +146,7 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">To Date</span></div>
-										  <div class="col-sm-8">{{$show->ToDate}}</div>
+										  <div class="col-sm-8">{{Carbon\Carbon::parse($show->ToDate)->format('d/m/Y')}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -200,7 +200,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8">{{$show->DocImage}}</div>
+										  <div class="col-sm-8"><img src="{{ URL::to($show->Folder.$show->DocImage) }}" class="img-responsive"></div>
 										</div>
 									  </li>
 									</ul>

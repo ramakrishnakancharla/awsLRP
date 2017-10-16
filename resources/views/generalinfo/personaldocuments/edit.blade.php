@@ -35,7 +35,7 @@
                 </div>
               </div>
               <div class="media-body">
-				{{ Form::model($edit, array('action' => array('general\PersonaldocumentsController@update', $edit->GD_ID), 'method' => 'PUT')) }}
+				{{ Form::model($edit, array('action' => array('general\PersonaldocumentsController@update', $edit->GD_ID), 'method' => 'PUT', 'files' => true)) }}
 				<div class="panel panel-default share">
                   <div class="input-group">
                     <div class="input-group-btn">
@@ -88,7 +88,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-										  <div class="col-sm-8"><input id="ValidFrom" name="ValidFrom" type="text" class="form-control datepicker" value="{{$edit->ValidFrom}}"></div>
+										  <div class="col-sm-8"><input id="ValidFrom" name="ValidFrom" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidFrom)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									 
@@ -98,8 +98,9 @@
 										  <div class="col-sm-8">
 											<select name="DocCategory" id="DocCategory" class="form-control">
 												<option>Select</option>
-												<option value="1">PAN</option>
-												<option value="Passport">Passport</option>
+												@foreach($documentcategory as $category)
+													<option {{$edit->DocCategory == $category->DCM_ID ? 'selected="selected"' : ''}}  value="{{$category->DCM_ID}}">{{$category->Name}}</option>
+											    @endforeach
 											</select>
 										  </div>
 										</div>
@@ -129,31 +130,20 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-										  <div class="col-sm-8"><input id="ValidTo" name="ValidTo" type="text" class="form-control datepicker" value="{{$edit->ValidTo}}"></div>
+										  <div class="col-sm-8"><input id="ValidTo" name="ValidTo" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidTo)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
-										</div>
-									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">File (Choose)</span></div>
-										  <div class="col-sm-8"><input id="FileChoose" name="FileChoose" type="file" class="form-control"></div>
+										  <div class="col-sm-6"><input id="DocImage" name="DocImage" type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" class="form-control"></div>
+										  <div class="col-sm-2"><img src="{{ URL::to($edit->Folder.$edit->DocImage) }}" class="image50x50 img-responsive"></div>
 										</div>
 									  </li>
 									 <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Link To</span></div>
-										  <div class="col-sm-8">
-												<select name="LinkTo" id="LinkTo" class="form-control">
-													<option>Select</option>
-													<option value="1">PAN</option>
-													<option value="PassPort">PassPort</option>
-												</select>
-										  </div>
+										  <div class="col-sm-8"><input name="LinkTo" id="LinkTo" class="form-control" value="{{$edit->LinkTo}}"></div>
 										</div>
 									  </li>
 									</ul>

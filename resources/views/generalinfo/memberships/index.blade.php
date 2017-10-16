@@ -37,7 +37,7 @@
                 </div>
               </div>
               <div class="media-body">
-                <form class="form-horizontal" role="form" action="{{ URL::to('general-memberships') }}" method="post">
+                <form class="form-horizontal" role="form" action="{{ URL::to('general-memberships') }}" enctype="multipart/form-data" method="post">
 					<div class="panel panel-default share">
 					  <div class="input-group">
 						<div class="input-group-btn">
@@ -105,9 +105,9 @@
 									  <div class="col-sm-8">
 											<select name="MembershipType" id="MembershipType" class="form-control">
 												<option>Select</option>
-												<option value="1">India</option>
-												<option value="2">UK</option>
-												<option value="3">USA</option>
+												@foreach($membershiptype as $typeList)
+													<option value="{{$typeList->MTM_ID}}">{{$typeList->Name}} </option>
+												@endforeach
 											</select>
 									  </div>
 									</div>
@@ -124,8 +124,9 @@
 									  <div class="col-sm-8">
 											<select name="AllowedForMembers" id="AllowedForMembers" class="form-control">
 												<option>Select</option>
-												<option value="1">PAN</option>
-												<option value="2">PassPort</option>
+												@foreach($allowed as $allowedList)
+													<option value="{{$allowedList->MAM_ID}}">{{$allowedList->Name}} </option>
+												@endforeach
 											</select>
 									  </div>
 									</div>
@@ -165,9 +166,9 @@
 									  <div class="col-sm-8">
 											<select name="OrganizationCategory" id="OrganizationCategory" class="form-control">
 												<option>Select</option>
-												<option value="1">India</option>
-												<option value="2">UK</option>
-												<option value="3">USA</option>
+												@foreach($category as $categoryList)
+													<option value="{{$categoryList->MOCM_ID}}">{{$categoryList->Name}} </option>
+												@endforeach
 											</select>
 									  </div>
 									</div>
@@ -184,9 +185,9 @@
 									  <div class="col-sm-8">
 											<select name="Sponceror" id="Sponceror" class="form-control">
 												<option>Select</option>
-												<option value="1">India</option>
-												<option value="2">UK</option>
-												<option value="3">USA</option>
+												@foreach($sponceror as $sponcerorList)
+													<option value="{{$sponcerorList->MSM_ID}}">{{$sponcerorList->Name}} </option>
+												@endforeach
 											</select>
 									  </div>
 									</div>
@@ -195,15 +196,10 @@
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Facilities</span></div>
 									  <div class="col-sm-8"> 
-											<select class="selectpicker" name="Facilities" multiple data-style="btn-white" title='Choose one of the following...'>
-											  <option>Gym</option>
-											  <option>Sports</option>
-											  <option>Games</option>
-											  <option>Travel</option>
-											  <option>Golf</option>
-											  <option>Club House</option>
-											  <option>Horse Riding</option>
-											  <option>Swimming Pool</option>
+											<select name="Facilities"  class="selectpicker" multiple data-style="btn-white" title='Choose one of the following...'>
+												@foreach($facilitiemaster as $facilitie)
+													<option value="{{$facilitie->FM_ID}}">{{$facilitie->Name}} </option>
+												@endforeach
 											</select>
 									  </div>
 									</div>
@@ -212,7 +208,7 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-									  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+									  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" class="form-control"></div>
 									</div>
 								  </li>
 								</ul>

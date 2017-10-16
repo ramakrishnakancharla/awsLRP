@@ -15,10 +15,11 @@ use App\generalmembership;
 use App\generalobjectsonloan;
 use App\generaltravelinfo;
 use App\generaldocuments;
-use App\metadata;
-use App\gendermaster;
-use App\maritalstatus;
-use App\childmaster;
+use App\common_master\metadata;
+use App\common_master\gendermaster;
+use App\common_master\maritalstatus;
+use App\common_master\childmaster;
+use App\common_master\documentcategory;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -32,13 +33,14 @@ class PersonaldocumentsController extends Controller
 		$gendermaster = gendermaster::where('status',1)->get();
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
+		$documentcategory = documentcategory::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generaldocuments::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/personaldocuments.index',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','genericfriends'));
+		return view('generalinfo/personaldocuments.index',compact('gendermaster','maritalstatus','childmaster','documentcategory','metadata','relation','list','genericfamily','genericfriends'));
     }
 	public function store()
 	{
@@ -65,16 +67,24 @@ class PersonaldocumentsController extends Controller
 			elseif(Input::get('options') == 3)
 				$towhom = Input::get('FriendsId');
 				
-			$DocImage="";
+			$target_dir = "general_upload/documents/";
+			if($_FILES["DocImage"]["name"] !=''){
+				$file_name = rand().$_FILES["DocImage"]["name"];
+				$temp_name = $_FILES["DocImage"]["tmp_name"];
+				$target_file = $target_dir . basename($file_name);
+				move_uploaded_file($temp_name, $target_file);
+			}else{
+				$file_name = "";
+			}
+			
 			$generaldocumentspdate->MetaID = Input::get('options');
 			$generaldocumentspdate->ToWhom = $towhom;
 			$generaldocumentspdate->DocCategory = Input::get('DocCategory');
-			$generaldocumentspdate->FileChoose = Input::get('FileChoose');
 			$generaldocumentspdate->LinkTo = Input::get('LinkTo');
 			$generaldocumentspdate->DocType = Input::get('DocType');
 			$generaldocumentspdate->DocNo = Input::get('DocNo');
-			$generaldocumentspdate->DocImage = $DocImage;
-			$generaldocumentspdate->Folder = "";
+			$generaldocumentspdate->DocImage = $file_name;
+			$generaldocumentspdate->Folder = $target_dir;
 			$generaldocumentspdate->ValidFrom = DateTime::createFromFormat('d/m/Y', Input::get('ValidFrom'))->format('Y-m-d');
 			$generaldocumentspdate->ValidTo = DateTime::createFromFormat('d/m/Y', Input::get('ValidTo'))->format('Y-m-d');
 			$generaldocumentspdate->Txnuser = Auth::user()->id;
@@ -101,13 +111,14 @@ class PersonaldocumentsController extends Controller
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
+		$documentcategory = documentcategory::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generaldocuments::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$edit = generaldocuments::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/personaldocuments.edit',compact('gendermaster','maritalstatus','childmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+		return view('generalinfo/personaldocuments.edit',compact('gendermaster','maritalstatus','childmaster','metadata','documentcategory','relation','list','genericfamily','edit','genericfriends'));
 	}
 	public function update($id)
 	{
@@ -134,16 +145,24 @@ class PersonaldocumentsController extends Controller
 			elseif(Input::get('options') == 3)
 				$towhom = Input::get('FriendsId');
 			
-			$DocImage="";
+			$target_dir = "general_upload/documents/";
+			if($_FILES["DocImage"]["name"] !=''){
+				$file_name = rand().$_FILES["DocImage"]["name"];
+				$temp_name = $_FILES["DocImage"]["tmp_name"];
+				$target_file = $target_dir . basename($file_name);
+				move_uploaded_file($temp_name, $target_file);
+			}else{
+				$file_name = Input::get('PhotoEdit');
+			}
+			
 			$generaldocumentspdate->MetaID = Input::get('options');
 			$generaldocumentspdate->ToWhom = $towhom;
 			$generaldocumentspdate->DocCategory = Input::get('DocCategory');
-			$generaldocumentspdate->FileChoose = Input::get('FileChoose');
 			$generaldocumentspdate->LinkTo = Input::get('LinkTo');
 			$generaldocumentspdate->DocType = Input::get('DocType');
 			$generaldocumentspdate->DocNo = Input::get('DocNo');
-			$generaldocumentspdate->DocImage = $DocImage;
-			$generaldocumentspdate->Folder = "";
+			$generaldocumentspdate->DocImage = $file_name;
+			$generaldocumentspdate->Folder = $target_dir;
 			$generaldocumentspdate->ValidFrom = DateTime::createFromFormat('d/m/Y', Input::get('ValidFrom'))->format('Y-m-d');
 			$generaldocumentspdate->ValidTo = DateTime::createFromFormat('d/m/Y', Input::get('ValidTo'))->format('Y-m-d');
 			$generaldocumentspdate->Txnuser = Auth::user()->id;

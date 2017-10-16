@@ -37,7 +37,7 @@
                 </div>
               </div>
               <div class="media-body">
-                <form class="form-horizontal" role="form" action="{{ URL::to('general-travelinfo') }}" method="post">
+                <form class="form-horizontal" role="form" action="{{ URL::to('general-travelinfo') }}" enctype="multipart/form-data" method="post">
 					<div class="panel panel-default share">
 					  <div class="input-group">
 						<div class="input-group-btn">
@@ -105,9 +105,9 @@
 										  <div class="col-sm-8">
 												<select name="Country" id="Country" class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($countrymaster as $country)
+														<option value="{{$country->CM_ID}}">{{$country->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -115,20 +115,13 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Purpose</span></div>
-										  <div class="col-sm-8">
-												<select name="Purpose" id="Purpose" class="form-control">
-													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
-												</select>
-										  </div>
+										  <div class="col-sm-8"><input name="Purpose" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Comments</span></div>
-										  <div class="col-sm-8"><input id="Comments" name="Comments"  class="form-control"></div>
+										  <div class="col-sm-8"><textarea  name="Comments"  class="form-control"></textarea></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -137,9 +130,9 @@
 										  <div class="col-sm-8">
 												<select name="ModeOfAccommodation" class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($accommodation as $accommodation)
+														<option value="{{$accommodation->MOAM_ID}}">{{$accommodation->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -147,26 +140,19 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Additional Destination</span></div>
-										  <div class="col-sm-8"><input name="AdditionalDestination"  class="form-control"></div>
+										  <div class="col-sm-8"><input name="AdditionalDestination" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Estimated Cost </span></div>
-										  <div class="col-sm-8"><input name="EstimatedCost"  class="form-control"></div>
+										  <div class="col-sm-8"><input name="EstimatedCost" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Travel Insurance Policy No</span></div>
-										  <div class="col-sm-8">
-												<select name="TravelInsurancePolicyNo" class="form-control">
-													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
-												</select>
-										  </div>
+										  <div class="col-sm-8"><input name="TravelInsurancePolicyNo" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  
@@ -210,7 +196,9 @@
 										  <div class="col-sm-8">
 												<select name="Region" id="Region" class="form-control">
 													<option>Select</option>
-													<option value="1">Hindu</option>
+													@foreach($religionmaster as $religion)
+														<option value="{{$religion->RM_ID}}">{{$religion->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -227,7 +215,9 @@
 										  <div class="col-sm-8">
 												<select name="ModeOfTrasnport" id="ModeOfTrasnport" class="form-control">
 													<option>Select</option>
-													<option value="1">Hindu</option>
+													@foreach($modeoftransport as $transport)
+														<option value="{{$transport->MOTM_ID}}">{{$transport->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -244,7 +234,7 @@
 										  <div class="col-sm-8">
 												<select name="TravelInsuranceAvailable"  class="form-control">
 													<option>Select</option>
-													<option value="1">Yes</option>
+													<option value="Yes">Yes</option>
 													<option value="No">No</option>
 												</select>
 										  </div>
@@ -265,7 +255,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" class="form-control"></div>
 										</div>
 									  </li>
 									</ul>

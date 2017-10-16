@@ -75,7 +75,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-										  <div class="col-sm-8">{{$show->ValidFrom}}</div>
+										  <div class="col-sm-8">{{Carbon\Carbon::parse($show->ValidFrom)->format('d/m/Y'}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -122,7 +122,7 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-										  <div class="col-sm-8">{{$show->ValidTo}}</div>
+										  <div class="col-sm-8">{{Carbon\Carbon::parse($show->ValidTo)->format('d/m/Y'}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -153,16 +153,10 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8">{{$show->DocImage}}</div>
+										  <div class="col-sm-8"><img src="{{ URL::to($edit->Folder.$edit->DocImage) }}" class="image50x50 img-responsive"></div>
 										</div>
 									  </li>
 									</ul>
-								</div>
-								<input id="hiddenid" name="hiddenid" type="hidden" class="form-control">
-								<div class="form-group margin-none pull-right">
-									<div class="col-sm-9">
-										<button type="submit" class="btn btn-primary">Submit</button>
-									</div>
 								</div>
 							</div>
 						  </div>

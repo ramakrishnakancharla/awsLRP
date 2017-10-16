@@ -89,7 +89,7 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-									  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{$generalpersonaldataedit->ValidFrom}}"></div>
+									  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($generalpersonaldataedit->ValidFrom)->format('d/m/Y')}}"></div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
@@ -139,8 +139,8 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">DOB</span></div>
-									  <div class="col-sm-4"><input id="DateOfBirth" name="DateOfBirth" type="text" class="form-control datepicker" value="{{$generalpersonaldataedit->DOB}}"></div>
-									  <div class="col-sm-4"><input id="Age" name="Age" type="text" class="form-control" value="{{$generalpersonaldataedit->Age}}"></div>
+									  <div class="col-sm-4"><input name="DateOfBirth" type="text" class="form-control datepicker ageCalculate" value="{{Carbon\Carbon::parse($generalpersonaldataedit->DOB)->format('d/m/Y')}}"></div>
+									  <div class="col-sm-4"><input  name="Age" type="text" class="form-control AgeVal" readonly value="{{$generalpersonaldataedit->Age}}"></div>
 									</div>
 								  </li>
 								</ul>
@@ -150,19 +150,33 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-									  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{$generalpersonaldataedit->ValidTo}}"></div>
+									  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($generalpersonaldataedit->ValidTo)->format('d/m/Y')}}"></div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Nationality</span></div>
-									  <div class="col-sm-8"><input id="Nationality" name="Nationality" type="text" class="form-control" value="{{$generalpersonaldataedit->Nationality}}"></div>
+									  <div class="col-sm-8">
+											<select name="Nationality"  class="form-control">
+													<option value="">Select</option>
+													@foreach($countrymaster as $country)
+														<option {{$generalpersonaldataedit->Nationality == $country->CM_ID ? 'selected="selected"' : ''}} value="{{$country->CM_ID}}">{{$country->Name}} </option>
+													@endforeach
+											</select>
+										</div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Religion</span></div>
-									  <div class="col-sm-8"><input id="Religion" name="Religion" type="text" class="form-control" value="{{$generalpersonaldataedit->Religion}}"></div>
+									  <div class="col-sm-8">
+											<select name="Religion"  class="form-control">
+													<option value="">Select</option>
+													@foreach($religionmaster as $religion)
+														<option {{$generalpersonaldataedit->Religion == $religion->RM_ID ? 'selected="selected"' : ''}} value="{{$religion->RM_ID}}">{{$religion->Name}} </option>
+													@endforeach
+											</select>
+									  </div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
@@ -181,7 +195,7 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Married Since</span></div>
-									  <div class="col-sm-8"><input id="MarriedSince" name="MarriedSince" type="text" class="form-control datepicker" value="{{$generalpersonaldataedit->MarriedSince}}"></div>
+									  <div class="col-sm-8"><input id="MarriedSince" name="MarriedSince" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($generalpersonaldataedit->MarriedSince)->format('d/m/Y')}}"></div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">

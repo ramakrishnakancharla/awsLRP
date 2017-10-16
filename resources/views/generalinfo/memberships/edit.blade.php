@@ -35,7 +35,7 @@
                 </div>
               </div>
               <div class="media-body">
-				{{ Form::model($edit, array('action' => array('general\MembershipsController@update', $edit->GMS_ID), 'method' => 'PUT')) }}
+				{{ Form::model($edit, array('action' => array('general\MembershipsController@update', $edit->GMS_ID), 'method' => 'PUT', 'files' => true)) }}
 				<div class="panel panel-default share">
                   <div class="input-group">
                     <div class="input-group-btn">
@@ -88,7 +88,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-										  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{$edit->ValidFrom}}"></div>
+										  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidFrom)->format('d/m/Y'}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -103,9 +103,9 @@
 										  <div class="col-sm-8">
 												<select name="MembershipType" id="MembershipType" class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($membershiptype as $typeList)
+													<option {{$edit->MembershipType == $typeList->MTM_ID ? 'selected="selected"' : ''}} value="{{$typeList->MTM_ID}}">{{$typeList->Name}} </option>
+												@endforeach
 												</select>
 										  </div>
 										</div>
@@ -122,8 +122,9 @@
 										  <div class="col-sm-8">
 												<select name="AllowedForMembers" id="AllowedForMembers" class="form-control">
 													<option>Select</option>
-													<option value="1">PAN</option>
-													<option value="PassPort">PassPort</option>
+													@foreach($allowed as $allowedList)
+													<option {{$edit->AllowedForMembers == $typeList->MTM_ID ? 'selected="selected"' : ''}} value="{{$allowedList->MAM_ID}}">{{$allowedList->Name}} </option>
+												@endforeach
 												</select>
 										  </div>
 										</div>
@@ -154,7 +155,7 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-										  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{$edit->ValidTo}}"></div>
+										  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidTo)->format('d/m/Y'}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -163,9 +164,9 @@
 										  <div class="col-sm-8">
 												<select name="OrganizationCategory" id="OrganizationCategory" class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($category as $categoryList)
+													<option {{$edit->OrganizationCategory == $typeList->MTM_ID ? 'selected="selected"' : ''}} value="{{$categoryList->MOCM_ID}}">{{$categoryList->Name}} </option>
+												@endforeach
 												</select>
 										  </div>
 										</div>
@@ -182,9 +183,9 @@
 										  <div class="col-sm-8">
 												<select name="Sponceror" id="Sponceror" class="form-control">
 													<option>Select</option>
-													<option value="1">India</option>
-													<option value="UK">UK</option>
-													<option value="USA">USA</option>
+													@foreach($sponceror as $sponcerorList)
+														<option {{$edit->Sponceror == $typeList->MTM_ID ? 'selected="selected"' : ''}} value="{{$sponcerorList->MSM_ID}}">{{$sponcerorList->Name}} </option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -193,16 +194,11 @@
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Facilities</span></div>
 										  <div class="col-sm-8"> 
-												<select class="selectpicker" name="Facilities" multiple data-style="btn-white" title='Choose one of the following...'>
-												  <option>Gym</option>
-												  <option>Sports</option>
-												  <option>Games</option>
-												  <option>Travel</option>
-												  <option>Golf</option>
-												  <option>Club House</option>
-												  <option>Horse Riding</option>
-												  <option>Swimming Pool</option>
-												</select>
+											  <select name="Facilities"  class="selectpicker" multiple data-style="btn-white" title='Choose one of the following...'>
+												@foreach($facilitiemaster as $facilitie)
+													<option value="{{$facilitie->FM_ID}}">{{$facilitie->Name}} </option>
+												@endforeach
+											  </select>
 										  </div>
 										</div>
 									  </li>
@@ -210,7 +206,8 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Supported Document</span></div>
-										  <div class="col-sm-8"><input id="DocImage" name="DocImage" type="file" class="form-control"></div>
+										  <div class="col-sm-6"><input id="DocImage" name="DocImage" type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" class="form-control"></div>
+										  <div class="col-sm-2"><img src="{{ URL::to($edit->Folder.$edit->DocImage) }}" class="image50x50 img-responsive"></div>
 										</div>
 									  </li>
 									</ul>
