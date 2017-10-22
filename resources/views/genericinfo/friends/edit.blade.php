@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="media-body">
-				{{ Form::model($genericfriendsedit, array('action' => array('GenericInfoFriendsController@update', $genericfriendsedit->AFR_ID), 'method' => 'PUT')) }}
+				{{ Form::model($edit, array('action' => array('GenericInfoFriendsController@update', $edit->AFR_ID), 'method' => 'PUT','files' => true)) }}
 				<div class="panel panel-default share">
                   <div class="input-group">
                     <div class="input-group-btn">
@@ -54,25 +54,32 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Title</span></div>
-										  <div class="col-sm-8"><input id="Title" name="Title" type="text" class="form-control" value="{{$genericfriendsedit->Title}}"></div>
+										  <div class="col-sm-8">
+										  <select name="Title"  class="form-control">
+												<option value="">Select</option>
+												@foreach($titlemaster as $title)
+													<option {{$edit->Title == $title->TM_ID ? 'selected="selected"' : ''}} value="{{$title->TM_ID}}">{{$title->Name}} </option>
+												@endforeach
+											</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">First Name</span></div>
-										  <div class="col-sm-8"><input id="FirstName" name="FirstName" type="text" class="form-control" value="{{$genericfriendsedit->FirstName}}"></div>
+										  <div class="col-sm-8"><input id="FirstName" name="FirstName" type="text" class="form-control" value="{{$edit->FirstName}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Middle Name</span></div>
-										  <div class="col-sm-8"><input id="MiddleName" name="MiddleName" type="text" class="form-control" value="{{$genericfriendsedit->MiddleName}}"></div>
+										  <div class="col-sm-8"><input id="MiddleName" name="MiddleName" type="text" class="form-control" value="{{$edit->MiddleName}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Last Name</span></div>
-										  <div class="col-sm-8"><input id="LastName" name="LastName" type="text" class="form-control" value="{{$genericfriendsedit->LastName}}"></div>
+										  <div class="col-sm-8"><input id="LastName" name="LastName" type="text" class="form-control" value="{{$edit->LastName}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -82,7 +89,7 @@
 											<select name="Gender"  class="form-control">
 												<option value="">Select</option>
 												@foreach($gendermaster as $gender)
-													<option {{$genericfriendsedit->Gender == $gender->GM_ID ? 'selected="selected"' : ''}} value="{{$gender->GM_ID}}">{{$gender->Name}} </option>
+													<option {{$edit->Gender == $gender->GM_ID ? 'selected="selected"' : ''}} value="{{$gender->GM_ID}}">{{$gender->Name}} </option>
 												@endforeach
 											</select>
 										  </div>
@@ -91,19 +98,16 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">DOB</span></div>
-										  <div class="col-sm-8"><input id="DateOfBirth" name="DateOfBirth" type="text" class="form-control datepicker" value="{{$genericfriendsedit->DOB}}"></div>
+										  <div class="col-sm-4"><input name="DateOfBirth" type="text" class="form-control datepicker ageCalculate" value="{{Carbon\Carbon::parse($edit->DOB)->format('d/m/Y')}}"></div>
+										  <div class="col-sm-4"><input  name="Age" type="text" class="form-control AgeVal" readonly value="{{$edit->Age}}"></div>
 										</div>
 									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Mobile Number</span></div>
-										  <div class="col-sm-8"><input id="MobileNumber" name="MobileNumber" type="text" class="form-control" value="{{$genericfriendsedit->MobileNo}}"></div>
-										</div>
-									  </li>
+									  
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Profile Image</span></div>
-										  <div class="col-sm-8"><input id="ProfileImage" name="ProfileImage" type="file" class="form-control" value="{{$genericfriendsedit->ProfileImage}}"></div>
+										  <div class="col-sm-6"><input name="Image" type="file" accept="image/*" class="form-control"></div>
+										  <div class="col-sm-2"><img src="{{ URL::to($edit->Folder.$edit->Image) }}" class="image50x50 img-responsive"></div>
 										</div>
 									  </li>
 									</ul>
@@ -112,8 +116,8 @@
 									<ul class="list-unstyled profile-about margin-none">
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Age</span></div>
-										  <div class="col-sm-8"><input id="Age" name="Age" type="text" class="form-control" value="{{$genericfriendsedit->Age}}"></div>
+										  <div class="col-sm-4"><span class="text-muted">Mobile Number</span></div>
+										  <div class="col-sm-8"><input id="MobileNumber" name="MobileNumber" type="text" class="form-control" value="{{$edit->MobileNo}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -122,8 +126,9 @@
 										  <div class="col-sm-8">
 											<select name="Relationship" id="Relationship" class="form-control">
 												<option>Select</option>
-												<option value="Friend" {{$genericfriendsedit->Relationship == 'Friend' ? 'selected="selected"' : ''}}>Friend</option>
-												<option value="Relative" {{$genericfriendsedit->Relationship == 'Relative' ? 'selected="selected"' : ''}}>Relative</option>
+												@foreach($relation as $realtionfamily)
+													<option {{$edit->Relationship == $realtionfamily->id ? 'selected="selected"' : ''}} value="{{$realtionfamily->id}}">{{$realtionfamily->value}} </option>
+												@endforeach
 											</select> 
 										  </div>
 										</div>
@@ -131,13 +136,27 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Nationality</span></div>
-										  <div class="col-sm-8"><input id="Nationality" name="Nationality" type="text" class="form-control" value="{{$genericfriendsedit->Nationality}}"></div>
+										  <div class="col-sm-8">
+										  <select name="Nationality"  class="form-control">
+													<option value="">Select</option>
+													@foreach($countrymaster as $country)
+														<option {{$edit->Nationality == $country->CM_ID ? 'selected="selected"' : ''}} value="{{$country->CM_ID}}">{{$country->Name}} </option>
+													@endforeach
+												</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Religion</span></div>
-										  <div class="col-sm-8"><input id="Religion" name="Religion" type="text" class="form-control" value="{{$genericfriendsedit->Religion}}"></div>
+										  <div class="col-sm-8">
+										  <select name="Religion"  class="form-control">
+														<option value="">Select</option>
+														@foreach($religionmaster as $religion)
+															<option {{$edit->Religion == $religion->RM_ID ? 'selected="selected"' : ''}} value="{{$religion->RM_ID}}">{{$religion->Name}} </option>
+														@endforeach
+												</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -147,7 +166,7 @@
 											<select name="MaritalStatus"  class="form-control">
 												<option value="">Select</option>
 												@foreach($maritalstatus as $marital)
-													<option {{$genericfriendsedit->MaritalStatus == $marital->MS_ID ? 'selected="selected"' : ''}} value="{{$marital->MS_ID}}">{{$marital->Name}} </option>
+													<option {{$edit->MaritalStatus == $marital->MS_ID ? 'selected="selected"' : ''}} value="{{$marital->MS_ID}}">{{$marital->Name}} </option>
 												@endforeach
 											</select>
 										  </div>
@@ -156,7 +175,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Married Since</span></div>
-										  <div class="col-sm-8"><input id="MarriedSince" name="MarriedSince" type="text" class="form-control datepicker" value="{{$genericfriendsedit->MarriedSince}}"></div>
+										  <div class="col-sm-8"><input id="MarriedSince" name="MarriedSince" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->MarriedSince)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -166,7 +185,7 @@
 											<select name="NoOfChildrens"  class="form-control">
 												<option value="">Select</option>
 												@foreach($childmaster as $child)
-													<option {{$genericfriendsedit->NoOfChildrens == $child->CM_ID ? 'selected="selected"' : ''}} value="{{$child->CM_ID}}">{{$child->Name}} </option>
+													<option {{$edit->NoOfChildrens == $child->CM_ID ? 'selected="selected"' : ''}} value="{{$child->CM_ID}}">{{$child->Name}} </option>
 												@endforeach
 											</select>
 										  </div>
@@ -174,7 +193,7 @@
 									  </li>
 									</ul>
 								</div>
-								<input id="hiddenid" name="hiddenid" type="hidden" value="{{$genericfriendsedit->AFR_ID}}" class="form-control">
+								<input id="hiddenid" name="hiddenid" type="hidden" value="{{$edit->AFR_ID}}" class="form-control">
 								<div class="form-group margin-none pull-right">
 									<div class="col-sm-9">
 										{{ Form::submit('Update', array('class' => 'btn btn-primary')) }}

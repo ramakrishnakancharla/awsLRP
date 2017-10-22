@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="media-body">
-                <form class="form-horizontal" role="form" action="{{ URL::to('genericinfofriends') }}" method="post">
+                <form class="form-horizontal" role="form" action="{{ URL::to('genericinfofriends') }}" enctype="multipart/form-data" method="post">
 				<div class="panel panel-default share">
                   <div class="input-group">
                     <div class="input-group-btn">
@@ -56,7 +56,14 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Title</span></div>
-										  <div class="col-sm-8"><input id="Title" name="Title" type="text" class="form-control"></div>
+										  <div class="col-sm-8">
+										  <select name="Title"  class="form-control">
+												<option value="">Select</option>
+												@foreach($titlemaster as $title)
+													<option  value="{{$title->TM_ID}}">{{$title->Name}} </option>
+												@endforeach
+											</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -93,29 +100,25 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">DOB</span></div>
-										  <div class="col-sm-8"><input id="DateOfBirth" name="DateOfBirth" type="text" class="form-control datepicker"></div>
+										  <div class="col-sm-4"><input name="DateOfBirth" type="text" class="form-control datepicker ageCalculate"></div>
+										  <div class="col-sm-4"><input id="Age" name="Age" type="text" class="form-control AgeVal" placeholder="Age" readonly></div>
 										</div>
 									  </li>
-									  <li class="padding-v-5">
-										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Mobile Number</span></div>
-										  <div class="col-sm-8"><input id="MobileNumber" name="MobileNumber" type="text" class="form-control"></div>
-										</div>
-									  </li>
+									 
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Profile Image</span></div>
-										  <div class="col-sm-8"><input id="ProfileImage" name="ProfileImage" type="file" class="form-control"></div>
+										  <div class="col-sm-8"><input name="Image" accept="image/*" type="file" class="form-control"></div>
 										</div>
 									  </li>
 									</ul>
 								</div>
 								<div class="col-lg-6">
 									<ul class="list-unstyled profile-about margin-none">
-									  <li class="padding-v-5">
+									 <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">Age</span></div>
-										  <div class="col-sm-8"><input id="Age" name="Age" type="text" class="form-control"></div>
+										  <div class="col-sm-4"><span class="text-muted">Mobile Number</span></div>
+										  <div class="col-sm-8"><input id="MobileNumber" name="MobileNumber" type="text" class="form-control"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -124,8 +127,9 @@
 										  <div class="col-sm-8">
 											<select name="Relationship" id="Relationship" class="form-control">
 												<option>Select</option>
-												<option value="Friend">Friend</option>
-												<option value="Relative">Relative</option>
+												@foreach($relation as $realtionfamily)
+													<option value="{{$realtionfamily->id}}">{{$realtionfamily->value}} </option>
+												@endforeach
 											</select>
 										  </div>
 										</div>
@@ -133,13 +137,27 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Nationality</span></div>
-										  <div class="col-sm-8"><input id="Nationality" name="Nationality" type="text" class="form-control"></div>
+										  <div class="col-sm-8">
+										  <select name="Nationality"  class="form-control">
+													<option value="">Select</option>
+													@foreach($countrymaster as $country)
+														<option value="{{$country->CM_ID}}">{{$country->Name}} </option>
+													@endforeach
+												</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Religion</span></div>
-										  <div class="col-sm-8"><input id="Religion" name="Religion" type="text" class="form-control"></div>
+										  <div class="col-sm-8">
+										  <select name="Religion"  class="form-control">
+														<option value="">Select</option>
+														@foreach($religionmaster as $religion)
+															<option value="{{$religion->RM_ID}}">{{$religion->Name}} </option>
+														@endforeach
+												</select>
+										  </div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">

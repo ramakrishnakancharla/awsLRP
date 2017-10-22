@@ -42,8 +42,8 @@
                     </div>
                     <input type="text" class="form-control share-text allSearch"  placeholder="FRIENDS & RELATIVE INFORMATION" />
 					<div class="input-group-btn">
-                      <a href="{{ URL::to('genericinfofriends/' . $genericfriendsview->AFR_ID . '/edit') }}" class="btn btn-warning pointer">Edit</a>
-					  {{ Form::open(array('url' => 'genericinfofriends/' . $genericfriendsview->AFR_ID, 'class' => 'pull-right')) }}
+                      <a href="{{ URL::to('genericinfofriends/' . $view->AFR_ID . '/edit') }}" class="btn btn-warning pointer">Edit</a>
+					  {{ Form::open(array('url' => 'genericinfofriends/' . $view->AFR_ID, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
                     {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
 					{{ Form::close() }}
@@ -59,49 +59,49 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Title</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->Title}}</div>
+										  <div class="col-sm-8">: {{$view->Title}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">First Name</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->FirstName}}</div>
+										  <div class="col-sm-8">: {{$view->FirstName}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Middle Name</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->MiddleName}}</div>
+										  <div class="col-sm-8">: {{$view->MiddleName}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Last Name</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->LastName}}</div>
+										  <div class="col-sm-8">: {{$view->LastName}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Gender</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->Gender}}</div>
+										  <div class="col-sm-8">: {{$view->Gender}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">DOB</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->DOB}}</div>
+										  <div class="col-sm-8">: {{$view->DOB}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Mobile Number</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->MobileNo}}</div>
+										  <div class="col-sm-8">: {{$view->MobileNo}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Profile Image</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->Image}}</div>
+										  <div class="col-sm-8"><img src="{{ URL::to($view->Folder.$view->Image) }}" class="img-responsive"></div>
 										</div>
 									  </li>
 									</ul>
@@ -111,43 +111,43 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Age</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->Parent}}</div>
+										  <div class="col-sm-8">: {{$view->Parent}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Relationship</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->Relationship}}</div>
+										  <div class="col-sm-8">: {{$view->Relationship}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Nationality</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->Nationality}}</div>
+										  <div class="col-sm-8">: {{$view->Nationality}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Religion</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->Religion}}</div>
+										  <div class="col-sm-8">: {{$view->Religion}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Marital Status</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->MaritalStatus}}</div>
+										  <div class="col-sm-8">: {{$view->MaritalStatus}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Married Since</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->MarriedSince}}</div>
+										  <div class="col-sm-8">: {{$view->MarriedSince}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">NO. Of Childrens</span></div>
-										  <div class="col-sm-8">: {{$genericfriendsview->NoOfChildrens}}</div>
+										  <div class="col-sm-8">: {{$view->NoOfChildrens}}</div>
 										</div>
 									  </li>
 									</ul>
