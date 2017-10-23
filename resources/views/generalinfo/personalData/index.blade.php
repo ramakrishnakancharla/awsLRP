@@ -24,9 +24,20 @@
                           <div class="media">
                             <div class="media-left">
                               <img src="images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
+							  
                             </div>
                             <div class="media-body">
-                              <span class="user">{{$values->FirstName}}</span>
+                              <span class="pull-right" style="color:green">
+							  @if($values->MetaID =='1')
+								  Self
+							  @elseif($values->MetaID =='2')
+								  Family
+							  @elseif($values->MetaID =='3')
+								  Friend
+							  @endif
+									  
+							  </span>
+							  <span class="user">{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}</span>
                               <div class="message">DOB : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>
                             </div>
                           </div>

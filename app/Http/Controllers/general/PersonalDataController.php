@@ -97,8 +97,11 @@ class PersonalDataController extends Controller
 		$genericfriends = genericfriends::where('Status',1)->get();
 
 		$metaName = metadata::where('status',1)->where('name','Whom')->where('id',$view->MetaID)->get();
+		$familyName = genericfamily::where('Status',1)->where('AFM_ID',$view->ToWhom)->get();
+		$friendName = genericfriends::where('Status',1)->where('AFR_ID',$view->ToWhom)->get();
+		$titleName = titlemaster::where('Status',1)->where('TM_ID',$view->Title)->get();
 
-		return view('generalinfo/personalData.show',compact('list','genericfamily','view','genericfriends','metaName'));
+		return view('generalinfo/personalData.show',compact('list','genericfamily','view','genericfriends','metaName','familyName','friendName','titleName'));
 	}
 	public function edit($id)
 	{

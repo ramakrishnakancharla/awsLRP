@@ -22,7 +22,7 @@
                               <img src="../../images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
-                              <span class="user">{{$values->FirstName}}</span>
+                              <span class="user">{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}</span>
                               <div class="message">DOB : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>
                             </div>
                           </div>
@@ -60,9 +60,9 @@
 									  @if($metaName[0]->value =='Self')
 										  {{Auth::user()->name}} - ( {{$metaName[0]->value}} )
 									  @elseif($metaName[0]->value =='Family Member')
-										  {{Auth::user()->name}} - ( {{$metaName[0]->value}} )
+										  {{$titleName[0]->Name.$familyName[0]->FirstName." ".$familyName[0]->MiddleName." ".$familyName[0]->LastName}} - ( {{$metaName[0]->value}} )
 									  @elseif($metaName[0]->value =='Relatives & Friends')
-										  {{Auth::user()->name}} - ( {{$metaName[0]->value}} )
+										  {{$titleName[0]->Name.$friendName[0]->FirstName." ".$friendName[0]->MiddleName." ".$friendName[0]->LastName}} - ( {{$metaName[0]->value}} )
 									  @endif
 									  </div>
 									</div>

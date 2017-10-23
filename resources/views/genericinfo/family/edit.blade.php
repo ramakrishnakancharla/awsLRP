@@ -84,7 +84,7 @@
 										  <select name="Title"  class="form-control">
 												<option value="">Select</option>
 												@foreach($titlemaster as $title)
-													<option {{$generalpersonaldataedit->Title == $title->TM_ID ? 'selected="selected"' : ''}} value="{{$title->TM_ID}}">{{$title->Name}} </option>
+													<option {{$edit->Title == $title->TM_ID ? 'selected="selected"' : ''}} value="{{$title->TM_ID}}">{{$title->Name}} </option>
 												@endforeach
 											</select>
 										  </div>
