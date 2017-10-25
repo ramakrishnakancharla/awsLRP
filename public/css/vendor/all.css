@@ -26,7 +26,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * ========================================================= */
- 
+ .height45{
+	 height:45px !important;
+ }
 .or{
     margin-bottom: 20px;
     margin-left: 160px;

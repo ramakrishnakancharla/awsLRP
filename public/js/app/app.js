@@ -3529,5 +3529,151 @@ require('../../components/messages/main');
 		var loc = position.coords.latitude + "," + position.coords.longitude;
 		document.getElementById("GeographicalAddress").value = loc;
 	}
+	$('.Country').on("change", function(e){
+		var countryID = $(this).val();    
+		if(countryID){
+			$.ajax({
+			   type:"GET",
+			   url:"general-address/"+countryID+"/getStateList",
+			   success:function(res){  
+				if(res){
+					$(".State").empty();
+					$(".State").append('<option>Select</option>');
+					$.each(res,function(key,value){
+						$(".State").append('<option value="'+res[key].SM_ID+'">'+res[key].Name+'</option>');
+					});
+			   
+				}else{
+				   $(".State").empty();
+				}
+			   }
+			});
+		}else{
+			$(".State").empty();
+			$(".City").empty();
+		}      
+   });
+	$('.CountryEdit').on("change", function(e){
+		var countryID = $(this).val();    
+		if(countryID){
+			$.ajax({
+			   type:"GET",
+			   url:"../../general-address/"+countryID+"/getStateList",
+			   success:function(res){  
+				if(res){
+					$(".StateEdit").empty();
+					$(".StateEdit").append('<option>Select</option>');
+					$.each(res,function(key,value){
+						$(".StateEdit").append('<option value="'+res[key].SM_ID+'">'+res[key].Name+'</option>');
+					});
+			   
+				}else{
+				   $(".StateEdit").empty();
+				}
+			   }
+			});
+		}else{
+			$(".StateEdit").empty();
+			$(".CityEdit").empty();
+		}      
+   });
+    var countryID = $(".CountryEdit").val();
+	var stateIDVal = $(".StateEdit").val();
+	debugger;
+	if(countryID){
+		$.ajax({
+		   type:"GET",
+		   url:"../../general-address/"+countryID+"/getStateList",
+		   success:function(res){  
+			if(res){
+				debugger;
+				$(".StateEdit").empty();
+				$(".StateEdit").append('<option>Select</option>');
+				$.each(res,function(key,value){
+					$(".StateEdit").append('<option value="'+res[key].SM_ID+'">'+res[key].Name+'</option>');
+				});
+		   
+			}else{
+			   $(".StateEdit").empty();
+			}
+		   }
+		});
+		
+	}else{
+		$(".StateEdit").empty();
+		$(".CityEdit").empty();
+	}
+	
+   $('.State').on('change',function(){
+    var stateID = $(this).val();    
+    if(stateID){
+        $.ajax({
+           type:"GET",
+           url:"general-address/"+stateID+"/getCityList",
+           success:function(res){               
+            if(res){
+                $(".City").empty();
+				$(".City").append('<option>Select</option>');
+                $.each(res,function(key,value){
+                    $(".City").append('<option value="'+res[key].CIM_ID+'">'+res[key].Name+'</option>');
+                });
+           
+            }else{
+               $(".City").empty();
+            }
+           }
+        });
+    }else{
+        $(".City").empty();
+    }
+        
+   });
+    $('.StateEdit').on('change',function(){
+    var stateID = $(this).val();    
+    if(stateID){
+        $.ajax({
+           type:"GET",
+           url:"../../general-address/"+stateID+"/getCityList",
+           success:function(res){               
+            if(res){
+                $(".CityEdit").empty();
+				$(".CityEdit").append('<option>Select</option>');
+                $.each(res,function(key,value){
+                    $(".CityEdit").append('<option value="'+res[key].CIM_ID+'">'+res[key].Name+'</option>');
+                });
+           
+            }else{
+               $(".CityEdit").empty();
+            }
+           }
+        });
+    }else{
+        $(".CityEdit").empty();
+    }
+        
+   });
+   var stateID = $(".StateEdit").val(); 
+ 
+    if(stateID){
+        $.ajax({
+           type:"GET",
+           url:"../../general-address/"+stateID+"/getCityList",
+           success:function(res){               
+            if(res){
+                $(".CityEdit").empty();
+				$(".CityEdit").append('<option>Select</option>');
+                $.each(res,function(key,value){
+                    $(".CityEdit").append('<option value="'+res[key].CIM_ID+'">'+res[key].Name+'</option>');
+                });
+				
+            }else{
+               $(".CityEdit").empty();
+            }
+           }
+        });
+		
+    }else{
+        $(".CityEdit").empty();
+    }
 	
 })(jQuery);

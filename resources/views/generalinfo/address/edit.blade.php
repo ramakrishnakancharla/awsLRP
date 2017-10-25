@@ -24,8 +24,17 @@
                               <img src="../../images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
-                              <span class="user">{{$values->AddressType}}</span>
-                              <div class="message">City : {{$values->City}}</div>
+							   <span class="pull-right" style="color:green">
+								@if($values->MetaID =='1')
+								  Self
+								@elseif($values->MetaID =='2')
+								  Family
+								@elseif($values->MetaID =='3')
+								  Friend
+								@endif
+							</span>
+                              <span class="user">{{$NameOfAddressType->Name}}</span>
+                              <div class="message">City : {{$NameOfCity->Name}}</div>
                             </div>
                           </div>
                         </a>
@@ -131,8 +140,9 @@
 									  <div class="col-sm-8">
 											<select name="DocType" id="DocType" class="form-control">
 												<option>Select</option>
-												<option value="1">PAN</option>
-												<option value="2">PassPort</option>
+												@foreach($documenttype as $type)
+												<option {{$edit->DocType == $type->DTM_ID ? 'selected="selected"' : ''}} value="{{$type->DTM_ID}}">{{$type->Name}}</option>
+											@endforeach
 											</select>
 									  </div>
 									</div>
@@ -169,7 +179,7 @@
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Country</span></div>
 									  <div class="col-sm-8">
-										<select name="Country" id="Country" class="form-control">
+										<select name="Country"  class="form-control CountryEdit">
 											<option>Select</option>
 											@foreach($countrymaster as $country)
 												<option {{$edit->Country == $country->CM_ID ? 'selected="selected"' : ''}} value="{{$country->CM_ID}}">{{$country->Name}}</option>
@@ -180,13 +190,20 @@
 								  </li>
 								  <li class="padding-v-5">
 									<div class="row">
+									  <div class="col-sm-4"><span class="text-muted">State</span></div>
+									  <div class="col-sm-8">
+										<select name="State"  class="form-control StateEdit">
+											<option  value="{{$edit->State}}">{{$edit->State}}</option>
+										</select>
+									  </div>
+									</div>
+								  </li>
+								  <li class="padding-v-5">
+									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">City</span></div>
 									  <div class="col-sm-8">
-											<select name="City" id="City" class="form-control">
-												<option>Select</option>
-												@foreach($citymaster as $city)
-													<option {{$edit->City == $city->CIM_ID ? 'selected="selected"' : ''}} value="{{$city->CIM_ID}}">{{$city->Name}}</option>
-											   @endforeach
+											<select name="City" class="form-control CityEdit">
+												<option value="{{$edit->City}}">{{$edit->City}}</option>
 											</select>
 									  </div>
 									</div>

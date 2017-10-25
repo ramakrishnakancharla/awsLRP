@@ -92,16 +92,18 @@ class PersonalDataController extends Controller
 	public function show($id)
 	{
 		$list = generalpersonaldata::where('Status',1)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
 		$view = generalpersonaldata::where('Status',1)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
+		
+		$NameOfMetadata = generalpersonaldata::find($view->GPD_ID)->metadataName;
+		$NameOfFamily = generalpersonaldata::find($view->GPD_ID)->familyName;
+		$NameOfFriend = generalpersonaldata::find($view->GPD_ID)->friendsName;
+		$NameOfTitile = generalpersonaldata::find($view->GPD_ID)->titleName;
+		$NameOfGender = generalpersonaldata::find($view->GPD_ID)->genderName;
+		$NameOfReligion = generalpersonaldata::find($view->GPD_ID)->religionName;
+		$NameOfNationality = generalpersonaldata::find($view->GPD_ID)->nationalityName;
+		$NameOfMarital = generalpersonaldata::find($view->GPD_ID)->maritalName;
 
-		$metaName = metadata::where('status',1)->where('name','Whom')->where('id',$view->MetaID)->get();
-		$familyName = genericfamily::where('Status',1)->where('AFM_ID',$view->ToWhom)->get();
-		$friendName = genericfriends::where('Status',1)->where('AFR_ID',$view->ToWhom)->get();
-		$titleName = titlemaster::where('Status',1)->where('TM_ID',$view->Title)->get();
-
-		return view('generalinfo/personalData.show',compact('list','genericfamily','view','genericfriends','metaName','familyName','friendName','titleName'));
+		return view('generalinfo/personalData.show',compact('list','view','NameOfTitile','NameOfGender','NameOfReligion','NameOfNationality','NameOfMarital','NameOfMetadata','NameOfFamily','NameOfFriend'));
 	}
 	public function edit($id)
 	{

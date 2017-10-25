@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Fixed navbar -->
-    <div class="navbar navbar-main navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-main navbar-default navbar-fixed-top" role="navigation" style="background: #26a69a;">
       <div class="container-fluid">
         <div class="navbar-header">
           <a href="#sidebar-menu" data-effect="st-effect-1" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
@@ -123,7 +123,7 @@
 						 </div>
 						 <div class="form-group">
 							 <div class="col-md-12">
-								<button type="submit" class="btn btn-primary form-control">
+								<button type="submit" class="btn btn-primary form-control height45">
 								  Sign Up
 								  <i class="fa fa-fw fa-unlock-alt"></i>
 								</button>
@@ -132,21 +132,21 @@
 						<div class="or">OR</div>
 						<div class="form-group">
 							 <div class="col-md-12">
-								<button type="button" class="btn btn-info form-control" style="background:#32508E">
+								<button type="button" class="btn btn-info form-control height45" style="background:#32508E">
 								  Log in with facebook
 								</button>
 							</div>
 						</div>
 						<div class="form-group">
 							 <div class="col-md-12">
-								<button type="button" class="btn btn-info form-control">
+								<button type="button" class="btn btn-info form-control height45">
 								  Log in with Twitter
 								</button>
 							</div>
 						</div>
 						<div class="form-group">
 							 <div class="col-md-12">
-								<button type="button" class="btn btn-danger form-control">
+								<button type="button" class="btn btn-danger form-control height45">
 								  Log in with Google+
 								</button>
 							</div>

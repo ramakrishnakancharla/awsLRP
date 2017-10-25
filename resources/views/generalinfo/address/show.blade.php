@@ -22,8 +22,17 @@
                               <img src="../../images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
-                              <span class="user">{{$values->AddressType}}</span>
-                              <div class="message">City : {{$values->City}}</div>
+							   <span class="pull-right" style="color:green">
+								@if($values->MetaID =='1')
+								  Self
+								@elseif($values->MetaID =='2')
+								  Family
+								@elseif($values->MetaID =='3')
+								  Friend
+								@endif
+							</span>
+                              <span class="user">{{$NameOfAddressType->Name}}</span>
+                              <div class="message">City : {{$NameOfCity->Name}}</div>
                             </div>
                           </div>
                         </a>
@@ -54,18 +63,19 @@
 				<div class="panel panel-default">
 					  <div class="panel-heading panel-heading-gray">
 						<div class="row">
-							<div class="col-lg-6">
-								<div class="row">
-								  <div class="col-sm-4"><span class="text-muted">Choose Option</span></div>
-								  <div class="col-sm-8">{{$show->MetaID}}</div>
+							<div class="col-lg-12">
+									<div class="row">
+									  <div class="col-sm-12"> 
+									  @if($NameOfMetadata->value =='Self')
+										  {{Auth::user()->name}} - ( {{$NameOfMetadata->value}} )
+									  @elseif($NameOfMetadata->value =='Family Member')
+										  {{$NameOfFamily->FirstName." ".$NameOfFamily->MiddleName." ".$NameOfFamily->LastName}} - ( {{$NameOfMetadata->value}} )
+									  @elseif($NameOfMetadata->value =='Relatives & Friends')
+										  {{$NameOfFriend->FirstName." ".$NameOfFriend->MiddleName." ".$NameOfFriend->LastName}} - ( {{$NameOfMetadata->value}} )
+									  @endif
+									  </div>
+									</div>
 								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="row">
-								  <div class="col-sm-4"><span class="text-muted">To Whom?</span></div>
-								  <div class="col-sm-8">{{$show->ToWhom}}</div>
-								</div>
-							</div>
 						</div>
 					  </div>
 					  
@@ -83,7 +93,7 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Address Type</span></div>
-									  <div class="col-sm-8">{{$show->AddressType}}</div>
+									  <div class="col-sm-8">{{$NameOfAddressType->Name}}</div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
@@ -107,7 +117,7 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Document Type</span></div>
-									  <div class="col-sm-8">{{$show->DocType}}</div>
+									  <div class="col-sm-8">{{$NameOfDocType->Name}}</div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
@@ -141,13 +151,19 @@
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Country</span></div>
-									  <div class="col-sm-8">{{$show->Country}}</div>
+									  <div class="col-sm-8">{{$NameOfCountry->Name}}</div>
+									</div>
+								  </li>
+								  <li class="padding-v-5">
+									<div class="row">
+									  <div class="col-sm-4"><span class="text-muted">State</span></div>
+									  <div class="col-sm-8">{{$NameOfState->Name}}</div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">City</span></div>
-									  <div class="col-sm-8">{{$show->City}}</div>
+									  <div class="col-sm-8">{{$NameOfCity->Name}}</div>
 									</div>
 								  </li>
 								  <li class="padding-v-5">

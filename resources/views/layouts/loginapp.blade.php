@@ -16,7 +16,7 @@
 <body>
 
   <!-- Wrapper required for sidebar transitions -->
-  <div class="st-container">
+  <div class="st-container" style="padding-bottom:0px;">
 
     <!-- content push wrapper -->
     <div class="st-pusher">
@@ -26,12 +26,6 @@
 
     </div>
     <!-- /st-pusher -->
-
-    <!-- Footer -->
-    <footer class="footer">
-      <strong>LRP</strong> &copy; Copyright 2017
-    </footer>
-    <!-- // Footer -->
 
   </div>
   <!-- /st-container -->

@@ -22,6 +22,15 @@
                               <img src="../../images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
+							  <span class="pull-right" style="color:green">
+								  @if($values->MetaID =='1')
+									  Self
+								  @elseif($values->MetaID =='2')
+									  Family
+								  @elseif($values->MetaID =='3')
+									  Friend
+								  @endif
+							  </span>
                               <span class="user">{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}</span>
                               <div class="message">DOB : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>
                             </div>
@@ -57,12 +66,12 @@
 								<div class="col-lg-12">
 									<div class="row">
 									  <div class="col-sm-12"> 
-									  @if($metaName[0]->value =='Self')
-										  {{Auth::user()->name}} - ( {{$metaName[0]->value}} )
-									  @elseif($metaName[0]->value =='Family Member')
-										  {{$titleName[0]->Name.$familyName[0]->FirstName." ".$familyName[0]->MiddleName." ".$familyName[0]->LastName}} - ( {{$metaName[0]->value}} )
-									  @elseif($metaName[0]->value =='Relatives & Friends')
-										  {{$titleName[0]->Name.$friendName[0]->FirstName." ".$friendName[0]->MiddleName." ".$friendName[0]->LastName}} - ( {{$metaName[0]->value}} )
+									  @if($NameOfMetadata->value =='Self')
+										  {{$NameOfTitile->Name.Auth::user()->name}} - ( {{$NameOfMetadata->value}} )
+									  @elseif($NameOfMetadata->value =='Family Member')
+										  {{$NameOfTitile->Name.$NameOfFamily->FirstName." ".$NameOfFamily->MiddleName." ".$NameOfFamily->LastName}} - ( {{$NameOfMetadata->value}} )
+									  @elseif($NameOfMetadata->value =='Relatives & Friends')
+										  {{$NameOfTitile->Name.$NameOfFriend->FirstName." ".$NameOfFriend->MiddleName." ".$NameOfFriend->LastName}} - ( {{$NameOfMetadata->value}} )
 									  @endif
 									  </div>
 									</div>
@@ -83,7 +92,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Title</span></div>
-										  <div class="col-sm-8">: {{$view->Title}}</div>
+										  <div class="col-sm-8">: {{$NameOfTitile->Name}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -107,7 +116,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Gender</span></div>
-										  <div class="col-sm-8">: {{$view->Gender}}</div>
+										  <div class="col-sm-8">: {{$NameOfGender->Name}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -136,19 +145,19 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Nationality</span></div>
-										  <div class="col-sm-8">: {{$view->Nationality}}</div>
+										  <div class="col-sm-8">: {{$NameOfNationality->Name}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Religion</span></div>
-										  <div class="col-sm-8">: {{$view->Religion}}</div>
+										  <div class="col-sm-8">: {{$NameOfReligion->Name}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Marital Status</span></div>
-										  <div class="col-sm-8">: {{$view->MaritalStatus}}</div>
+										  <div class="col-sm-8">: {{$NameOfMarital->Name}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">

@@ -28,14 +28,13 @@
                             </div>
                             <div class="media-body">
                               <span class="pull-right" style="color:green">
-							  @if($values->MetaID =='1')
-								  Self
-							  @elseif($values->MetaID =='2')
-								  Family
-							  @elseif($values->MetaID =='3')
-								  Friend
-							  @endif
-									  
+								  @if($values->MetaID =='1')
+									  Self
+								  @elseif($values->MetaID =='2')
+									  Family
+								  @elseif($values->MetaID =='3')
+									  Friend
+								  @endif
 							  </span>
 							  <span class="user">{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}</span>
                               <div class="message">DOB : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>

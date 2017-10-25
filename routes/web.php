@@ -18,6 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('general-address/{id}/getStateList','general\AddressController@getStateList');
+Route::get('general-address/{id}/getCityList','general\AddressController@getCityList');
 /*------------General info tab ----------------*/
 Route::resource('genericinfofamily', 'GenericInfoFamilyController');
 Route::resource('genericinfofriends', 'GenericInfoFriendsController');

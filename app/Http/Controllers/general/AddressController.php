@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\general;
 
+use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,9 @@ use App\common_master\maritalstatus;
 use App\common_master\childmaster;
 use App\common_master\addressmaster;
 use App\common_master\countrymaster;
+use App\common_master\statemaster;
 use App\common_master\citymaster;
+use App\common_master\documenttype;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -30,16 +33,21 @@ class AddressController extends Controller
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
 		$addressmaster = addressmaster::where('status',1)->get();
-		$countrymaster = countrymaster::where('status',1)->orderBy('Name', 'asc')->get();
-		$citymaster = citymaster::where('status',1)->orderBy('Name', 'asc')->paginate(300);  // need to chnage
+		$countrymaster = countrymaster::where('Status',1)->orderBy('Name', 'asc')->get();
+		$citymaster = citymaster::where('Status',1)->orderBy('Name', 'asc')->paginate(300);  // need to chnage
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->paginate(300);  // need to chnage
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generaladdress::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
+
+		$NameOfCity = generaladdress::find($list[0]->GA_ID)->cityName;
+		$NameOfAddressType = generaladdress::find($list[0]->GA_ID)->addressTypeName;
 		
-		return view('generalinfo/address.index',compact('gendermaster','maritalstatus','childmaster','addressmaster','countrymaster','citymaster','metadata','relation','list','genericfamily','genericfriends'));
+		return view('generalinfo/address.index',compact('gendermaster','maritalstatus','childmaster','addressmaster','countrymaster','citymaster','documenttype','metadata','relation','list','genericfamily','genericfriends','NameOfCity','NameOfAddressType'));
     }
+	
 	public function store()
 	{
 		// validate
@@ -82,6 +90,7 @@ class AddressController extends Controller
 			$generaladdressupdate->HouseNo = Input::get('HouseNo');
 			$generaladdressupdate->AddressLine = Input::get('AddressLine');
 			$generaladdressupdate->Country = Input::get('Country');
+			//$generaladdressupdate->State = Input::get('State');
 			$generaladdressupdate->City = Input::get('City');
 			$generaladdressupdate->DocImage = $file_name;
 			$generaladdressupdate->Folder = $target_dir;
@@ -99,11 +108,18 @@ class AddressController extends Controller
 	public function show($id)
 	{
 		$list = generaladdress::where('Status',1)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
 		$show = generaladdress::where('Status',1)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/address.show',compact('list','genericfamily','show','genericfriends'));
+		$NameOfMetadata = generaladdress::find($show->GA_ID)->metadataName;
+		$NameOfFamily = generaladdress::find($show->GA_ID)->familyName;
+		$NameOfFriend = generaladdress::find($show->GA_ID)->friendsName;
+		$NameOfAddressType = generaladdress::find($show->GA_ID)->addressTypeName;
+		$NameOfDocType = generaladdress::find($show->GA_ID)->documentTypeName;
+		$NameOfCountry = generaladdress::find($show->GA_ID)->countryName;
+		$NameOfState = generaladdress::find($show->GA_ID)->stateName;
+		$NameOfCity = generaladdress::find($show->GA_ID)->cityName;
+		
+		return view('generalinfo/address.show',compact('list','show','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfAddressType','NameOfDocType','NameOfCountry','NameOfState','NameOfCity'));
 	}
 	public function edit($id)
 	{
@@ -111,8 +127,10 @@ class AddressController extends Controller
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
 		$addressmaster = addressmaster::where('status',1)->get();
-		$countrymaster = countrymaster::where('status',1)->orderBy('Name', 'asc')->get();
-		$citymaster = citymaster::where('status',1)->orderBy('Name', 'asc')->paginate(300); // need to change
+		$countrymaster = countrymaster::where('Status',1)->orderBy('Name', 'asc')->get();
+		$statemaster = statemaster::where('Status',1)->orderBy('Name', 'asc')->get();
+		$citymaster = citymaster::where('Status',1)->orderBy('Name', 'asc')->paginate(300); // need to change
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->paginate(300); // need to change
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generaladdress::where('Status',1)->get();
@@ -120,8 +138,21 @@ class AddressController extends Controller
 		$edit = generaladdress::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/address.edit',compact('gendermaster','maritalstatus','childmaster','addressmaster','countrymaster','citymaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+		$NameOfCity = generaladdress::find($id)->cityName;
+		$NameOfAddressType = generaladdress::find($id)->addressTypeName;
+		
+		return view('generalinfo/address.edit',compact('gendermaster','maritalstatus','childmaster','addressmaster','countrymaster','statemaster','citymaster','documenttype','metadata','relation','list','genericfamily','edit','genericfriends','NameOfCity','NameOfAddressType'));
 	}
+	public function getStateList($id)
+    {
+        $states = statemaster::where('Status',1)->where('Country_ID',$id)->orderBy('Name', 'asc')->get();
+        return response()->json($states);
+    }
+	public function getCityList($id)
+    {
+        $city = citymaster::where('Status',1)->where('State_ID',$id)->orderBy('Name', 'asc')->get();
+        return response()->json($city);
+    }
 	public function update($id)
 	{
 		// validate
@@ -169,6 +200,7 @@ class AddressController extends Controller
 			$generaladdressupdate->HouseNo = Input::get('HouseNo');
 			$generaladdressupdate->AddressLine = Input::get('AddressLine');
 			$generaladdressupdate->Country = Input::get('Country');
+			//$generaladdressupdate->State = Input::get('State');
 			$generaladdressupdate->City = Input::get('City');
 			$generaladdressupdate->DocImage = $file_name;
 			$generaladdressupdate->Folder = $target_dir;
