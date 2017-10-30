@@ -26,7 +26,7 @@
                               <img src="images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
-                              <span class="user">{{$values->CommunicationType}}</span>
+                              <span class="user">{{$NameOfCommui->Name}}</span>
                             </div>
                           </div>
                         </a>

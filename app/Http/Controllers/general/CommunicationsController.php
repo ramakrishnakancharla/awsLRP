@@ -35,7 +35,14 @@ class CommunicationsController extends Controller
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/communications.index',compact('gendermaster','maritalstatus','childmaster','communicationmaster','metadata','relation','list','genericfamily','genericfriends'));
+		if(count($list) > 0){
+			$NameOfCommui = generalcommunications::find($list[0]->GC_ID)->CommuiName;
+		}else{
+			$NameOfCommui = "";
+		}
+		
+		
+		return view('generalinfo/communications.index',compact('gendermaster','maritalstatus','childmaster','communicationmaster','metadata','relation','list','genericfamily','genericfriends','NameOfCommui'));
     }
 	public function store()
 	{
@@ -84,11 +91,14 @@ class CommunicationsController extends Controller
 	public function show($id)
 	{
 		$list = generalcommunications::where('Status',1)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
 		$show = generalcommunications::where('Status',1)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/communications.show',compact('list','genericfamily','show','genericfriends'));
+		$NameOfMetadata = generalcommunications::find($show->GC_ID)->metadataName;
+		$NameOfFamily = generalcommunications::find($show->GC_ID)->familyName;
+		$NameOfFriend = generalcommunications::find($show->GC_ID)->friendsName;
+		$NameOfCommui = generalcommunications::find($show->GC_ID)->CommuiName;
+		
+		return view('generalinfo/communications.show',compact('list','show','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfCommui'));
 	}
 	public function edit($id)
 	{
@@ -102,8 +112,9 @@ class CommunicationsController extends Controller
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$edit = generalcommunications::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
+		$NameOfCommui = generalcommunications::find($id)->CommuiName;
 		
-		return view('generalinfo/communications.edit',compact('gendermaster','maritalstatus','childmaster','communicationmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+		return view('generalinfo/communications.edit',compact('gendermaster','maritalstatus','childmaster','communicationmaster','metadata','relation','list','genericfamily','edit','genericfriends','NameOfCommui'));
 	}
 	public function update($id)
 	{

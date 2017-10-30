@@ -22,6 +22,7 @@ use App\common_master\religionmaster;
 use App\common_master\countrymaster;
 use App\common_master\modeoftransport;
 use App\common_master\accommodation;
+use App\common_master\documenttype;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -41,11 +42,21 @@ class TravelinfoController extends Controller
 		$accommodation = accommodation::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generaltravelinfo::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/travelinfo.index',compact('gendermaster','maritalstatus','childmaster','religionmaster','countrymaster','modeoftransport','accommodation','metadata','relation','list','genericfamily','genericfriends'));
+		$NameOfMetadata = generaltravelinfo::find($list[0]->GTI_ID)->metadataName;
+		$NameOfFamily = generaltravelinfo::find($list[0]->GTI_ID)->familyName;
+		$NameOfFriend = generaltravelinfo::find($list[0]->GTI_ID)->friendsName;
+		if(count($list) > 0){
+			$NameOfCountry = generaltravelinfo::find($list[0]->GTI_ID)->countryName;
+		}else{
+			$NameOfCountry = "";
+		}
+		
+		return view('generalinfo/travelinfo.index',compact('gendermaster','maritalstatus','childmaster','religionmaster','countrymaster','modeoftransport','accommodation','metadata','relation','documenttype','list','genericfamily','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfCountry'));
     }
 	public function store()
 	{
@@ -99,6 +110,7 @@ class TravelinfoController extends Controller
 			$generaltravelinfopdate->Region = Input::get('Region');
 			$generaltravelinfopdate->OtherPurpose = Input::get('OtherPurpose');
 			$generaltravelinfopdate->ModeOfTrasnport = Input::get('ModeOfTrasnport');
+			$generaltravelinfopdate->ModeOfAccommodation = Input::get('ModeOfAccommodation');
 			$generaltravelinfopdate->Destination = Input::get('Destination');
 			$generaltravelinfopdate->TravelInsuranceAvailable = Input::get('TravelInsuranceAvailable');
 			$generaltravelinfopdate->ActualCost = Input::get('ActualCost');
@@ -117,11 +129,18 @@ class TravelinfoController extends Controller
 	public function show($id)
 	{
 		$list = generaltravelinfo::where('Status',1)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
 		$show = generaltravelinfo::where('Status',1)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/travelinfo.show',compact('list','genericfamily','show','genericfriends'));
+		$NameOfMetadata = generaltravelinfo::find($show->GTI_ID)->metadataName;
+		$NameOfFamily = generaltravelinfo::find($show->GTI_ID)->familyName;
+		$NameOfFriend = generaltravelinfo::find($show->GTI_ID)->friendsName;
+		$NameOfDocType = generaltravelinfo::find($show->GTI_ID)->documentTypeName;
+		$NameOfModeTran = generaltravelinfo::find($show->GTI_ID)->ModeTranName;
+		$NameOfAcc = generaltravelinfo::find($show->GTI_ID)->AccoName;
+		$NameOfCountry = generaltravelinfo::find($show->GTI_ID)->countryName;
+		$NameOfReligion = generaltravelinfo::find($show->GTI_ID)->religionName;
+
+		return view('generalinfo/travelinfo.show',compact('list','show','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfDocType','NameOfModeTran','NameOfAcc','NameOfCountry','NameOfReligion'));
 	}
 	public function edit($id)
 	{
@@ -134,12 +153,23 @@ class TravelinfoController extends Controller
 		$accommodation = accommodation::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generaltravelinfo::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$edit = generaltravelinfo::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/travelinfo.edit',compact('gendermaster','maritalstatus','childmaster','religionmaster','countrymaster','modeoftransport','accommodation','metadata','relation','list','genericfamily','edit','genericfriends'));
+		$NameOfMetadata = generaltravelinfo::find($id)->metadataName;
+		$NameOfFamily = generaltravelinfo::find($id)->familyName;
+		$NameOfFriend = generaltravelinfo::find($id)->friendsName;
+		
+		if(count($list) > 0){
+			$NameOfCountry = generaltravelinfo::find($list[0]->GTI_ID)->countryName;
+		}else{
+			$NameOfCountry = "";
+		}
+		
+		return view('generalinfo/travelinfo.edit',compact('gendermaster','maritalstatus','childmaster','religionmaster','countrymaster','modeoftransport','accommodation','metadata','relation','documenttype','list','genericfamily','edit','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfCountry'));
 	}
 	public function update($id)
 	{
@@ -193,6 +223,7 @@ class TravelinfoController extends Controller
 			$generaltravelinfopdate->Region = Input::get('Region');
 			$generaltravelinfopdate->OtherPurpose = Input::get('OtherPurpose');
 			$generaltravelinfopdate->ModeOfTrasnport = Input::get('ModeOfTrasnport');
+			$generaltravelinfopdate->ModeOfAccommodation = Input::get('ModeOfAccommodation');
 			$generaltravelinfopdate->Destination = Input::get('Destination');
 			$generaltravelinfopdate->TravelInsuranceAvailable = Input::get('TravelInsuranceAvailable');
 			$generaltravelinfopdate->ActualCost = Input::get('ActualCost');

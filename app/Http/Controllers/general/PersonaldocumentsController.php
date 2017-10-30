@@ -20,6 +20,7 @@ use App\common_master\gendermaster;
 use App\common_master\maritalstatus;
 use App\common_master\childmaster;
 use App\common_master\documentcategory;
+use App\common_master\documenttype;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -36,11 +37,25 @@ class PersonaldocumentsController extends Controller
 		$documentcategory = documentcategory::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generaldocuments::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/personaldocuments.index',compact('gendermaster','maritalstatus','childmaster','documentcategory','metadata','relation','list','genericfamily','genericfriends'));
+		if(count($list) > 0){
+			$NameOfMetadata = generaldocuments::find($list[0]->GD_ID)->metadataName;
+			$NameOfFamily = generaldocuments::find($list[0]->GD_ID)->familyName;
+			$NameOfFriend = generaldocuments::find($list[0]->GD_ID)->friendsName;
+			$NameOfDocCate = generaldocuments::find($list[0]->GD_ID)->DocCateName;
+		}else{
+			$NameOfMetadata = "";
+			$NameOfFamily = "";
+			$NameOfFriend = "";
+			$NameOfDocCate = "";
+		}
+	
+		
+		return view('generalinfo/personaldocuments.index',compact('gendermaster','maritalstatus','childmaster','documentcategory','metadata','relation','documenttype','list','genericfamily','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfDocCate'));
     }
 	public function store()
 	{
@@ -99,11 +114,15 @@ class PersonaldocumentsController extends Controller
 	public function show($id)
 	{
 		$list = generaldocuments::where('Status',1)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
 		$show = generaldocuments::where('Status',1)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/personaldocuments.show',compact('list','genericfamily','show','genericfriends'));
+		$NameOfMetadata = generaldocuments::find($show->GD_ID)->metadataName;
+		$NameOfFamily = generaldocuments::find($show->GD_ID)->familyName;
+		$NameOfFriend = generaldocuments::find($show->GD_ID)->friendsName;
+		$NameOfDocCate = generaldocuments::find($show->GD_ID)->DocCateName;
+		$NameOfDocType = generaldocuments::find($show->GD_ID)->documentTypeName;
+		
+		return view('generalinfo/personaldocuments.show',compact('list','show','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfDocCate','NameOfDocType'));
 	}
 	public function edit($id)
 	{
@@ -111,14 +130,26 @@ class PersonaldocumentsController extends Controller
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
-		$documentcategory = documentcategory::where('status',1)->where('name','Whom')->get();
-		$relation = metadata::where('status',1)->where('name','Relationship')->get();
+		$documentcategory = documentcategory::where('status',1)->get();
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generaldocuments::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$edit = generaldocuments::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/personaldocuments.edit',compact('gendermaster','maritalstatus','childmaster','metadata','documentcategory','relation','list','genericfamily','edit','genericfriends'));
+		if(count($list) > 0){
+			$NameOfMetadata = generaldocuments::find($id)->metadataName;
+			$NameOfFamily = generaldocuments::find($id)->familyName;
+			$NameOfFriend = generaldocuments::find($id)->friendsName;
+			$NameOfDocCate = generaldocuments::find($id)->DocCateName;
+		}else{
+			$NameOfMetadata = "";
+			$NameOfFamily = "";
+			$NameOfFriend = "";
+			$NameOfDocCate = "";
+		}
+		
+		return view('generalinfo/personaldocuments.edit',compact('gendermaster','maritalstatus','childmaster','metadata','documentcategory','documenttype','list','genericfamily','edit','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfDocCate'));
 	}
 	public function update($id)
 	{

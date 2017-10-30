@@ -26,6 +26,15 @@
                               <img src="images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
+							<span class="pull-right" style="color:green">
+									@if($values->MetaID =='1')
+									  Self
+									@elseif($values->MetaID =='2')
+									  Family
+									@elseif($values->MetaID =='3')
+									  Friend
+									@endif
+								</span>
                               <span class="user">{{$values->OrganizationName}}</span>
                             </div>
                           </div>
@@ -137,8 +146,9 @@
 									  <div class="col-sm-8">
 											<select name="DocType" id="DocType" class="form-control">
 												<option>Select</option>
-												<option value="1">PAN</option>
-												<option value="2">PassPort</option>
+												@foreach($documenttype as $type)
+													<option value="{{$type->DTM_ID}}">{{$type->Name}}</option>
+												@endforeach
 											</select>
 									  </div>
 									</div>

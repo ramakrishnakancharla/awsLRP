@@ -32,9 +32,7 @@ use Session;
 class PhotosController extends Controller
 {
     public function index(){
-		$gendermaster = gendermaster::where('status',1)->get();
-		$maritalstatus = maritalstatus::where('status',1)->get();
-		$childmaster = childmaster::where('status',1)->get();
+
 		$photosfinishmaster = photosfinishmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
@@ -42,7 +40,19 @@ class PhotosController extends Controller
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/photos.index',compact('gendermaster','maritalstatus','childmaster','photosfinishmaster','metadata','relation','list','genericfamily','genericfriends'));
+		if(count($list) > 0){
+			$NameOfMetadata = generalphotos::find($list[0]->GPH_ID)->metadataName;
+			$NameOfFamily = generalphotos::find($list[0]->GPH_ID)->familyName;
+			$NameOfFriend = generalphotos::find($list[0]->GPH_ID)->friendsName;
+		}else{
+			$NameOfMetadata = "";
+			$NameOfFamily = "";
+			$NameOfFriend = "";
+		}
+		
+		
+		
+		return view('generalinfo/photos.index',compact('photosfinishmaster','metadata','relation','list','genericfamily','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend'));
     }
 	public function store()
 	{
@@ -96,17 +106,16 @@ class PhotosController extends Controller
 	public function show($id)
 	{
 		$list = generalphotos::where('Status',1)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
 		$show = generalphotos::where('Status',1)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/photos.show',compact('list','genericfamily','show','genericfriends'));
+		$NameOfMetadata = generalphotos::find($show->GPH_ID)->metadataName;
+		$NameOfFamily = generalphotos::find($show->GPH_ID)->familyName;
+		$NameOfFriend = generalphotos::find($show->GPH_ID)->friendsName;
+		
+		return view('generalinfo/photos.show',compact('list','show','NameOfMetadata','NameOfFamily','NameOfFriend'));
 	}
 	public function edit($id)
 	{
-		$gendermaster = gendermaster::where('status',1)->get();
-		$maritalstatus = maritalstatus::where('status',1)->get();
-		$childmaster = childmaster::where('status',1)->get();
 		$photosfinishmaster = photosfinishmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
@@ -115,7 +124,11 @@ class PhotosController extends Controller
 		$edit = generalphotos::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/photos.edit',compact('gendermaster','maritalstatus','childmaster','photosfinishmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+		$NameOfMetadata = generalphotos::find($id)->metadataName;
+		$NameOfFamily = generalphotos::find($id)->familyName;
+		$NameOfFriend = generalphotos::find($id)->friendsName;
+		
+		return view('generalinfo/photos.edit',compact('photosfinishmaster','metadata','relation','list','genericfamily','edit','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend'));
 	}
 	public function update($id)
 	{

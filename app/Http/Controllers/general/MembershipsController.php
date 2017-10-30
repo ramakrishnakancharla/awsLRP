@@ -21,6 +21,7 @@ use App\common_master\membershipallowedmaster;
 use App\common_master\membershiporgcategorymaster;
 use App\common_master\membershiptypemaster;
 use App\common_master\membershipsponcerormaster;
+use App\common_master\documenttype;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -41,11 +42,12 @@ class MembershipsController extends Controller
 		$sponceror = membershipsponcerormaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generalmembership::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/memberships.index',compact('gendermaster','maritalstatus','childmaster','facilitiemaster','allowed','category','membershiptype','sponceror','metadata','relation','list','genericfamily','genericfriends'));
+		return view('generalinfo/memberships.index',compact('gendermaster','maritalstatus','childmaster','facilitiemaster','allowed','category','membershiptype','sponceror','metadata','relation','documenttype','list','genericfamily','genericfriends'));
     }
 	public function store()
 	{
@@ -111,11 +113,17 @@ class MembershipsController extends Controller
 	public function show($id)
 	{
 		$list = generalmembership::where('Status',1)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
 		$show = generalmembership::where('Status',1)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/memberships.show',compact('list','genericfamily','show','genericfriends'));
+		$NameOfMetadata = generalmembership::find($show->GMS_ID)->metadataName;
+		$NameOfFamily = generalmembership::find($show->GMS_ID)->familyName;
+		$NameOfFriend = generalmembership::find($show->GMS_ID)->friendsName;
+		$NameOfDocType = generalmembership::find($show->GMS_ID)->documentTypeName;
+		$NameOfMemType = generalmembership::find($show->GMS_ID)->memTypeName;
+		$NameOfMemAllow = generalmembership::find($show->GMS_ID)->memAllowName;
+		$NameOfMemOrg = generalmembership::find($show->GMS_ID)->memOrgName;
+		
+		return view('generalinfo/memberships.show',compact('list','show','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfDocType','NameOfMemType','NameOfMemAllow','NameOfMemOrg'));
 	}
 	public function edit($id)
 	{
@@ -129,12 +137,13 @@ class MembershipsController extends Controller
 		$sponceror = membershipsponcerormaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generalmembership::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$edit = generalmembership::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/memberships.edit',compact('gendermaster','maritalstatus','childmaster','facilitiemaster','allowed','category','membershiptype','sponceror','metadata','relation','list','genericfamily','edit','genericfriends'));
+		return view('generalinfo/memberships.edit',compact('gendermaster','maritalstatus','childmaster','facilitiemaster','allowed','category','membershiptype','sponceror','metadata','relation','documenttype','list','genericfamily','edit','genericfriends'));
 	}
 	public function update($id)
 	{

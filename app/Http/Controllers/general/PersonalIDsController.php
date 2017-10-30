@@ -18,6 +18,7 @@ use App\common_master\childmaster;
 use App\common_master\personalidsmaster;
 use App\common_master\countrymaster;
 use App\common_master\religionmaster;
+use App\common_master\documenttype;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -34,13 +35,21 @@ class PersonalIDsController extends Controller
 		$personalidsmaster = personalidsmaster::where('status',1)->get();
 		$countrymaster = countrymaster::where('status',1)->get();
 		$religionmaster = religionmaster::where('status',1)->get();
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalpersonalids::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/personalIds.index',compact('gendermaster','maritalstatus','childmaster','personalidsmaster','countrymaster','religionmaster','metadata','relation','list','genericfamily','genericfriends'));
+		if(count($list) > 0){
+			$NameOfIDType = generalpersonalids::find($list[0]->GPI_ID)->IDTypeName;
+		}else{
+			$NameOfIDType = "";
+		}
+		
+		
+		return view('generalinfo/personalIds.index',compact('gendermaster','maritalstatus','childmaster','personalidsmaster','countrymaster','religionmaster','documenttype','metadata','relation','list','genericfamily','genericfriends','NameOfIDType'));
     }
 	public function store()
 	{
@@ -105,11 +114,18 @@ class PersonalIDsController extends Controller
 	public function show($id)
 	{
 		$list = generalpersonalids::where('Status',1)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
 		$show = generalpersonalids::where('Status',1)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/personalIds.show',compact('list','genericfamily','show','genericfriends'));
+		$NameOfMetadata = generalpersonalids::find($show->GPI_ID)->metadataName;
+		$NameOfFamily = generalpersonalids::find($show->GPI_ID)->familyName;
+		$NameOfFriend = generalpersonalids::find($show->GPI_ID)->friendsName;
+		$NameOfIDType = generalpersonalids::find($show->GPI_ID)->IDTypeName;
+		$NameOfDocType = generalpersonalids::find($show->GPI_ID)->docTypeName;
+		$NameOfCountry = generalpersonalids::find($show->GPI_ID)->countryName;
+		$NameOfIssueCountry = generalpersonalids::find($show->GPI_ID)->IssueCountryName;
+		$NameOfReligion = generalpersonalids::find($show->GPI_ID)->religionName;
+		
+		return view('generalinfo/personalIds.show',compact('list','show','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfIDType','NameOfDocType','NameOfCountry','NameOfIssueCountry','NameOfReligion'));
 	}
 	public function edit($id)
 	{
@@ -119,14 +135,16 @@ class PersonalIDsController extends Controller
 		$personalidsmaster = personalidsmaster::where('status',1)->get();
 		$countrymaster = countrymaster::where('status',1)->get();
 		$religionmaster = religionmaster::where('status',1)->get();
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalpersonalids::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$edit = generalpersonalids::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
+		$NameOfIDType = generalpersonalids::find($id)->IDTypeName;
 		
-		return view('generalinfo/personalIds.edit',compact('gendermaster','maritalstatus','childmaster','personalidsmaster','countrymaster','religionmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+		return view('generalinfo/personalIds.edit',compact('gendermaster','maritalstatus','childmaster','personalidsmaster','countrymaster','religionmaster','documenttype','metadata','relation','list','genericfamily','edit','genericfriends','NameOfIDType'));
 	}
 	public function update($id)
 	{

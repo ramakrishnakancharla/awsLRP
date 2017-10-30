@@ -24,6 +24,15 @@
                               <img src="../../images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
+							<span class="pull-right" style="color:green">
+								@if($values->MetaID =='1')
+								  Self
+								@elseif($values->MetaID =='2')
+								  Family
+								@elseif($values->MetaID =='3')
+								  Friend
+								@endif
+							</span>
                               <span class="user">{{$values->Account}}</span>
                             </div>
                           </div>
@@ -158,7 +167,7 @@
 												<select name="Category" class="form-control">
 													<option>Select</option>
 													@foreach($logincategory as $category)
-														<option {{$edit->Category == $category->AFM_ID ? 'selected="selected"' : ''}}   value="{{$category->ALCM_ID}}">{{$category->Name}}</option>
+														<option {{$edit->Category == $category->ALCM_ID ? 'selected="selected"' : ''}}   value="{{$category->ALCM_ID}}">{{$category->Name}}</option>
 													@endforeach
 												</select>
 										  </div>

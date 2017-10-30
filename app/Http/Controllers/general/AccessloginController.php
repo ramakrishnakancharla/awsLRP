@@ -33,9 +33,7 @@ use Session;
 class AccessloginController extends Controller
 {
     public function index(){
-		$gendermaster = gendermaster::where('status',1)->get();
-		$maritalstatus = maritalstatus::where('status',1)->get();
-		$childmaster = childmaster::where('status',1)->get();
+
 		$logincategory = accesslogincategory::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
@@ -43,7 +41,20 @@ class AccessloginController extends Controller
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/accesslogin.index',compact('gendermaster','maritalstatus','childmaster','logincategory','metadata','relation','list','genericfamily','genericfriends'));
+		if(count($list) > 0){
+			$NameOfMetadata = generalaccesslogin::find($list[0]->GAL_ID)->metadataName;
+			$NameOfFamily = generalaccesslogin::find($list[0]->GAL_ID)->familyName;
+			$NameOfFriend = generalaccesslogin::find($list[0]->GAL_ID)->friendsName;
+			$NameOfAccessCate = generalaccesslogin::find($list[0]->GAL_ID)->AccessName;
+		}else{
+			$NameOfMetadata = "";
+			$NameOfFamily = "";
+			$NameOfFriend = "";
+			$NameOfAccessCate = "";
+		}
+		
+		
+		return view('generalinfo/accesslogin.index',compact('logincategory','metadata','relation','list','genericfamily','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfAccessCate'));
     }
 	public function store()
 	{
@@ -102,17 +113,18 @@ class AccessloginController extends Controller
 	public function show($id)
 	{
 		$list = generalaccesslogin::where('Status',1)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
 		$show = generalaccesslogin::where('Status',1)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/accesslogin.show',compact('list','genericfamily','show','genericfriends'));
+		$NameOfMetadata = generalaccesslogin::find($show->GAL_ID)->metadataName;
+		$NameOfFamily = generalaccesslogin::find($show->GAL_ID)->familyName;
+		$NameOfFriend = generalaccesslogin::find($show->GAL_ID)->friendsName;
+		$NameOfAccessCate = generalaccesslogin::find($show->GAL_ID)->AccessName;
+		
+		return view('generalinfo/accesslogin.show',compact('list','show','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfAccessCate'));
 	}
 	public function edit($id)
 	{
-		$gendermaster = gendermaster::where('status',1)->get();
-		$maritalstatus = maritalstatus::where('status',1)->get();
-		$childmaster = childmaster::where('status',1)->get();
+		
 		$logincategory = accesslogincategory::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
@@ -121,7 +133,12 @@ class AccessloginController extends Controller
 		$edit = generalaccesslogin::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/accesslogin.edit',compact('gendermaster','maritalstatus','childmaster','logincategory','metadata','relation','list','genericfamily','edit','genericfriends'));
+		$NameOfMetadata = generalaccesslogin::find($id)->metadataName;
+		$NameOfFamily = generalaccesslogin::find($id)->familyName;
+		$NameOfFriend = generalaccesslogin::find($id)->friendsName;
+		$NameOfAccessCate = generalaccesslogin::find($id)->AccessName;
+		
+		return view('generalinfo/accesslogin.edit',compact('logincategory','metadata','relation','list','genericfamily','edit','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfAccessCate'));
 	}
 	public function update($id)
 	{

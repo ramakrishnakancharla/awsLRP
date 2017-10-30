@@ -45,7 +45,11 @@ class LeisureactivitesController extends Controller
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/leisureactivites.index',compact('gendermaster','maritalstatus','childmaster','activitytype','skills','prociency','metadata','relation','list','genericfamily','genericfriends'));
+		$NameOfMetadata = generalleisureactivites::find($list[0]->GLA_ID)->metadataName;
+		$NameOfFamily = generalleisureactivites::find($list[0]->GLA_ID)->familyName;
+		$NameOfFriend = generalleisureactivites::find($list[0]->GLA_ID)->friendsName;
+		
+		return view('generalinfo/leisureactivites.index',compact('gendermaster','maritalstatus','childmaster','activitytype','skills','prociency','metadata','relation','list','genericfamily','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend'));
     }
 	public function store()
 	{
@@ -95,11 +99,16 @@ class LeisureactivitesController extends Controller
 	public function show($id)
 	{
 		$list = generalleisureactivites::where('Status',1)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
 		$show = generalleisureactivites::where('Status',1)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/leisureactivites.show',compact('list','genericfamily','show','genericfriends'));
+		$NameOfMetadata = generalleisureactivites::find($show->GLA_ID)->metadataName;
+		$NameOfFamily = generalleisureactivites::find($show->GLA_ID)->familyName;
+		$NameOfFriend = generalleisureactivites::find($show->GLA_ID)->friendsName;
+		$NameOfAct = generalleisureactivites::find($show->GLA_ID)->activityTypeName;
+		$NameOfSkill = generalleisureactivites::find($show->GLA_ID)->skillsName;
+		$NameOfProciency = generalleisureactivites::find($show->GLA_ID)->prociencyName;
+		
+		return view('generalinfo/leisureactivites.show',compact('list','show','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfAct','NameOfSkill','NameOfProciency'));
 	}
 	public function edit($id)
 	{
@@ -116,7 +125,11 @@ class LeisureactivitesController extends Controller
 		$edit = generalleisureactivites::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/leisureactivites.edit',compact('gendermaster','maritalstatus','childmaster','activitytype','skills','prociency','metadata','relation','list','genericfamily','edit','genericfriends'));
+		$NameOfMetadata = generalleisureactivites::find($id)->metadataName;
+		$NameOfFamily = generalleisureactivites::find($id)->familyName;
+		$NameOfFriend = generalleisureactivites::find($id)->friendsName;
+		
+		return view('generalinfo/leisureactivites.edit',compact('gendermaster','maritalstatus','childmaster','activitytype','skills','prociency','metadata','relation','list','genericfamily','edit','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend'));
 	}
 	public function update($id)
 	{

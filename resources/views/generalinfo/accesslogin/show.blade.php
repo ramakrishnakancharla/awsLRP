@@ -22,6 +22,15 @@
                               <img src="../../images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
+							<span class="pull-right" style="color:green">
+								@if($values->MetaID =='1')
+								  Self
+								@elseif($values->MetaID =='2')
+								  Family
+								@elseif($values->MetaID =='3')
+								  Friend
+								@endif
+							</span>
                               <span class="user">{{$values->Account}}</span>
                             </div>
                           </div>
@@ -53,19 +62,20 @@
 				<div class="panel panel-default">
 						  <div class="panel-heading panel-heading-gray">
 							<div class="row">
-								<div class="col-lg-6">
+							<div class="col-lg-12">
 									<div class="row">
-									  <div class="col-sm-4"><span class="text-muted">Choose Option</span></div>
-									  <div class="col-sm-8">{{$show->MetaID}}</div>
+									  <div class="col-sm-12"> 
+									  @if($NameOfMetadata->value =='Self')
+										  {{Auth::user()->name}} - ( {{$NameOfMetadata->value}} )
+									  @elseif($NameOfMetadata->value =='Family Member')
+										  {{$NameOfFamily->FirstName." ".$NameOfFamily->MiddleName." ".$NameOfFamily->LastName}} - ( {{$NameOfMetadata->value}} )
+									  @elseif($NameOfMetadata->value =='Relatives & Friends')
+										  {{$NameOfFriend->FirstName." ".$NameOfFriend->MiddleName." ".$NameOfFriend->LastName}} - ( {{$NameOfMetadata->value}} )
+									  @endif
+									  </div>
 									</div>
 								</div>
-								<div class="col-lg-6">
-									<div class="row">
-									  <div class="col-sm-4"><span class="text-muted">To Whom?</span></div>
-									  <div class="col-sm-8">{{$show->ToWhom}}</div>
-									</div>
-								</div>
-							</div>
+						</div>
 						  </div>
 						  
 						  <div class="panel-body">
@@ -141,7 +151,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Category</span></div>
-										  <div class="col-sm-8">{{$show->Category}}</div>
+										  <div class="col-sm-8">{{$NameOfAccessCate->Name}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">

@@ -18,6 +18,7 @@ use App\common_master\gendermaster;
 use App\common_master\maritalstatus;
 use App\common_master\childmaster;
 use App\common_master\objectsloanmaster;
+use App\common_master\documenttype;
 use Auth;
 use DateTime;
 use Illuminate\Support\Facades\Input;
@@ -32,13 +33,21 @@ class ObjectsonloanController extends Controller
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
 		$objectsloanmaster = objectsloanmaster::where('status',1)->get();
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalobjectsonloan::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		return view('generalinfo/objectsonloan.index',compact('gendermaster','maritalstatus','childmaster','objectsloanmaster','metadata','relation','list','genericfamily','genericfriends'));
+		if(count($list) > 0){
+			$NameOfObjectCat = generalobjectsonloan::find($list[0]->GOL_ID)->objectName;
+		}else{
+			$NameOfObjectCat = "";
+		}
+		
+		
+		return view('generalinfo/objectsonloan.index',compact('gendermaster','maritalstatus','childmaster','objectsloanmaster','documenttype','metadata','relation','list','genericfamily','genericfriends','NameOfObjectCat'));
     }
 	public function store()
 	{
@@ -110,11 +119,15 @@ class ObjectsonloanController extends Controller
 	public function show($id)
 	{
 		$list = generalobjectsonloan::where('Status',1)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
 		$show = generalobjectsonloan::where('Status',1)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
+
+		$NameOfMetadata = generalobjectsonloan::find($show->GOL_ID)->metadataName;
+		$NameOfFamily = generalobjectsonloan::find($show->GOL_ID)->familyName;
+		$NameOfFriend = generalobjectsonloan::find($show->GOL_ID)->friendsName;
+		$NameOfDocType = generalobjectsonloan::find($show->GOL_ID)->docTypeName;
+		$NameOfObjectCat = generalobjectsonloan::find($show->GOL_ID)->objectName;
 		
-		return view('generalinfo/objectsonloan.show',compact('list','genericfamily','show','genericfriends'));
+		return view('generalinfo/objectsonloan.show',compact('list','show','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfDocType','NameOfObjectCat'));
 	}
 	public function edit($id)
 	{
@@ -122,14 +135,16 @@ class ObjectsonloanController extends Controller
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
 		$objectsloanmaster = objectsloanmaster::where('status',1)->get();
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalobjectsonloan::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$edit = generalobjectsonloan::where('Status',1)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
+		$NameOfObjectCat = generalobjectsonloan::find($id)->objectName;
 		
-		return view('generalinfo/objectsonloan.edit',compact('gendermaster','maritalstatus','childmaster','objectsloanmaster','metadata','relation','list','genericfamily','edit','genericfriends'));
+		return view('generalinfo/objectsonloan.edit',compact('gendermaster','maritalstatus','childmaster','objectsloanmaster','documenttype','metadata','relation','list','genericfamily','edit','genericfriends','NameOfObjectCat'));
 	}
 	public function update($id)
 	{

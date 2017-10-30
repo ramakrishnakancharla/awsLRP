@@ -35,16 +35,21 @@ class AddressController extends Controller
 		$addressmaster = addressmaster::where('status',1)->get();
 		$countrymaster = countrymaster::where('Status',1)->orderBy('Name', 'asc')->get();
 		$citymaster = citymaster::where('Status',1)->orderBy('Name', 'asc')->paginate(300);  // need to chnage
-		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->paginate(300);  // need to chnage
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generaladdress::where('Status',1)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
-
-		$NameOfCity = generaladdress::find($list[0]->GA_ID)->cityName;
-		$NameOfAddressType = generaladdress::find($list[0]->GA_ID)->addressTypeName;
 		
+		if(count($list) > 0){
+			$NameOfCity = generaladdress::find($list[0]->GA_ID)->cityName;
+			$NameOfAddressType = generaladdress::find($list[0]->GA_ID)->addressTypeName;
+		}else{
+			$NameOfCity = "";
+			$NameOfAddressType = "";
+		}
+
 		return view('generalinfo/address.index',compact('gendermaster','maritalstatus','childmaster','addressmaster','countrymaster','citymaster','documenttype','metadata','relation','list','genericfamily','genericfriends','NameOfCity','NameOfAddressType'));
     }
 	
@@ -130,7 +135,7 @@ class AddressController extends Controller
 		$countrymaster = countrymaster::where('Status',1)->orderBy('Name', 'asc')->get();
 		$statemaster = statemaster::where('Status',1)->orderBy('Name', 'asc')->get();
 		$citymaster = citymaster::where('Status',1)->orderBy('Name', 'asc')->paginate(300); // need to change
-		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->paginate(300); // need to change
+		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generaladdress::where('Status',1)->get();

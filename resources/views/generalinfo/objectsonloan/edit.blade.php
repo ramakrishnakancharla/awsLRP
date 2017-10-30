@@ -24,7 +24,16 @@
                               <img src="../../images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
-                              <span class="user">{{$values->ObjectName}}</span>
+							<span class="pull-right" style="color:green">
+								@if($values->MetaID =='1')
+								  Self
+								@elseif($values->MetaID =='2')
+								  Family
+								@elseif($values->MetaID =='3')
+								  Friend
+								@endif
+							</span>
+                              <span class="user">{{$NameOfObjectCat->Name}}</span>
                             </div>
                           </div>
                         </a>
@@ -88,7 +97,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid From</span></div>
-										  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidFrom)->format('d/m/Y'}}"></div>
+										  <div class="col-sm-8"><input id="ValidFromDate" name="ValidFromDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidFrom)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									 
@@ -139,7 +148,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Given Date</span></div>
-										  <div class="col-sm-8"><input id="GivenDate" name="GivenDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->GivenDate)->format('d/m/Y'}}"></div>
+										  <div class="col-sm-8"><input id="GivenDate" name="GivenDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->GivenDate)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									  
@@ -150,8 +159,9 @@
 										  <div class="col-sm-8">
 												<select name="DocType" id="DocType" class="form-control">
 													<option>Select</option>
-													<option value="1">PAN</option>
-													<option value="PassPort">PassPort</option>
+													@foreach($documenttype as $type)
+													<option {{$edit->DocType == $type->DTM_ID ? 'selected="selected"' : ''}} value="{{$type->DTM_ID}}">{{$type->Name}}</option>
+													@endforeach
 												</select>
 										  </div>
 										</div>
@@ -169,7 +179,7 @@
 									   <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Valid To</span></div>
-										  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidTo)->format('d/m/Y'}}"></div>
+										  <div class="col-sm-8"><input id="ValidToDate" name="ValidToDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ValidTo)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -211,13 +221,13 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Date Of Issue</span></div>
-										  <div class="col-sm-8"><input id="DateOfIssue" name="DateOfIssue" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->DateOfIssue)->format('d/m/Y'}}"></div>
+										  <div class="col-sm-8"><input id="DateOfIssue" name="DateOfIssue" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->DateOfIssue)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Return Date</span></div>
-										  <div class="col-sm-8"><input id="ReturnDate" name="ReturnDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ReturnDate)->format('d/m/Y'}}"></div>
+										  <div class="col-sm-8"><input id="ReturnDate" name="ReturnDate" type="text" class="form-control datepicker" value="{{Carbon\Carbon::parse($edit->ReturnDate)->format('d/m/Y')}}"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
