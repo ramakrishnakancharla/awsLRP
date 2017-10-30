@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 //use App\personelids;
 use App\generalpersonaldata;
 use App\generaladdress;
-use App\metadata;
+use App\common_master\metadata;
 use App\genericfamily;
 use App\genericfriends;
 use App\generalcommunications;

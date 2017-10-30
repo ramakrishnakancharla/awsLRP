@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\genericfamilydata;
 use App\genericfamily;
 use App\genericfriends;
-use App\metadata;
+use App\common_master\metadata;
 use Auth;
 use DateTime;
 
