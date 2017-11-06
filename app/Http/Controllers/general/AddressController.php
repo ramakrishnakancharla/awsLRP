@@ -38,7 +38,7 @@ class AddressController extends Controller
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generaladdress::where('Status',1)->get();
+		$list = generaladdress::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
@@ -112,8 +112,8 @@ class AddressController extends Controller
 	}
 	public function show($id)
 	{
-		$list = generaladdress::where('Status',1)->get();
-		$show = generaladdress::where('Status',1)->find($id);
+		$list = generaladdress::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$show = generaladdress::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		$NameOfMetadata = generaladdress::find($show->GA_ID)->metadataName;
 		$NameOfFamily = generaladdress::find($show->GA_ID)->familyName;
@@ -138,9 +138,9 @@ class AddressController extends Controller
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generaladdress::where('Status',1)->get();
+		$list = generaladdress::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
-		$edit = generaladdress::where('Status',1)->find($id);
+		$edit = generaladdress::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
 		$NameOfCity = generaladdress::find($id)->cityName;
@@ -174,7 +174,7 @@ class AddressController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$generaladdressupdate = generaladdress::where('Status',1)->find($id);
+			$generaladdressupdate = generaladdress::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;

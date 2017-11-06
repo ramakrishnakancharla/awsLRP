@@ -37,7 +37,7 @@ class AccessloginController extends Controller
 		$logincategory = accesslogincategory::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalaccesslogin::where('Status',1)->get();
+		$list = generalaccesslogin::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
@@ -112,8 +112,8 @@ class AccessloginController extends Controller
 	}
 	public function show($id)
 	{
-		$list = generalaccesslogin::where('Status',1)->get();
-		$show = generalaccesslogin::where('Status',1)->find($id);
+		$list = generalaccesslogin::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$show = generalaccesslogin::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		$NameOfMetadata = generalaccesslogin::find($show->GAL_ID)->metadataName;
 		$NameOfFamily = generalaccesslogin::find($show->GAL_ID)->familyName;
@@ -128,9 +128,9 @@ class AccessloginController extends Controller
 		$logincategory = accesslogincategory::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalaccesslogin::where('Status',1)->get();
+		$list = generalaccesslogin::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
-		$edit = generalaccesslogin::where('Status',1)->find($id);
+		$edit = generalaccesslogin::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
 		$NameOfMetadata = generalaccesslogin::find($id)->metadataName;
@@ -156,7 +156,7 @@ class AccessloginController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$generalaccessloginpdate = generalaccesslogin::where('Status',1)->find($id);
+			$generalaccessloginpdate = generalaccesslogin::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;

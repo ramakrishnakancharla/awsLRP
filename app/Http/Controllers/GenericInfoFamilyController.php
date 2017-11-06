@@ -29,7 +29,7 @@ class GenericInfoFamilyController extends Controller
 		$titlemaster = titlemaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = genericfamily::where('Status',1)->get();
+		$list = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		return view('genericinfo/family.index',compact('gendermaster','maritalstatus','childmaster','countrymaster','religionmaster','titlemaster','metadata','relation','list'));
     }
@@ -90,8 +90,8 @@ class GenericInfoFamilyController extends Controller
 	}
 	public function show($id)
 	{
-		$list = genericfamily::where('Status',1)->get();
-		$view = genericfamily::where('Status',1)->find($id);
+		$list = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$view = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		return view('genericinfo/family.show',compact('list','view'));
 	}
@@ -105,8 +105,8 @@ class GenericInfoFamilyController extends Controller
 		$titlemaster = titlemaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = genericfamily::where('Status',1)->get();
-		$edit = genericfamily::where('Status',1)->find($id);
+		$list = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$edit = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		return view('genericinfo/family.edit',compact('gendermaster','maritalstatus','childmaster','countrymaster','religionmaster','titlemaster','metadata','relation','list','edit'));
 	}
@@ -126,7 +126,7 @@ class GenericInfoFamilyController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$genericfamilyupdate = genericfamily::where('Status',1)->find($id);
+			$genericfamilyupdate = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			$target_dir = "generic_upload/family/";
 			if($_FILES["Image"]["name"] !=''){

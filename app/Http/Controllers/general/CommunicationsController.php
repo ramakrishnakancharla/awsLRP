@@ -31,7 +31,7 @@ class CommunicationsController extends Controller
 		$communicationmaster = communicationmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalcommunications::where('Status',1)->get();
+		$list = generalcommunications::where('Status',1)->get()->where('Txnuser',Auth::user()->id);
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
@@ -90,8 +90,8 @@ class CommunicationsController extends Controller
 	}
 	public function show($id)
 	{
-		$list = generalcommunications::where('Status',1)->get();
-		$show = generalcommunications::where('Status',1)->find($id);
+		$list = generalcommunications::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$show = generalcommunications::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		$NameOfMetadata = generalcommunications::find($show->GC_ID)->metadataName;
 		$NameOfFamily = generalcommunications::find($show->GC_ID)->familyName;
@@ -108,9 +108,9 @@ class CommunicationsController extends Controller
 		$communicationmaster = communicationmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalcommunications::where('Status',1)->get();
+		$list = generalcommunications::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
-		$edit = generalcommunications::where('Status',1)->find($id);
+		$edit = generalcommunications::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		$NameOfCommui = generalcommunications::find($id)->CommuiName;
 		
@@ -132,7 +132,7 @@ class CommunicationsController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$generalcommunicationsupdate = generalcommunications::where('Status',1)->find($id);
+			$generalcommunicationsupdate = generalcommunications::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;

@@ -36,7 +36,7 @@ class PhotosController extends Controller
 		$photosfinishmaster = photosfinishmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalphotos::where('Status',1)->get();
+		$list = generalphotos::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
@@ -105,8 +105,8 @@ class PhotosController extends Controller
 	}
 	public function show($id)
 	{
-		$list = generalphotos::where('Status',1)->get();
-		$show = generalphotos::where('Status',1)->find($id);
+		$list = generalphotos::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$show = generalphotos::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		$NameOfMetadata = generalphotos::find($show->GPH_ID)->metadataName;
 		$NameOfFamily = generalphotos::find($show->GPH_ID)->familyName;
@@ -119,9 +119,9 @@ class PhotosController extends Controller
 		$photosfinishmaster = photosfinishmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalphotos::where('Status',1)->get();
+		$list = generalphotos::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
-		$edit = generalphotos::where('Status',1)->find($id);
+		$edit = generalphotos::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
 		$NameOfMetadata = generalphotos::find($id)->metadataName;
@@ -146,7 +146,7 @@ class PhotosController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$generalphotospdate = generalphotos::where('Status',1)->find($id);
+			$generalphotospdate = generalphotos::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;

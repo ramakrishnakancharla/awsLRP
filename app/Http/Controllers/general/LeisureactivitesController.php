@@ -41,13 +41,19 @@ class LeisureactivitesController extends Controller
 		$prociency = prociency::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalleisureactivites::where('Status',1)->get();
+		$list = generalleisureactivites::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		$NameOfMetadata = generalleisureactivites::find($list[0]->GLA_ID)->metadataName;
-		$NameOfFamily = generalleisureactivites::find($list[0]->GLA_ID)->familyName;
-		$NameOfFriend = generalleisureactivites::find($list[0]->GLA_ID)->friendsName;
+		if(count($list) > 0){
+			$NameOfMetadata = generalleisureactivites::find($list[0]->GLA_ID)->metadataName;
+			$NameOfFamily = generalleisureactivites::find($list[0]->GLA_ID)->familyName;
+			$NameOfFriend = generalleisureactivites::find($list[0]->GLA_ID)->friendsName;
+		}else{
+			$NameOfMetadata ="";
+			$NameOfFamily ="";
+			$NameOfFriend ="";
+		}
 		
 		return view('generalinfo/leisureactivites.index',compact('gendermaster','maritalstatus','childmaster','activitytype','skills','prociency','metadata','relation','list','genericfamily','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend'));
     }
@@ -98,8 +104,8 @@ class LeisureactivitesController extends Controller
 	}
 	public function show($id)
 	{
-		$list = generalleisureactivites::where('Status',1)->get();
-		$show = generalleisureactivites::where('Status',1)->find($id);
+		$list = generalleisureactivites::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$show = generalleisureactivites::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		$NameOfMetadata = generalleisureactivites::find($show->GLA_ID)->metadataName;
 		$NameOfFamily = generalleisureactivites::find($show->GLA_ID)->familyName;
@@ -120,9 +126,9 @@ class LeisureactivitesController extends Controller
 		$prociency = prociency::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalleisureactivites::where('Status',1)->get();
+		$list = generalleisureactivites::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
-		$edit = generalleisureactivites::where('Status',1)->find($id);
+		$edit = generalleisureactivites::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
 		$NameOfMetadata = generalleisureactivites::find($id)->metadataName;
@@ -147,7 +153,7 @@ class LeisureactivitesController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$generalleisureactivitespdate = generalleisureactivites::where('Status',1)->find($id);
+			$generalleisureactivitespdate = generalleisureactivites::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;

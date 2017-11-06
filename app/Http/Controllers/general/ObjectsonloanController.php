@@ -36,7 +36,7 @@ class ObjectsonloanController extends Controller
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalobjectsonloan::where('Status',1)->get();
+		$list = generalobjectsonloan::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
@@ -118,8 +118,8 @@ class ObjectsonloanController extends Controller
 	}
 	public function show($id)
 	{
-		$list = generalobjectsonloan::where('Status',1)->get();
-		$show = generalobjectsonloan::where('Status',1)->find($id);
+		$list = generalobjectsonloan::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$show = generalobjectsonloan::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 
 		$NameOfMetadata = generalobjectsonloan::find($show->GOL_ID)->metadataName;
 		$NameOfFamily = generalobjectsonloan::find($show->GOL_ID)->familyName;
@@ -138,9 +138,9 @@ class ObjectsonloanController extends Controller
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalobjectsonloan::where('Status',1)->get();
+		$list = generalobjectsonloan::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
-		$edit = generalobjectsonloan::where('Status',1)->find($id);
+		$edit = generalobjectsonloan::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		$NameOfObjectCat = generalobjectsonloan::find($id)->objectName;
 		
@@ -162,7 +162,7 @@ class ObjectsonloanController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$generalobjectsonloanpdate = generalobjectsonloan::where('Status',1)->find($id);
+			$generalobjectsonloanpdate = generalobjectsonloan::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;

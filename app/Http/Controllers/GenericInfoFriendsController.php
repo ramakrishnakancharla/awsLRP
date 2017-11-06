@@ -30,7 +30,7 @@ class GenericInfoFriendsController extends Controller
 		$titlemaster = titlemaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = genericfriends::where('Status',1)->get();
+		$list = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		return view('genericinfo/friends.index',compact('gendermaster','maritalstatus','childmaster','countrymaster','religionmaster','titlemaster','metadata','relation','list'));
     }
@@ -89,8 +89,8 @@ class GenericInfoFriendsController extends Controller
 	}
 	public function show($id)
 	{
-		$list = genericfriends::where('Status',1)->get();
-		$view = genericfriends::where('Status',1)->find($id);
+		$list = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$view = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		return view('genericinfo/friends.show',compact('list','view'));
 	}
@@ -104,8 +104,8 @@ class GenericInfoFriendsController extends Controller
 		$titlemaster = titlemaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = genericfriends::where('Status',1)->get();
-		$edit = genericfriends::where('Status',1)->find($id);
+		$list = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$edit = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		return view('genericinfo/friends.edit',compact('gendermaster','maritalstatus','childmaster','countrymaster','religionmaster','titlemaster','metadata','relation','list','edit'));
 	}
@@ -125,7 +125,7 @@ class GenericInfoFriendsController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$genericfriendsupdate = genericfriends::where('Status',1)->find($id);
+			$genericfriendsupdate = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			$target_dir = "generic_upload/friends/";
 			if($_FILES["Image"]["name"] !=''){

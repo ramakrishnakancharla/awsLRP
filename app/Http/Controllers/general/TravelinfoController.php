@@ -43,17 +43,21 @@ class TravelinfoController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
-		$list = generaltravelinfo::where('Status',1)->get();
+		$list = generaltravelinfo::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
-		$NameOfMetadata = generaltravelinfo::find($list[0]->GTI_ID)->metadataName;
-		$NameOfFamily = generaltravelinfo::find($list[0]->GTI_ID)->familyName;
-		$NameOfFriend = generaltravelinfo::find($list[0]->GTI_ID)->friendsName;
+		
 		if(count($list) > 0){
 			$NameOfCountry = generaltravelinfo::find($list[0]->GTI_ID)->countryName;
+			$NameOfMetadata = generaltravelinfo::find($list[0]->GTI_ID)->metadataName;
+			$NameOfFamily = generaltravelinfo::find($list[0]->GTI_ID)->familyName;
+			$NameOfFriend = generaltravelinfo::find($list[0]->GTI_ID)->friendsName;
 		}else{
 			$NameOfCountry = "";
+			$NameOfMetadata = "";
+			$NameOfFamily = "";
+			$NameOfFriend = "";
 		}
 		
 		return view('generalinfo/travelinfo.index',compact('gendermaster','maritalstatus','childmaster','religionmaster','countrymaster','modeoftransport','accommodation','metadata','relation','documenttype','list','genericfamily','genericfriends','NameOfMetadata','NameOfFamily','NameOfFriend','NameOfCountry'));
@@ -128,8 +132,8 @@ class TravelinfoController extends Controller
 	}
 	public function show($id)
 	{
-		$list = generaltravelinfo::where('Status',1)->get();
-		$show = generaltravelinfo::where('Status',1)->find($id);
+		$list = generaltravelinfo::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$show = generaltravelinfo::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		$NameOfMetadata = generaltravelinfo::find($show->GTI_ID)->metadataName;
 		$NameOfFamily = generaltravelinfo::find($show->GTI_ID)->familyName;
@@ -154,9 +158,9 @@ class TravelinfoController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
-		$list = generaltravelinfo::where('Status',1)->get();
+		$list = generaltravelinfo::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
-		$edit = generaltravelinfo::where('Status',1)->find($id);
+		$edit = generaltravelinfo::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
 		$NameOfMetadata = generaltravelinfo::find($id)->metadataName;
@@ -187,7 +191,7 @@ class TravelinfoController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$generaltravelinfopdate = generaltravelinfo::where('Status',1)->find($id);
+			$generaltravelinfopdate = generaltravelinfo::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;

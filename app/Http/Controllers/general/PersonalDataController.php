@@ -33,7 +33,7 @@ class PersonalDataController extends Controller
 		$religionmaster = religionmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalpersonaldata::where('Status',1)->get();
+		$list = generalpersonaldata::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
@@ -91,8 +91,8 @@ class PersonalDataController extends Controller
 	}
 	public function show($id)
 	{
-		$list = generalpersonaldata::where('Status',1)->get();
-		$view = generalpersonaldata::where('Status',1)->find($id);
+		$list = generalpersonaldata::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$view = generalpersonaldata::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		$NameOfMetadata = generalpersonaldata::find($view->GPD_ID)->metadataName;
 		$NameOfFamily = generalpersonaldata::find($view->GPD_ID)->familyName;
@@ -115,9 +115,9 @@ class PersonalDataController extends Controller
 		$religionmaster = religionmaster::where('status',1)->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalpersonaldata::where('Status',1)->get();
+		$list = generalpersonaldata::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
-		$generalpersonaldataedit = generalpersonaldata::where('Status',1)->find($id);
+		$generalpersonaldataedit = generalpersonaldata::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
 		return view('generalinfo/personalData.edit',compact('gendermaster','maritalstatus','childmaster','titlemaster','countrymaster','religionmaster','metadata','relation','list','genericfamily','generalpersonaldataedit','genericfriends'));
@@ -138,7 +138,7 @@ class PersonalDataController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$generalpersonaldataupdate = generalpersonaldata::where('Status',1)->find($id);
+			$generalpersonaldataupdate = generalpersonaldata::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;

@@ -38,7 +38,7 @@ class PersonaldocumentsController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
-		$list = generaldocuments::where('Status',1)->get();
+		$list = generaldocuments::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
@@ -113,8 +113,8 @@ class PersonaldocumentsController extends Controller
 	}
 	public function show($id)
 	{
-		$list = generaldocuments::where('Status',1)->get();
-		$show = generaldocuments::where('Status',1)->find($id);
+		$list = generaldocuments::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$show = generaldocuments::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		$NameOfMetadata = generaldocuments::find($show->GD_ID)->metadataName;
 		$NameOfFamily = generaldocuments::find($show->GD_ID)->familyName;
@@ -132,9 +132,9 @@ class PersonaldocumentsController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$documentcategory = documentcategory::where('status',1)->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
-		$list = generaldocuments::where('Status',1)->get();
+		$list = generaldocuments::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
-		$edit = generaldocuments::where('Status',1)->find($id);
+		$edit = generaldocuments::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
 		if(count($list) > 0){
@@ -167,7 +167,7 @@ class PersonaldocumentsController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$generaldocumentspdate = generaldocuments::where('Status',1)->find($id);
+			$generaldocumentspdate = generaldocuments::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;

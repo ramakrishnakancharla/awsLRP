@@ -38,7 +38,7 @@ class PersonalIDsController extends Controller
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalpersonalids::where('Status',1)->get();
+		$list = generalpersonalids::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
@@ -113,8 +113,8 @@ class PersonalIDsController extends Controller
 	}
 	public function show($id)
 	{
-		$list = generalpersonalids::where('Status',1)->get();
-		$show = generalpersonalids::where('Status',1)->find($id);
+		$list = generalpersonalids::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$show = generalpersonalids::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		$NameOfMetadata = generalpersonalids::find($show->GPI_ID)->metadataName;
 		$NameOfFamily = generalpersonalids::find($show->GPI_ID)->familyName;
@@ -138,9 +138,9 @@ class PersonalIDsController extends Controller
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
-		$list = generalpersonalids::where('Status',1)->get();
+		$list = generalpersonalids::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
-		$edit = generalpersonalids::where('Status',1)->find($id);
+		$edit = generalpersonalids::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		$NameOfIDType = generalpersonalids::find($id)->IDTypeName;
 		
@@ -162,7 +162,7 @@ class PersonalIDsController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$generalpersonalidsupdate = generalpersonalids::where('Status',1)->find($id);
+			$generalpersonalidsupdate = generalpersonalids::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;

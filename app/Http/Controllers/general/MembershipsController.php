@@ -43,7 +43,7 @@ class MembershipsController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
-		$list = generalmembership::where('Status',1)->get();
+		$list = generalmembership::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
@@ -112,8 +112,8 @@ class MembershipsController extends Controller
 	}
 	public function show($id)
 	{
-		$list = generalmembership::where('Status',1)->get();
-		$show = generalmembership::where('Status',1)->find($id);
+		$list = generalmembership::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$show = generalmembership::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
 		$NameOfMetadata = generalmembership::find($show->GMS_ID)->metadataName;
 		$NameOfFamily = generalmembership::find($show->GMS_ID)->familyName;
@@ -138,9 +138,9 @@ class MembershipsController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
-		$list = generalmembership::where('Status',1)->get();
+		$list = generalmembership::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$genericfamily = genericfamily::where('Status',1)->get();
-		$edit = generalmembership::where('Status',1)->find($id);
+		$edit = generalmembership::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		$genericfriends = genericfriends::where('Status',1)->get();
 		
 		return view('generalinfo/memberships.edit',compact('gendermaster','maritalstatus','childmaster','facilitiemaster','allowed','category','membershiptype','sponceror','metadata','relation','documenttype','list','genericfamily','edit','genericfriends'));
@@ -161,7 +161,7 @@ class MembershipsController extends Controller
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$generalmembershipupdate = generalmembership::where('Status',1)->find($id);
+			$generalmembershipupdate = generalmembership::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;
