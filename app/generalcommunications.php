@@ -25,4 +25,11 @@ class generalcommunications extends Model
 	{
 		return $this->hasOne('App\common_master\communicationmaster','COM_ID','CommunicationType');
 	}
+
+
+	public function communicationmaster()
+	{
+		return $this->belongsToMany('App\common_master\communicationmaster','common_communication_master','COM_ID','CommunicationType');
+		
+	}
 }

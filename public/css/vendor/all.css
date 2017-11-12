@@ -26,6 +26,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * ========================================================= */
+.star-class:after { 
+   content:"*";
+   color:red;
+   font-size:22px;
+}
  .height45{
 	 height:45px !important;
  }

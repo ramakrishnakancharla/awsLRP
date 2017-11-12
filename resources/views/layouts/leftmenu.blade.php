@@ -5,7 +5,7 @@
       <li class="hasSubmenu">
         <a href="#timeline"><i class="icon-ship-wheel"></i> <span>General Info</span></a>
         <ul id="timeline">
-          <li><a href="{{ route('generalpersonaldata') }}"><i class="fa fa-circle-o"></i> <span>Personal Data</span></a></li>
+         <!-- <li><a href="{{ route('generalpersonaldata') }}"><i class="fa fa-circle-o"></i> <span>Personal Data</span></a></li>-->
           <li><a href="general-address.html"><i class="fa fa-circle-o"></i> <span>Address</span></a></li>
           <li><a href="general-communications.html"><i class="fa fa-circle-o"></i> <span>Communications</span></a></li>
           <li><a href="general-personnelids.html"><i class="fa fa-circle-o"></i> <span>Personnel IDs</span></a></li>

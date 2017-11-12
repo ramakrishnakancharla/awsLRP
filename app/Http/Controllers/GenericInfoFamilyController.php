@@ -93,7 +93,16 @@ class GenericInfoFamilyController extends Controller
 		$list = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$view = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
-		return view('genericinfo/family.show',compact('list','view'));
+		$NameOfMetadata = genericfamily::find($view->AFM_ID)->metadataName;
+		$NameOfFamily = genericfamily::find($view->AFM_ID)->familyName;
+		$NameOfTitile = genericfamily::find($view->AFM_ID)->titleName;
+		$NameOfGender = genericfamily::find($view->AFM_ID)->genderName;
+		$NameOfReligion = genericfamily::find($view->AFM_ID)->religionName;
+		$NameOfNationality = genericfamily::find($view->AFM_ID)->nationalityName;
+		$NameOfMarital = genericfamily::find($view->AFM_ID)->maritalName;
+		$NameOfRelation = genericfamily::find($view->AFM_ID)->relationName;
+		
+		return view('genericinfo/family.show',compact('list','view','NameOfTitile','NameOfGender','NameOfReligion','NameOfNationality','NameOfMarital','NameOfMetadata','NameOfFamily','NameOfRelation'));
 	}
 	public function edit($id)
 	{

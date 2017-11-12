@@ -169,10 +169,12 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <!-- User -->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="images/people/50/guy-5.jpg" width="35" alt="Bill" class="img-circle" /> Bill <span class="caret"></span>
+                <img src="{{ asset('images/people/50/guy-5.jpg')}}" width="35" alt="{{Auth::user()->name}}"  class="img-circle" /> {{Auth::user()->name}} <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Change Password</a></li>
                 <li><a href="#">Messages</a></li>
                 <li><a href="{{ route('logout')}}">Logout</a></li>
               </ul>
@@ -184,7 +186,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <div class="search-1">
               <div class="input-group">
                 <span class="input-group-addon"><i class="icon-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search a friend">
+                <input type="text" class="form-control" placeholder="Search">
               </div>
             </div>
           </form>
@@ -224,7 +226,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
           <li class="hasSubmenu">
             <a href="#timeline"><i class="icon-ship-wheel"></i> <span>General Info</span></a>
             <ul id="timeline">
-              <li><a href="{{URL::to('general-personal-data') }}"><i class="fa fa-circle-o"></i> <span>Personal Data</span></a></li>
+              <!--<li><a href="{{URL::to('general-personal-data') }}"><i class="fa fa-circle-o"></i> <span>Personal Data</span></a></li>-->
               <li><a href="{{URL::to('general-address') }}"><i class="fa fa-circle-o"></i> <span>Address</span></a></li>
               <li><a href="{{URL::to('general-communications') }}"><i class="fa fa-circle-o"></i> <span>Communications</span></a></li>
               <li><a href="{{URL::to('general-personalIds') }}"><i class="fa fa-circle-o"></i> <span>Personnel IDs</span></a></li>

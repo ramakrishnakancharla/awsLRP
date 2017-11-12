@@ -56,7 +56,6 @@ class PersonalDataController extends Controller
 		} else {
 			// store
 			$generalpersonaldataupdate = new generalpersonaldata;
-			
 			if(Input::get('options') == 1)
 				$towhom = Auth::user()->id;
 			elseif(Input::get('options') == 2)

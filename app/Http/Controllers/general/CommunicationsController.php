@@ -34,7 +34,8 @@ class CommunicationsController extends Controller
 		$list = generalcommunications::where('Status',1)->get()->where('Txnuser',Auth::user()->id);
 		$genericfamily = genericfamily::where('Status',1)->get();
 		$genericfriends = genericfriends::where('Status',1)->get();
-		
+		$ue=communicationmaster::find(2);
+		return $ue;
 		if(count($list) > 0){
 			$NameOfCommui = generalcommunications::find($list[0]->GC_ID)->CommuiName;
 		}else{

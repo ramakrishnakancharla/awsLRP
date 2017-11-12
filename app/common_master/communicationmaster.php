@@ -8,4 +8,5 @@ class communicationmaster extends Model
 {
     public $table = "common_communication_master";
 	protected $primaryKey = 'COM_ID';
+	
 }

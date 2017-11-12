@@ -80,7 +80,7 @@
 									    <input type="text" class="form-control" name="SelfId" id="SelfId" readonly value="{{Auth::user()->name}}" />
 										<select name="FamilyId" id="FamilyId" class="form-control">
 											@foreach($genericfamily as $family)
-												<option value="{{$family->GPD_ID}}">{{$family->FirstName}} {{$family->MiddleName}} {{$family->LastName}}</option>
+												<option value="{{$family->AFM_ID}}">{{$family->FirstName}} {{$family->MiddleName}} {{$family->LastName}}</option>
 											@endforeach
 										</select>
 										<select name="FriendsId" id="FriendsId" class="form-control">

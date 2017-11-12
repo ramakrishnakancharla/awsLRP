@@ -15,14 +15,17 @@
                   <div class="panel panel-default">
 					<ul class="list-group listSearch">
 					@foreach($list as $key=>$values)
+						<?php
+							$img = DB::table('addfamilymembers')->where('AFM_ID',$values->AFM_ID)->get(); 
+						?>
                       <li class="list-group-item">
                         <a href="{{ URL::to('genericinfofamily/' . $values->AFM_ID) }}" class="pointer">
                           <div class="media">
                             <div class="media-left">
-                              <img src="../../images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
+                              <img src="{{URL::to($img[0]->Folder.$img[0]->Image)}}" width="50" height="48" alt="{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}" title="{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}" class="media-object" />
                             </div>
                             <div class="media-body">
-                              <span class="user">{{$values->FirstName}}</span>
+                              <span class="user" title="{{$values->FirstName." ".$values->MiddleName." ".$values->LastName,18}}">{{str_limit($values->FirstName." ".$values->MiddleName." ".$values->LastName,18)}}</span>
                               <div class="message">DOB : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>
                             </div>
                           </div>
@@ -54,12 +57,12 @@
 					<div class="panel panel-default">
 						  <div class="panel-heading panel-heading-gray">
 							<div class="row">
-								<div class="col-lg-6">
+								 @if(count($NameOfFamily) > 0)<div class="col-lg-6">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Family Member</span></div>
-									  <div class="col-sm-8">: {{$view->Parent}}</div>
+									  <div class="col-sm-8">:{{$NameOfFamily->FirstName." ".$NameOfFamily->MiddleName." ".$NameOfFamily->LastName}}</div>
 									</div>
-								</div>
+								</div> @else <div class="col-lg-4"></div> @endif
 								<div class="col-lg-6">
 									<div class="row">
 									  <div class="col-sm-4"><span class="text-muted">Priority</span></div>
@@ -76,7 +79,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Title</span></div>
-										  <div class="col-sm-8">: {{$view->Title}}</div>
+										  <div class="col-sm-8">: @if(count($NameOfTitile) > 0){{$NameOfTitile->Name}} @endif</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -100,13 +103,13 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Gender</span></div>
-										  <div class="col-sm-8">: {{$view->Gender}}</div>
+										  <div class="col-sm-8">: @if(count($NameOfGender) > 0) {{$NameOfGender->Name}} @endif</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">DOB</span></div>
-										  <div class="col-sm-8">: {{$view->DOB}}</div>
+										  <div class="col-sm-8">: {{Carbon\Carbon::parse($view->DOB)->format('d/m/Y')}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -128,42 +131,42 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Age</span></div>
-										  <div class="col-sm-8">: {{$view->Parent}}</div>
+										  <div class="col-sm-8">: {{$view->Age}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Relationship</span></div>
-										  <div class="col-sm-8">: {{$view->Relationship}}</div>
+										  <div class="col-sm-8">: @if(count($NameOfRelation) > 0) {{$NameOfRelation->value}} @endif</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Nationality</span></div>
-										  <div class="col-sm-8">: {{$view->Nationality}}</div>
+										  <div class="col-sm-8">: @if(count($NameOfNationality) > 0) {{$NameOfNationality->Name}} @endif</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Religion</span></div>
-										  <div class="col-sm-8">: {{$view->Religion}}</div>
+										  <div class="col-sm-8">: @if(count($NameOfReligion) > 0) {{$NameOfReligion->Name}} @endif</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Marital Status</span></div>
-										  <div class="col-sm-8">: {{$view->MaritalStatus}}</div>
+										  <div class="col-sm-8">: @if(count($NameOfMarital) > 0) {{$NameOfMarital->Name}} @endif</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Married Since</span></div>
-										  <div class="col-sm-8">: {{$view->MarriedSince}}</div>
+										  <div class="col-sm-8">: {{Carbon\Carbon::parse($view->MarriedSince)->format('d/m/Y')}}</div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
 										<div class="row">
-										  <div class="col-sm-4"><span class="text-muted">NO. Of Childrens</span></div>
+										  <div class="col-sm-4"><span class="text-muted">No. Of Childrens</span></div>
 										  <div class="col-sm-8">: {{$view->NoOfChildrens}}</div>
 										</div>
 									  </li>
