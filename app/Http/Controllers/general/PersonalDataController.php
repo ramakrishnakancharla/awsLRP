@@ -34,8 +34,8 @@ class PersonalDataController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalpersonaldata::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		return view('generalinfo/personalData.index',compact('gendermaster','maritalstatus','childmaster','titlemaster','countrymaster','religionmaster','metadata','relation','list','genericfamily','genericfriends'));
     }
@@ -115,9 +115,9 @@ class PersonalDataController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalpersonaldata::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$generalpersonaldataedit = generalpersonaldata::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		return view('generalinfo/personalData.edit',compact('gendermaster','maritalstatus','childmaster','titlemaster','countrymaster','religionmaster','metadata','relation','list','genericfamily','generalpersonaldataedit','genericfriends'));
 	}

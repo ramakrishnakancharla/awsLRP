@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Validator;
 use Session;
+
 class GenericInfoFamilyController extends Controller
 {
     public function index(){
@@ -25,10 +26,10 @@ class GenericInfoFamilyController extends Controller
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
 		$countrymaster = countrymaster::where('status',1)->get();
-		$religionmaster = religionmaster::where('status',1)->get();
+		$religionmaster = religionmaster::where('status',1)->orderBy('Name', 'asc')->get();
 		$titlemaster = titlemaster::where('status',1)->get();
-		$metadata = metadata::where('status',1)->where('name','Whom')->get();
-		$relation = metadata::where('status',1)->where('name','Relationship')->get();
+		$metadata = metadata::where('status',1)->where('name','Whom')->orderBy('value', 'asc')->get();
+		$relation = metadata::where('status',1)->where('name','Relationship')->orderBy('value', 'asc')->get();
 		$list = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		return view('genericinfo/family.index',compact('gendermaster','maritalstatus','childmaster','countrymaster','religionmaster','titlemaster','metadata','relation','list'));

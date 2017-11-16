@@ -17,6 +17,7 @@
                   <div class="panel panel-default">
 					<ul class="list-group listSearch">
 					@foreach($list as $key=>$values)
+					<?php $name = DB::table('common_country_master')->where('CM_ID',$values->Country)->get(); ?>
                       <li class="list-group-item">
                         <a href="{{ URL::to('general-travelinfo/' . $values->GTI_ID) }}" class="pointer">
                           <div class="media">
@@ -33,7 +34,8 @@
 									  Friend
 									@endif
 								</span>
-                              <span class="user">{{$NameOfCountry->Name}}</span>
+                              <span class="user">{{$name[0]->Name}}</span>
+							  <div class="message">From : {{Carbon\Carbon::parse($values->FromDate)->format('d/m/Y')}}</div>
                             </div>
                           </div>
                         </a>

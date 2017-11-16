@@ -37,8 +37,8 @@ class PhotosController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalphotos::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		if(count($list) > 0){
 			$NameOfMetadata = generalphotos::find($list[0]->GPH_ID)->metadataName;
@@ -120,9 +120,9 @@ class PhotosController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalphotos::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$edit = generalphotos::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		$NameOfMetadata = generalphotos::find($id)->metadataName;
 		$NameOfFamily = generalphotos::find($id)->familyName;

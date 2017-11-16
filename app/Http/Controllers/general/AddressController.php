@@ -39,18 +39,10 @@ class AddressController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generaladdress::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
-		if(count($list) > 0){
-			$NameOfCity = generaladdress::find($list[0]->GA_ID)->cityName;
-			$NameOfAddressType = generaladdress::find($list[0]->GA_ID)->addressTypeName;
-		}else{
-			$NameOfCity = "";
-			$NameOfAddressType = "";
-		}
-
-		return view('generalinfo/address.index',compact('gendermaster','maritalstatus','childmaster','addressmaster','countrymaster','citymaster','documenttype','metadata','relation','list','genericfamily','genericfriends','NameOfCity','NameOfAddressType'));
+		return view('generalinfo/address.index',compact('gendermaster','maritalstatus','childmaster','addressmaster','countrymaster','citymaster','documenttype','metadata','relation','list','genericfamily','genericfriends'));
     }
 	
 	public function store()
@@ -139,9 +131,9 @@ class AddressController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generaladdress::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$edit = generaladdress::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		$NameOfCity = generaladdress::find($id)->cityName;
 		$NameOfAddressType = generaladdress::find($id)->addressTypeName;

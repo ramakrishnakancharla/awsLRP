@@ -19,6 +19,7 @@
                   <div class="panel panel-default">
 					<ul class="list-group listSearch">
 					@foreach($list as $key=>$values)
+					<?php $name = DB::table('common_objects_loan_master')->where('OLM_ID',$values->ObjectCategory)->get(); ?>
                       <li class="list-group-item">
                         <a href="{{ URL::to('general-objectsonloan/' . $values->GOL_ID) }}" class="pointer">
                           <div class="media">
@@ -35,7 +36,7 @@
 								  Friend
 								@endif
 							</span>
-                              <span class="user">{{$NameOfObjectCat->Name}}</span>
+                              <span class="user">{{$name[0]->Name}}</span>
                             </div>
                           </div>
                         </a>

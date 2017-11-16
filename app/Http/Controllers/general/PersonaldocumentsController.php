@@ -39,8 +39,8 @@ class PersonaldocumentsController extends Controller
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generaldocuments::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		if(count($list) > 0){
 			$NameOfMetadata = generaldocuments::find($list[0]->GD_ID)->metadataName;
@@ -133,9 +133,9 @@ class PersonaldocumentsController extends Controller
 		$documentcategory = documentcategory::where('status',1)->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generaldocuments::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$edit = generaldocuments::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		if(count($list) > 0){
 			$NameOfMetadata = generaldocuments::find($id)->metadataName;

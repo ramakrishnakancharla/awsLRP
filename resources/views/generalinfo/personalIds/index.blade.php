@@ -19,6 +19,7 @@
                   <div class="panel panel-default">
 					<ul class="list-group listSearch">
 					@foreach($list as $key=>$values)
+					<?php $name = DB::table('common_personal_ids_master')->where('PID_ID',$values->IDType)->get(); ?>
                       <li class="list-group-item">
                         <a href="{{ URL::to('general-personalIds/' . $values->GPI_ID) }}" class="pointer">
                           <div class="media">
@@ -35,7 +36,8 @@
 								  Friend
 								@endif
 							</span>
-                              <span class="user">{{$NameOfIDType->Name}}</span>
+                              <span class="user">{{$name[0]->Name}}</span>
+							  <div class="message">No. : {{$values->IDNO}}</div>
                             </div>
                           </div>
                         </a>

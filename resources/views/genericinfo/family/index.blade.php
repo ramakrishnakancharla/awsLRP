@@ -22,14 +22,14 @@
 						<?php
 							$img = DB::table('addfamilymembers')->where('AFM_ID',$values->AFM_ID)->get(); 
 						?>
-                      <li class="list-group-item">
+                      <li class="list-group-item" title="{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}">
                         <a href="{{ URL::to('genericinfofamily/' . $values->AFM_ID) }}" class="pointer">
                           <div class="media">
                             <div class="media-left">
-                               <img src="{{URL::to($img[0]->Folder.$img[0]->Image)}}" width="50" height="48" alt="{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}" title="{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}" class="media-object" />
+                               <img src="{{URL::to($img[0]->Folder.$img[0]->Image)}}" width="50" height="48" alt="NO IMAGE"  class="media-object" />
                             </div>
                             <div class="media-body">
-                              <span class="user" title="{{$values->FirstName." ".$values->MiddleName." ".$values->LastName,18}}">{{str_limit($values->FirstName." ".$values->MiddleName." ".$values->LastName,18)}}</span>
+                              <span class="user">{{str_limit($values->FirstName." ".$values->MiddleName." ".$values->LastName,18)}}</span>
                               <div class="message">DOB : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>
                             </div>
                           </div>
@@ -205,7 +205,7 @@
 									  <li class="padding-v-5">
 										<div class="row">
 										  <div class="col-sm-4"><span class="text-muted">Married Since</span></div>
-										  <div class="col-sm-8"><input name="MarriedSince" type="text" class="form-control datepicker"></div>
+										  <div class="col-sm-8"><input name="MarriedSince" placeholder="DD/MM/YYYY" type="text" class="form-control datepicker"></div>
 										</div>
 									  </li>
 									  <li class="padding-v-5">
@@ -219,6 +219,7 @@
 								</div>
 								<input id="hiddenid" name="hiddenid" type="hidden" class="form-control">
 								<div class="form-group margin-none pull-right">
+									
 									<div class="col-sm-9">
 										<button type="submit" class="btn btn-primary">Submit</button>
 									</div>

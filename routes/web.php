@@ -36,6 +36,12 @@ Route::resource('general-leisureactivites', 'general\LeisureactivitesController'
 Route::resource('general-photos', 'general\PhotosController');
 Route::resource('general-accesslogin', 'general\AccessloginController');
 
+/*-------------------------- Reports Tab-------------------*/
+Route::resource('reports-myTask', 'reports\MyTaskController');
+Route::resource('reports-calendar', 'reports\CalendarController');
+Route::resource('reports-reminders', 'reports\RemindersController');
+Route::resource('reports-profile', 'reports\ProfileController');
+Route::resource('reports-family-tree', 'reports\FamilyTreeController');
 
 Route::get('financebankdetails','GeneralInfoController@financebankdetails')->name('financebankdetails');
 Route::get('financensurances','GeneralInfoController@financensurances')->name('financensurances');

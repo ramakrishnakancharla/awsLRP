@@ -44,8 +44,8 @@ class MembershipsController extends Controller
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generalmembership::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		return view('generalinfo/memberships.index',compact('gendermaster','maritalstatus','childmaster','facilitiemaster','allowed','category','membershiptype','sponceror','metadata','relation','documenttype','list','genericfamily','genericfriends'));
     }
@@ -139,9 +139,9 @@ class MembershipsController extends Controller
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generalmembership::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$edit = generalmembership::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		return view('generalinfo/memberships.edit',compact('gendermaster','maritalstatus','childmaster','facilitiemaster','allowed','category','membershiptype','sponceror','metadata','relation','documenttype','list','genericfamily','edit','genericfriends'));
 	}

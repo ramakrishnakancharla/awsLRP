@@ -26,10 +26,10 @@ class GenericInfoFriendsController extends Controller
 		$maritalstatus = maritalstatus::where('status',1)->get();
 		$childmaster = childmaster::where('status',1)->get();
 		$countrymaster = countrymaster::where('status',1)->get();
-		$religionmaster = religionmaster::where('status',1)->get();
+		$religionmaster = religionmaster::where('status',1)->orderBy('Name', 'asc')->get();
 		$titlemaster = titlemaster::where('status',1)->get();
-		$metadata = metadata::where('status',1)->where('name','Whom')->get();
-		$relation = metadata::where('status',1)->where('name','Relationship')->get();
+		$metadata = metadata::where('status',1)->where('name','Whom')->orderBy('value', 'asc')->get();
+		$relation = metadata::where('status',1)->where('name','Relationship')->orderBy('value', 'asc')->get();
 		$list = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		return view('genericinfo/friends.index',compact('gendermaster','maritalstatus','childmaster','countrymaster','religionmaster','titlemaster','metadata','relation','list'));
@@ -92,7 +92,15 @@ class GenericInfoFriendsController extends Controller
 		$list = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$view = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
 		
-		return view('genericinfo/friends.show',compact('list','view'));
+		$NameOfMetadata = genericfriends::find($view->AFR_ID)->metadataName;
+		$NameOfTitile = genericfriends::find($view->AFR_ID)->titleName;
+		$NameOfGender = genericfriends::find($view->AFR_ID)->genderName;
+		$NameOfReligion = genericfriends::find($view->AFR_ID)->religionName;
+		$NameOfNationality = genericfriends::find($view->AFR_ID)->nationalityName;
+		$NameOfMarital = genericfriends::find($view->AFR_ID)->maritalName;
+		$NameOfRelation = genericfriends::find($view->AFR_ID)->relationName;
+		
+		return view('genericinfo/friends.show',compact('list','view','NameOfTitile','NameOfGender','NameOfReligion','NameOfNationality','NameOfMarital','NameOfMetadata','NameOfRelation'));
 	}
 	public function edit($id)
 	{

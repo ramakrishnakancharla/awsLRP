@@ -67,11 +67,8 @@
 					<span style="font-size:26px; font-weight:normal;margin-bottom:10px;display:block">Welcome to LRP</span>
                       <p style="text-align:justify">Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
                         booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente
-                        labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed
-                        echo park.</p>
-						<img src="images/4.jpg" style="height:300px;width:100%"><p></p>
-                      <p style="text-align:justify">Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles
-                        etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. </p>
+                        labore stumptown.</p>
+						<img src="images/4.png" >
                     </div>
               </div>
 			  <div class="col-md-1"></div>
@@ -130,10 +127,11 @@
 							</div>
 						</div>
 						<div class="or">OR</div>
-						<div class="form-group">
+						<img src="images/login.png" >
+						<!--<div class="form-group">
 							 <div class="col-md-12">
 								<button type="button" class="btn btn-info form-control height45" style="background:#32508E">
-								  Log in with facebook
+								  <i class="fa fa-facebook-official"></i>Log in with facebook
 								</button>
 							</div>
 						</div>
@@ -150,7 +148,7 @@
 								  Log in with Google+
 								</button>
 							</div>
-						</div>
+						</div>-->
 					  </form>
 					  
 					</div>

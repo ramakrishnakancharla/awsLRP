@@ -19,6 +19,8 @@
                   <div class="panel panel-default">
 					<ul class="list-group listSearch">
 					@foreach($list as $key=>$values)
+					<?php $add = DB::table('common_address_master')->where('AM_ID',$values->AddressType)->get(); ?>
+					<?php $city = DB::table('common_city_master')->where('CIM_ID',$values->City)->get(); ?>
                       <li class="list-group-item">
                         <a href="{{ URL::to('general-address/' . $values->GA_ID) }}" class="pointer">
                           <div class="media">
@@ -35,8 +37,8 @@
 								  Friend
 								@endif
 							</span>
-                              <span class="user">{{$NameOfAddressType->Name}}</span>
-                              <div class="message">City : {{$NameOfCity->Name}}</div>
+                              <span class="user">{{$add[0]->Name}}</span>
+                              <div class="message">City : {{$city[0]->Name}}</div>
                             </div>
                           </div>
                         </a>

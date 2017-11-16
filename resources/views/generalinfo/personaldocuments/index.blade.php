@@ -19,6 +19,8 @@
                   <div class="panel panel-default">
 					<ul class="list-group listSearch">
 					@foreach($list as $key=>$values)
+					<?php $docCate = DB::table('common_document_category_master')->where('DCM_ID',$values->DocCategory)->get(); ?>
+					<?php //$docType = DB::table('common_document_type_master')->where('DTM_ID',$values->DocType)->get(); ?>
                       <li class="list-group-item">
                         <a href="{{ URL::to('general-personaldocuments/' . $values->GD_ID) }}" class="pointer">
                           <div class="media">
@@ -35,7 +37,8 @@
 									  Friend
 									@endif
 								</span>
-                              <span class="user">{{$NameOfDocCate->Name}}</span>
+                              <span class="user">{{$docCate[0]->Name}}</span>
+							  <div class="message">From : {{Carbon\Carbon::parse($values->ValidFrom)->format('d/m/Y')}}</div>
                             </div>
                           </div>
                         </a>

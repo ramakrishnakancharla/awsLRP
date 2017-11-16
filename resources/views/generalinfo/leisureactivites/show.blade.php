@@ -32,6 +32,7 @@
 									@endif
 								</span>
                               <span class="user">{{$values->Activity}}</span>
+							  <div class="message">From : {{Carbon\Carbon::parse($values->ValidFrom)->format('d/m/Y')}}</div>
                             </div>
                           </div>
                         </a>

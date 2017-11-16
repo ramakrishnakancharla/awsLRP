@@ -39,17 +39,10 @@ class PersonalIDsController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalpersonalids::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
-		if(count($list) > 0){
-			$NameOfIDType = generalpersonalids::find($list[0]->GPI_ID)->IDTypeName;
-		}else{
-			$NameOfIDType = "";
-		}
-		
-		
-		return view('generalinfo/personalIds.index',compact('gendermaster','maritalstatus','childmaster','personalidsmaster','countrymaster','religionmaster','documenttype','metadata','relation','list','genericfamily','genericfriends','NameOfIDType'));
+		return view('generalinfo/personalIds.index',compact('gendermaster','maritalstatus','childmaster','personalidsmaster','countrymaster','religionmaster','documenttype','metadata','relation','list','genericfamily','genericfriends'));
     }
 	public function store()
 	{
@@ -139,9 +132,9 @@ class PersonalIDsController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalpersonalids::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$edit = generalpersonalids::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$NameOfIDType = generalpersonalids::find($id)->IDTypeName;
 		
 		return view('generalinfo/personalIds.edit',compact('gendermaster','maritalstatus','childmaster','personalidsmaster','countrymaster','religionmaster','documenttype','metadata','relation','list','genericfamily','edit','genericfriends','NameOfIDType'));

@@ -19,6 +19,7 @@
                   <div class="panel panel-default">
 					<ul class="list-group listSearch">
 					@foreach($list as $key=>$values)
+					<?php $name = DB::table('common_communication_master')->where('COM_ID',$values->CommunicationType)->get(); ?>
                       <li class="list-group-item">
                         <a href="{{ URL::to('general-communications/' . $values->GC_ID) }}" class="pointer">
                           <div class="media">
@@ -26,7 +27,17 @@
                               <img src="images/people/110/woman-5.jpg" width="50" alt="" class="media-object" />
                             </div>
                             <div class="media-body">
-                              <span class="user">{{$NameOfCommui->Name}}</span>
+							<span class="pull-right" style="color:green">
+								@if($values->MetaID =='1')
+								  Self
+								@elseif($values->MetaID =='2')
+								  Family
+								@elseif($values->MetaID =='3')
+								  Friend
+								@endif
+							</span>
+                              <span class="user">{{$name[0]->Name}}</span>
+							  <div class="message">From : {{Carbon\Carbon::parse($values->ValidFrom)->format('d/m/Y')}}</div>
                             </div>
                           </div>
                         </a>

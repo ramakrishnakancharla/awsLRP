@@ -110,10 +110,6 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
           <ul class="nav navbar-nav hidden-xs">
             <!-- messages -->
             <li class="dropdown notifications hidden-xs hidden-sm">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-envelope-o"></i>
-
-              </a>
               <ul class="dropdown-menu">
                 <li class="media">
                   <div class="media-left">
@@ -193,18 +189,18 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 
           <ul class="nav navbar-nav navbar-right hidden-xs">
             <li class="pull-right">
-              <a href="#sidebar-chat" data-effect="st-effect-1" data-toggle="sidebar-menu">
+              <a href="#sidebar-chat" title="My Connections" data-effect="st-effect-1" data-toggle="sidebar-menu">
                 <i class="fa fa-comments"></i>
               </a>
             </li>
 			<li class="pull-right">
               <a href="#">
-                <i class="fa fa-bell" style="color:#26a69a !important;"></i>
+                <i class="fa fa-bell" title="Alerts" style="color:#26a69a !important;"></i>
               </a>
             </li>
 			<li class="pull-right">
               <a href="#">
-                <i class="fa fa-exclamation-triangle" style="color:red !important;"></i>
+                <i class="fa fa-exclamation-triangle" title="Notifications" style="color:red !important;"></i>
               </a>
             </li>
           </ul>
@@ -256,8 +252,9 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 			  <li><a href="{{route('financechitfunds')}}"><i class="fa fa-circle-o"></i> <span>Chit Funds</span></a></li>
 			  <li><a href="{{route('financeequity')}}"><i class="fa fa-circle-o"></i> <span>Equity</span></a></li>
 			  <li><a href="{{route('financemutualfund')}}"><i class="fa fa-circle-o"></i> <span>Mutual Fund</span></a></li>
-			  <li><a href="{{route('financefutures')}}"><i class="fa fa-circle-o"></i> <span>Futures</span></a></li>
-			  <li><a href="{{route('financeoptions')}}"><i class="fa fa-circle-o"></i> <span>Options</span></a></li>
+			  <li><a href="#"><i class="fa fa-circle-o"></i> <span>Credit Cards</span></a></li>
+			  <!--<li><a href="{{route('financefutures')}}"><i class="fa fa-circle-o"></i> <span>Futures</span></a></li>
+			  <li><a href="{{route('financeoptions')}}"><i class="fa fa-circle-o"></i> <span>Options</span></a></li>-->
             </ul>
           </li>
 		  <li class="hasSubmenu">
@@ -276,23 +273,35 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <a href="#CarrerLearing"><i class="fa fa-graduation-cap"></i> <span>Carrer & Learning</span></a>
             <ul id="CarrerLearing">
               <li><a href="{{route('careeracedamics')}}"><i class="fa fa-circle-o"></i> <span>Acedamics</span></a></li>
-              <li><a href="{{route('careerprofessionaleducationskills')}}"><i class="fa fa-circle-o"></i> <span>Professional Education/Skills</span></a></li>
+              <li><a href="{{route('careerprofessionaleducationskills')}}"><i class="fa fa-circle-o"></i> <span>Skills</span></a></li>
               <li><a href="{{route('careertrainings')}}"><i class="fa fa-circle-o"></i> <span>Trainings</span></a></li>
               <li><a href="{{route('careerworkexperience')}}"><i class="fa fa-circle-o"></i> <span>Work Experience</span></a></li>
               <li><a href="{{route('careerachievements')}}"><i class="fa fa-circle-o"></i> <span>Achievements</span></a></li>
             </ul>
           </li>
-		  <li class="hasSubmenu">
+		 <!-- <li class="hasSubmenu">
             <a href="#DailyActivities"><i class="fa fa-bell"></i> <span>Tasks & Notifications</span></a>
             <ul id="DailyActivities">
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Calendar</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Tasks</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>Today's Challenges</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Finance</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Learnings</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Diet</span></a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Fitness</span></a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> <span>Reminders & Notifications</span></a></li>
+            </ul>
+          </li>-->
+		  <li class="hasSubmenu">
+            <a href="#Reports"><i class="fa fa-bell"></i> <span>Reports</span></a>
+            <ul id="Reports">
+              <li><a href="{{URL::to('reports-calendar') }}"><i class="fa fa-circle-o"></i> <span>My Calendar</span></a></li>
+              <li><a href="{{URL::to('reports-myTask') }}"><i class="fa fa-circle-o"></i> <span>My Tasks</span></a></li>
+              <li><a href="{{URL::to('reports-profile') }}"><i class="fa fa-circle-o"></i> <span>My Profile</span></a></li>
+              <li><a href="{{URL::to('reports-family-tree') }}"><i class="fa fa-circle-o"></i> <span>Family Tree</span></a></li>
+              <li><a href="{{URL::to('reports-reminders') }}"><i class="fa fa-circle-o"></i> <span>Reminders & Notifications</span></a></li>
+			  <!--<li><a href="#"><i class="fa fa-circle-o"></i> <span>Today's Challenges</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Finance</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Learnings</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Diet</span></a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> <span>My Fitness</span></a></li>-->
             </ul>
           </li>
 		  <li class="hasSubmenu">
@@ -316,7 +325,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             </ul>
           </li>-->
         </ul>
-        <h4 class="category">Favorites</h4>
+       <!-- <h4 class="category">Favorites</h4>
         <div class="sidebar-block">
           <ul>
             <li><a href="#" class="sidebar-link"><span class="fa fa-briefcase"></span> Work Related</a></li>
@@ -324,7 +333,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <li><a href="#" class="sidebar-link"><span class="fa fa-users"></span> Friends &amp; Family</a></li>
             <li><a href="#" class="sidebar-link"><span class="fa fa-globe"></span> Other</a></li>
           </ul>
-        </div>
+        </div>-->
       </div>
     </div>
 

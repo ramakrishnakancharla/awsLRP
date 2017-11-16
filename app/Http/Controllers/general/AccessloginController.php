@@ -38,8 +38,8 @@ class AccessloginController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalaccesslogin::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		if(count($list) > 0){
 			$NameOfMetadata = generalaccesslogin::find($list[0]->GAL_ID)->metadataName;
@@ -129,9 +129,9 @@ class AccessloginController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalaccesslogin::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$edit = generalaccesslogin::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		$NameOfMetadata = generalaccesslogin::find($id)->metadataName;
 		$NameOfFamily = generalaccesslogin::find($id)->familyName;

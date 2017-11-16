@@ -18,14 +18,14 @@
 						<?php
 							$img = DB::table('addfamilymembers')->where('AFM_ID',$values->AFM_ID)->get(); 
 						?>
-                      <li class="list-group-item">
+                      <li class="list-group-item" title="{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}">
                         <a href="{{ URL::to('genericinfofamily/' . $values->AFM_ID) }}" class="pointer">
                           <div class="media">
                             <div class="media-left">
-                              <img src="{{URL::to($img[0]->Folder.$img[0]->Image)}}" width="50" height="48" alt="{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}" title="{{$values->FirstName." ".$values->MiddleName." ".$values->LastName}}" class="media-object" />
+                              <img src="{{URL::to($img[0]->Folder.$img[0]->Image)}}" width="50" height="48" alt="NO IMAGE"  class="media-object" />
                             </div>
                             <div class="media-body">
-                              <span class="user" title="{{$values->FirstName." ".$values->MiddleName." ".$values->LastName,18}}">{{str_limit($values->FirstName." ".$values->MiddleName." ".$values->LastName,18)}}</span>
+                              <span class="user">{{str_limit($values->FirstName." ".$values->MiddleName." ".$values->LastName,18)}}</span>
                               <div class="message">DOB : {{Carbon\Carbon::parse($values->DOB)->format('d/m/Y')}}</div>
                             </div>
                           </div>

@@ -32,18 +32,10 @@ class CommunicationsController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalcommunications::where('Status',1)->get()->where('Txnuser',Auth::user()->id);
-		$genericfamily = genericfamily::where('Status',1)->get();
-		$genericfriends = genericfriends::where('Status',1)->get();
-		$ue=communicationmaster::find(2);
-		return $ue;
-		if(count($list) > 0){
-			$NameOfCommui = generalcommunications::find($list[0]->GC_ID)->CommuiName;
-		}else{
-			$NameOfCommui = "";
-		}
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
-		
-		return view('generalinfo/communications.index',compact('gendermaster','maritalstatus','childmaster','communicationmaster','metadata','relation','list','genericfamily','genericfriends','NameOfCommui'));
+		return view('generalinfo/communications.index',compact('gendermaster','maritalstatus','childmaster','communicationmaster','metadata','relation','list','genericfamily','genericfriends'));
     }
 	public function store()
 	{
@@ -110,9 +102,9 @@ class CommunicationsController extends Controller
 		$metadata = metadata::where('status',1)->where('name','Whom')->get();
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$list = generalcommunications::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$edit = generalcommunications::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$NameOfCommui = generalcommunications::find($id)->CommuiName;
 		
 		return view('generalinfo/communications.edit',compact('gendermaster','maritalstatus','childmaster','communicationmaster','metadata','relation','list','genericfamily','edit','genericfriends','NameOfCommui'));

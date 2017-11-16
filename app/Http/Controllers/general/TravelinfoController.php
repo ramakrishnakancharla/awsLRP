@@ -44,8 +44,8 @@ class TravelinfoController extends Controller
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generaltravelinfo::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		
 		if(count($list) > 0){
@@ -159,9 +159,9 @@ class TravelinfoController extends Controller
 		$relation = metadata::where('status',1)->where('name','Relationship')->get();
 		$documenttype = documenttype::where('Status',1)->orderBy('Name', 'asc')->get();
 		$list = generaltravelinfo::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
-		$genericfamily = genericfamily::where('Status',1)->get();
+		$genericfamily = genericfamily::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		$edit = generaltravelinfo::where('Status',1)->where('Txnuser',Auth::user()->id)->find($id);
-		$genericfriends = genericfriends::where('Status',1)->get();
+		$genericfriends = genericfriends::where('Status',1)->where('Txnuser',Auth::user()->id)->get();
 		
 		$NameOfMetadata = generaltravelinfo::find($id)->metadataName;
 		$NameOfFamily = generaltravelinfo::find($id)->familyName;
