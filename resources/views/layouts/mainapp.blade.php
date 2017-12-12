@@ -242,9 +242,9 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
           <li class="hasSubmenu">
             <a href="#Finance"><i class="fa fa-money"></i> <span>Finance</span></a>
             <ul id="Finance">
-              <li><a href="{{route('financebankdetails')}}"><i class="fa fa-circle-o"></i> <span>Bank Deatils</span></a></li>
-			  <li><a href="{{route('financensurances')}}"><i class="fa fa-circle-o"></i> <span>Insurances</span></a></li>
-			  <li><a href="{{route('financefixeddeposites')}}"><i class="fa fa-circle-o"></i> <span>Fixed Deposites</span></a></li>
+              <li><a href="{{URL::to('finance-bank-details') }}"><i class="fa fa-circle-o"></i> <span>Bank Deatils</span></a></li>
+			  <li><a href="{{URL::to('finance-insurance-details')}}"><i class="fa fa-circle-o"></i> <span>Insurances</span></a></li>
+			  <li><a href="{{URL::to('finance-fixed-deposits')}}"><i class="fa fa-circle-o"></i> <span>Fixed Deposites</span></a></li>
 			  <li><a href="{{route('financeassets')}}"><i class="fa fa-circle-o"></i> <span>Assets</span></a></li>
 			  <li><a href="{{route('financefinancialdocuments')}}"><i class="fa fa-circle-o"></i> <span>Financial Documents</span></a></li>
 			  <li><a href="{{route('financeloans')}}"><i class="fa fa-circle-o"></i> <span>Loans</span></a></li>

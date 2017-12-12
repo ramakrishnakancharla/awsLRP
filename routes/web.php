@@ -21,9 +21,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('general-address/{id}/getStateList','general\AddressController@getStateList');
 Route::get('general-address/{id}/getCityList','general\AddressController@getCityList');
-/*------------General info tab ----------------*/
+
+/*------------Generic info tab ----------------*/
 Route::resource('genericinfofamily', 'GenericInfoFamilyController');
 Route::resource('genericinfofriends', 'GenericInfoFriendsController');
+
+/*------------General info tab ----------------*/
 Route::resource('general-personal-data', 'general\PersonalDataController');
 Route::resource('general-address', 'general\AddressController');
 Route::resource('general-communications', 'general\CommunicationsController');
@@ -42,6 +45,12 @@ Route::resource('reports-calendar', 'reports\CalendarController');
 Route::resource('reports-reminders', 'reports\RemindersController');
 Route::resource('reports-profile', 'reports\ProfileController');
 Route::resource('reports-family-tree', 'reports\FamilyTreeController');
+
+/*------------Finance info tab ----------------*/
+Route::resource('finance-bank-details', 'finance\FinanceBankController');
+Route::resource('finance-insurance-details', 'finance\FinanceInsuranceController');
+Route::resource('finance-fixed-deposits', 'finance\FinanceFixedDepositsController');
+
 
 Route::get('financebankdetails','GeneralInfoController@financebankdetails')->name('financebankdetails');
 Route::get('financensurances','GeneralInfoController@financensurances')->name('financensurances');
