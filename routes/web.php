@@ -50,6 +50,7 @@ Route::resource('reports-family-tree', 'reports\FamilyTreeController');
 Route::resource('finance-bank-details', 'finance\FinanceBankController');
 Route::resource('finance-insurance-details', 'finance\FinanceInsuranceController');
 Route::resource('finance-fixed-deposits', 'finance\FinanceFixedDepositsController');
+Route::resource('finance-asset', 'finance\FinanceAssetController');
 
 
 Route::get('financebankdetails','GeneralInfoController@financebankdetails')->name('financebankdetails');

@@ -245,7 +245,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
               <li><a href="{{URL::to('finance-bank-details') }}"><i class="fa fa-circle-o"></i> <span>Bank Deatils</span></a></li>
 			  <li><a href="{{URL::to('finance-insurance-details')}}"><i class="fa fa-circle-o"></i> <span>Insurances</span></a></li>
 			  <li><a href="{{URL::to('finance-fixed-deposits')}}"><i class="fa fa-circle-o"></i> <span>Fixed Deposites</span></a></li>
-			  <li><a href="{{route('financeassets')}}"><i class="fa fa-circle-o"></i> <span>Assets</span></a></li>
+			  <li><a href="{{URL::to('finance-asset')}}"><i class="fa fa-circle-o"></i> <span>Assets</span></a></li>
 			  <li><a href="{{route('financefinancialdocuments')}}"><i class="fa fa-circle-o"></i> <span>Financial Documents</span></a></li>
 			  <li><a href="{{route('financeloans')}}"><i class="fa fa-circle-o"></i> <span>Loans</span></a></li>
 			  <li><a href="{{route('financerecurringdeposites')}}"><i class="fa fa-circle-o"></i> <span>Recurring Deposites</span></a></li>
